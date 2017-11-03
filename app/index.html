@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="foodVotingApp">
+<head>
+    <meta charset="UTF-8">
+    <title>{{loginCtrl.appName}}</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body ng-controller="LoginController as loginCtrl">
+<div class="main">
+    <h1>{{loginCtrl.appName}}</h1>
+
+    <div class="row col-md-offset-4 col-md-4">
+        <form name="userForm">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username" class="form-control"
+                       ng-model="loginCtrl.user.username" ng-minlength="6" ng-maxlength="10" required
+                       ng-pattern="/^[a-zA-Z0-9]/">
+                <p ng-show="userForm.username.$error.minlength" class="help-block">Username must be of 6-10
+                    characters.</p>
+                <p ng-show="userForm.username.$error.pattern" class="help-block">Username must be alpha numeric.</p>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="Password" class="form-control" ng-model="loginCtrl.user.password">
+            </div>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
