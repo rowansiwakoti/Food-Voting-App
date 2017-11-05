@@ -2,6 +2,12 @@ div.row {
     text-align: center;
 }
 
-h1{
+h1.app{
     text-align: center;
+}
+
+#intro h3,
+#intro a {
+    display: inline;
+    text-align: right;
 }

@@ -1,4 +1,28 @@
+<h1>{{dashboard.appName}}</h1>
 <hr/>
-<a class="btn btn-warning btn-sm pull-right" ng-click="dashboard.userLogout()">Logout</a>
-<h3>{{dashboard.title}}</h3>
-<h4>{{dashboard.greet}}</h4>
+<div id="intro" style="text-align: right">
+    <h3>{{dashboard.userName}}</h3>/<a ng-click="dashboard.userLogout()">Logout</a>
+</div>
+
+<a class="btn btn-default btn-sm">Add Restaurant</a>
+<a class="btn btn-default btn-sm">Add Food</a><br/><br/>
+
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>S/N</th>
+        <th>Food</th>
+        <th>Restaurant</th>
+        <th>Price</th>
+        <th>Contact No.</th>
+        <th>Vote</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="6" style="text-align: center; color: red;">
+            No Food Added!
+        </td>
+    </tr>
+    </tbody>
+</table>

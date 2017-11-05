@@ -22,7 +22,6 @@
                 templateUrl: "components/dashboard/dashboard.html",
                 controller: "DashboardController as dashboard"
             })
-
     };
 
 })();
