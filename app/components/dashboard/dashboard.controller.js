@@ -5,14 +5,13 @@
     angular.module("foodVotingApp")
         .controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ["commonService", "$rootScope", "$state", "APP", "$uibModal", "restaurantService", "foodService", "$sessionStorage"];
+    DashboardController.$inject = ["$scope", "$state", "APP", "$uibModal", "restaurantService", "foodService", "$sessionStorage"];
 
-    function DashboardController(commonService, $rootScope, $state, APP, $uibModal, restaurantService, foodService, $sessionStorage) {
+    function DashboardController($scope, $state, APP, $uibModal, restaurantService, foodService, $sessionStorage) {
 
         var vm = this;
 
         vm.appName = APP.APP_NAME;
-        vm.title = APP.PAGE_TITLE;
         vm.foodItems = foodService.getFoodList();
         vm.message = "";
 

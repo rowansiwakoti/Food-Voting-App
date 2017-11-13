@@ -38,6 +38,7 @@
         };
 
         vm.cancel = function () {
+            vm.message = "";
             $uibModalInstance.dismiss();
         };
 

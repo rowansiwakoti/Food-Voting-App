@@ -1,10 +1,11 @@
-(function(){
+(function () {
     "use strict";
     angular.module("foodVotingApp")
         .controller("FooterController", FooterController);
+    FooterController.$inject = ["APP"];
 
-    function FooterController(){
-      var vm = this;
-        vm.appName = "Food Voting App";
+    function FooterController(APP) {
+        var vm = this;
+        vm.appName = APP.APP_NAME;
     }
 })();

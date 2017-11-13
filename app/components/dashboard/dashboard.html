@@ -5,9 +5,8 @@
 <a class="btn btn-default btn-sm" ng-click="dashboard.addFood()" ng-show="dashboard.role == 'admin'">Add Food</a><br/>
 <br/>
 
-<div id="alertMessage" ng-show="dashboard.message" class="alert alert-success alert-dismissible" role="alert">
-    <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
-    <button type="button" class="close" ng-click="dashboard.close()">&times;</button>
+<div id="alertMessage" ng-show="dashboard.message" class="alert alert-success alert-dismissible fade in" role="alert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>{{dashboard.message}}</strong>
 </div>
 

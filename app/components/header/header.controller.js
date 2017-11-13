@@ -1,9 +1,11 @@
-(function(){
+(function () {
     "use strict";
     angular.module("foodVotingApp")
         .controller("HeaderController", HeaderController);
-    function HeaderController(){
+    HeaderController.$inject = ["APP"];
+
+    function HeaderController(APP) {
         var vm = this;
-        vm.appName = "Food Voting App";
+        vm.appName = APP.APP_NAME;
     }
 })();
