@@ -1,8 +1,8 @@
 <div class="row col-md-offset-3 col-md-6">
-    <h1 class="app">{{login.appName}}</h1><br/>
+    <h3 class="page"><u>{{login.pageName}}</u></h3><br/>
     <form name="userForm" ng-submit="login.validateUser(login.user)">
         <div class="form-group">
-            <label>Username</label>
+            <label name="user_name">Username</label>
             <p ng-show="login.errorMessage" style="color: red;">{{login.errorMessage}}</p>
 
             <input type="text" name="username" placeholder="Username" class="form-control"
@@ -15,9 +15,9 @@
         </div>
 
         <div class="form-group">
-            <label>Password</label>
+            <label name="pass_word">Password</label>
             <input type="password" placeholder="Password" class="form-control" ng-model="login.user.password">
         </div>
-        <button type="submit" class="btn btn-success">Login</button>
+        <button type="submit" class="btn btn-success" ng-disabled="userForm.$invalid">Login</button>
     </form>
 </div>

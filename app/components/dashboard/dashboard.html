@@ -1,13 +1,18 @@
-<h1>{{dashboard.appName}}</h1>
-<hr/>
 <div id="intro" style="text-align: right">
-    <h3>{{dashboard.userName}}</h3>/<a ng-click="dashboard.userLogout()">Logout</a>
+    <h3 class="logged-in-user"><i>{{dashboard.userName}}</i></h3>/<a class="logout" ng-click="dashboard.userLogout()">Logout</a>
+</div>
+<a class="btn btn-default btn-sm" ng-click="dashboard.addRestaurant()" ng-show="dashboard.role == 'admin'">Add Restaurant</a>
+<a class="btn btn-default btn-sm" ng-click="dashboard.addFood()" ng-show="dashboard.role == 'admin'">Add Food</a><br/>
+<br/>
+
+<div id="alertMessage" ng-show="dashboard.message" class="alert alert-success alert-dismissible" role="alert">
+    <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+    <button type="button" class="close" ng-click="dashboard.close()">&times;</button>
+    <strong>{{dashboard.message}}</strong>
 </div>
 
-<a class="btn btn-default btn-sm">Add Restaurant</a>
-<a class="btn btn-default btn-sm">Add Food</a><br/><br/>
-
-<table class="table table-condensed">
+<table class="table table-condensed table-hover table-striped table-bordered ">
+    <caption><h3>Foods</h3></caption>
     <thead>
     <tr>
         <th>S/N</th>
@@ -19,9 +24,25 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr ng-show="dashboard.foodItems == '' ||dashboard.foodItems.length == 0">
         <td colspan="6" style="text-align: center; color: red;">
-            No Food Added!
+            <strong>No Food Added!</strong>
+        </td>
+    </tr>
+    <tr ng-repeat="food in dashboard.foodItems | orderBy: '-vote'">
+        <td>{{food.id}}</td>
+        <td ng-click="dashboard.editFood(food.id)">{{food.name}}</td>
+        <td>{{food.restaurant}}</td>
+        <td>{{food.price}}</td>
+        <td>{{food.contact}}<p ng-show="food.contact=='' || food.contact == null">NA</p></td>
+        <td>
+            <button ng-click="food.vote = food.vote+1" class="btn btn-sm btn-default">
+                +
+            </button>
+            {{food.vote}}
+            <button ng-click="food.vote = food.vote-1" class="btn btn-sm btn-default">
+                -
+            </button>
         </td>
     </tr>
     </tbody>

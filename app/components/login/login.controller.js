@@ -6,23 +6,28 @@
 
         .controller("LoginController", LoginController);
 
-    LoginController.$inject = ["$location", "commonService"];
+    LoginController.$inject = ["commonService", "$state", "$sessionStorage"];
 
-    function LoginController($location, commonService) {
+    function LoginController(commonService, $state, $sessionStorage) {
         var vm = this;
         vm.appName = "Food Voting App";
+        vm.pageName = "User Login";
 
         vm.user = {};
 
         vm.validateUser = function (user) {
-            if (user.username == "rowans" && user.password == "rowansiwakoti") {
-                commonService.setUserName(user.username);
-                $location.path("/dashboard");
+            var users = commonService.validateUser(user);
+
+            if (users.length > 0) {
+                $sessionStorage.role = users[0].role;
+                $sessionStorage.username = users[0].username;
+                console.log($sessionStorage.role);
+                $state.go("dashboard");
             }
             else {
-                vm.errorMessage = "Incorrect Username or Password";
+                vm.errorMessage = "Incorrect Username Or Password!";
             }
-        }
+        };
 
     };
 

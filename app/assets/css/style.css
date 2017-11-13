@@ -2,12 +2,33 @@ div.row {
     text-align: center;
 }
 
-h1.app{
-    text-align: center;
-}
-
 #intro h3,
 #intro a {
     display: inline;
     text-align: right;
+}
+
+h3.page{
+    text-align: center;
+}
+footer{
+    background-color: silver;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    text-align: center;
+    color: #CCC;
+}
+
+footer p {
+    padding: 23px;
+    margin: 0px;
+    line-height: 100%;
+    color: #000;
+}
+
+.alert {
+    display:inline-block;
 }
