@@ -30,7 +30,7 @@
         //     event.preventDefault();
         // });
 
-        // if ($sessionStorage.username) {
+        if ($sessionStorage.username) {
 
             vm.userLogout = function () {
                 if (confirm("Are you sure want to log out?")) {
@@ -109,11 +109,10 @@
                 }
             }
             ;
-        // }
-        // else{
-        //     $state.go("login");
-        //     vm.message = "I know you are smart, but not that smart! ;)";
-        // }
+        }
+        else {
+            $state.go("login");
+        }
     }
 
 })();
