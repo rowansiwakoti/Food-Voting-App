@@ -6,9 +6,9 @@
 
         .controller("LoginController", LoginController);
 
-    LoginController.$inject = ["commonService", "$state", "$sessionStorage", "APP"];
+    LoginController.$inject = ["CommonService", "$state", "$sessionStorage", "APP"];
 
-    function LoginController(commonService, $state, $sessionStorage, APP) {
+    function LoginController(CommonService, $state, $sessionStorage, APP) {
         var vm = this;
 
         var pageName = APP.PAGE_NAME;
@@ -20,7 +20,7 @@
         };
 
         vm.validateUser = function (user) {
-            var users = commonService.validateUser(user);
+            var users = CommonService.validateUser(user);
 
             if (users.length > 0) {
                 $sessionStorage.role = users[0].role;

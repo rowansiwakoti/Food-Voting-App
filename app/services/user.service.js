@@ -4,9 +4,9 @@
 
     angular.module("FoodVotingApp")
 
-        .factory("commonService", commonService);
+        .factory("CommonService", CommonService);
 
-    function commonService() {
+    function CommonService() {
 
         var users = [
             {username: "rowanfa", password: "rowanfa@123", role: "admin"},

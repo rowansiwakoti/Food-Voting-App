@@ -3,14 +3,14 @@
     angular.module("FoodVotingApp")
         .controller("EditFoodController", EditFoodController);
 
-    EditFoodController.$inject = ["$uibModal", "$uibModalInstance", "restaurantService", "foodService", "food", "$sessionStorage", "$log", "APP"];
+    EditFoodController.$inject = ["$uibModal", "$uibModalInstance", "RestaurantService", "FoodService", "food", "$sessionStorage", "$log", "APP"];
 
-    function EditFoodController($uibModal, $uibModalInstance, restaurantService, foodService, food, $sessionStorage, $log, APP) {
+    function EditFoodController($uibModal, $uibModalInstance, RestaurantService, FoodService, food, $sessionStorage, $log, APP) {
 
         var vm = this;
 
         vm.food = food;
-        vm.restaurant = restaurantService.getRestaurantList();
+        vm.restaurant = RestaurantService.getRestaurantList();
         vm.user = $sessionStorage.username;
 
         vm.foodDuplicate = angular.copy(vm.food);
@@ -31,7 +31,7 @@
                 vote: food.vote
             };
 
-            foodService.setAlertMessage(food.name + " " + APP.EDIT_MSG);
+            FoodService.setAlertMessage(food.name + " " + APP.EDIT_MSG);
             $uibModalInstance.close(response);
         };
 

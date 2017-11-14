@@ -1,11 +1,11 @@
 (function () {
     "use strict";
     angular.module("FoodVotingApp")
-        .factory("foodService", foodService);
+        .factory("FoodService", FoodService);
 
-    foodService.$inject = ["restaurantService"];
+    FoodService.$inject = ["RestaurantService"];
 
-    function foodService(restaurantService) {
+    function FoodService(RestaurantService) {
         var foodSvc = {};
 
         var foodList = [];
@@ -14,7 +14,7 @@
 
         foodSvc.setFood = function (food) {
 
-            var rest = restaurantService.getRestaurantList().filter(function (restaurant) {
+            var rest = RestaurantService.getRestaurantList().filter(function (restaurant) {
                 return restaurant.name === food.restaurant;
             });
 

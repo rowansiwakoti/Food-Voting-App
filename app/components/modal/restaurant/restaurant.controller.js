@@ -3,15 +3,15 @@
     angular.module("FoodVotingApp")
         .controller("RestaurantController", RestaurantController);
 
-    RestaurantController.$inject = ["$uibModalInstance", "restaurantService", "$state", "APP"];
+    RestaurantController.$inject = ["$uibModalInstance", "RestaurantService", "$state", "APP"];
 
-    function RestaurantController($uibModalInstance, restaurantService, $state, APP) {
+    function RestaurantController($uibModalInstance, RestaurantService, $state, APP) {
         var vm = this;
 
         vm.ok = function (restaurant) {
 
-            restaurantService.setRestaurant(restaurant);
-            restaurantService.setAlertMessage(restaurant.name + " " + APP.ADD_MSG);
+            RestaurantService.setRestaurant(restaurant);
+            RestaurantService.setAlertMessage(restaurant.name + " " + APP.ADD_MSG);
             $uibModalInstance.close();
         };
 

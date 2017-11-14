@@ -5,14 +5,14 @@
     angular.module("FoodVotingApp")
         .controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ["$scope", "$state", "APP", "$uibModal", "restaurantService", "foodService", "$sessionStorage", "$log"];
+    DashboardController.$inject = ["$scope", "$state", "APP", "$uibModal", "RestaurantService", "FoodService", "$sessionStorage", "$log"];
 
-    function DashboardController($scope, $state, APP, $uibModal, restaurantService, foodService, $sessionStorage, $log) {
+    function DashboardController($scope, $state, APP, $uibModal, RestaurantService, FoodService, $sessionStorage, $log) {
 
         var vm = this;
 
         vm.appName = APP.APP_NAME;
-        vm.foodItems = foodService.getFoodList();
+        vm.foodItems = FoodService.getFoodList();
         vm.message = "";
 
         vm.userName = $sessionStorage.username;
@@ -45,7 +45,7 @@
                 });
 
                 modalInstance.result.then(function () {
-                    vm.message = restaurantService.getAlertMessage()
+                    vm.message = RestaurantService.getAlertMessage()
                 }, function () {
                     $log.info("User Logout modal dismissed on " + new Date());
                 });
@@ -65,7 +65,7 @@
                 });
 
                 modalInstance.result.then(function () {
-                    vm.message = restaurantService.getAlertMessage()
+                    vm.message = RestaurantService.getAlertMessage()
                 }, function () {
                     $log.info("Add restaurant modal dismissed on " + new Date());
                 });
@@ -83,7 +83,7 @@
                     controllerAs: "foodCtrl"
                 });
                 modalInstance.result.then(function () {
-                    vm.message = foodService.getAlertMessage();
+                    vm.message = FoodService.getAlertMessage();
                 }, function () {
                     $log.info("Add food modal dismissed on " + new Date());
                 });
@@ -101,13 +101,13 @@
                         controller: "EditFoodController",
                         controllerAs: "editFoodCtrl",
                         resolve: {
-                            food: function (foodService) {
-                                return foodService.getFood(foodId);
+                            food: function (FoodService) {
+                                return FoodService.getFood(foodId);
                             }
                         }
                     });
                     modalInstance.result.then(function (response) {
-                        foodService.getFoodList().filter(function (food) {
+                        FoodService.getFoodList().filter(function (food) {
                             if (food.id === response.id) {
                                 food.name = response.name;
                                 food.restaurant = response.restaurant;
@@ -115,7 +115,7 @@
                                 food.contact = response.contact;
                             }
                         });
-                        vm.message = foodService.getAlertMessage();
+                        vm.message = FoodService.getAlertMessage();
                     }, function () {
                         $log.info("Edit food modal dismissed on " + new Date());
                     });

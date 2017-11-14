@@ -1,9 +1,9 @@
 (function () {
     "use strict";
     angular.module("FoodVotingApp")
-        .factory("restaurantService", restaurantService);
+        .factory("RestaurantService", RestaurantService);
 
-    function restaurantService() {
+    function RestaurantService() {
         var restaurantSvc = {};
 
         var alertMessage = "";
