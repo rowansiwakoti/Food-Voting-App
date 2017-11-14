@@ -40,7 +40,8 @@
                     backdrop: false,
                     templateUrl: "components/modal/user-logout/logout.html",
                     controller: "LogoutController",
-                    controllerAs: "logoutCtrl"
+                    controllerAs: "logoutCtrl",
+                    size: "sm"
                 });
 
                 modalInstance.result.then(function () {

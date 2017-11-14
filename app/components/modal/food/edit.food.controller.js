@@ -3,9 +3,9 @@
     angular.module("FoodVotingApp")
         .controller("EditFoodController", EditFoodController);
 
-    EditFoodController.$inject = ["$uibModal", "$uibModalInstance", "restaurantService", "foodService", "food", "$sessionStorage", "$log"];
+    EditFoodController.$inject = ["$uibModal", "$uibModalInstance", "restaurantService", "foodService", "food", "$sessionStorage", "$log", "APP"];
 
-    function EditFoodController($uibModal, $uibModalInstance, restaurantService, foodService, food, $sessionStorage, $log) {
+    function EditFoodController($uibModal, $uibModalInstance, restaurantService, foodService, food, $sessionStorage, $log, APP) {
 
         var vm = this;
 
@@ -31,7 +31,7 @@
                 vote: food.vote
             };
 
-            foodService.setAlertMessage(food.name + " has been edited!");
+            foodService.setAlertMessage(food.name + " " + APP.EDIT_MSG);
             $uibModalInstance.close(response);
         };
 

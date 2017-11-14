@@ -3,9 +3,9 @@
     angular.module("FoodVotingApp")
         .controller("FoodController", FoodController);
 
-    FoodController.$inject = ["$uibModalInstance", "foodService", "restaurantService"];
+    FoodController.$inject = ["$uibModalInstance", "foodService", "restaurantService", "APP"];
 
-    function FoodController($uibModalInstance, foodService, restaurantService) {
+    function FoodController($uibModalInstance, foodService, restaurantService, APP) {
         var vm = this;
 
 
@@ -13,7 +13,7 @@
         vm.ok = function (food) {
             food.vote = 0;
             foodService.setFood(food);
-            foodService.setAlertMessage(food.name + " has been added!");
+            foodService.setAlertMessage(food.name + " " + APP.ADD_MSG);
             $uibModalInstance.close();
         };
 

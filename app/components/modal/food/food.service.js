@@ -10,7 +10,7 @@
 
         var foodList = [];
 
-        var alertMessage="";
+        var alertMessage = "";
 
         foodSvc.setFood = function (food) {
 
@@ -46,10 +46,10 @@
         };
 
         foodSvc.getFood = function (id) {
-           var food = foodList.filter(function (food) {
+            var food = foodList.filter(function (food) {
                 return food.id === id;
             });
-           return food[0]
+            return food[0]
         };
 
         foodSvc.setAlertMessage = function (msg) {

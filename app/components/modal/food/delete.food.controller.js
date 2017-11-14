@@ -2,9 +2,9 @@
     "use strict";
     angular.module("FoodVotingApp")
         .controller("DeleteFoodController", DeleteFoodController);
-    DeleteFoodController.$inject = ["$uibModalInstance", "foodService", "foodParam"];
+    DeleteFoodController.$inject = ["$uibModalInstance", "foodService", "foodParam", "APP"];
 
-    function DeleteFoodController($uibModalInstance, foodService, foodParam) {
+    function DeleteFoodController($uibModalInstance, foodService, foodParam, APP) {
         var vm = this;
         vm.ok = function () {
 
@@ -23,7 +23,8 @@
                         contact: res[0].contact,
                         vote: food.vote
                     }, 1);
-                    foodService.setAlertMessage(food.name + " has been deleted!");
+                    
+                    foodService.setAlertMessage(food.name + " " + APP.DELETE_MSG);
                 }
                 return foodService.getFoodList();
             });
