@@ -2,7 +2,7 @@
 
     "use strict";
 
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
         .config(config);
 
     config.$inject = ["$stateProvider", "$urlRouterProvider"];
@@ -23,5 +23,4 @@
                 controller: "DashboardController as dashboard"
             })
     };
-
 })();

@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
         .controller("RestaurantController", RestaurantController);
 
     RestaurantController.$inject = ["$uibModalInstance", "restaurantService", "$state"];
@@ -12,9 +12,7 @@
 
             restaurantService.setRestaurant(restaurant);
             restaurantService.setAlertMessage(restaurant.name + " has been added!");
-            console.log(restaurant.name + " has been added!");
             $uibModalInstance.close();
-            // $state.go("dashboard");
         };
 
         vm.cancel = function () {

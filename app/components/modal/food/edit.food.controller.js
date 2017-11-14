@@ -1,11 +1,11 @@
 (function () {
     "use strict";
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
         .controller("EditFoodController", EditFoodController);
 
-    EditFoodController.$inject = ["$uibModalInstance", "restaurantService", "foodService", "food", "$sessionStorage"];
+    EditFoodController.$inject = ["$uibModal", "$uibModalInstance", "restaurantService", "foodService", "food", "$sessionStorage", "$log"];
 
-    function EditFoodController($uibModalInstance, restaurantService, foodService, food, $sessionStorage) {
+    function EditFoodController($uibModal, $uibModalInstance, restaurantService, foodService, food, $sessionStorage, $log) {
 
         var vm = this;
 
@@ -21,8 +21,6 @@
             var res = vm.restaurantDuplicate.filter(function (restaurant) {
                 return restaurant.name === food.restaurant;
             });
-
-            console.log(res[0].contact);
 
             var response = {
                 id: food.id,
@@ -44,28 +42,28 @@
 
         vm.deleteFood = function (food) {
 
-            if (confirm("Are you sure want to delete it?")) {
+            $uibModalInstance.dismiss();
 
-                var res = foodService.getFoodList().filter(function (foodl) {
-                    return foodl.restaurant === food.restaurant;
-                });
-
-                foodService.getFoodList().filter(function (food2) {
-                    if (food2.id === food.id) {
-                        foodService.getFoodList().splice({
-                            name: food.name,
-                            restaurant: food.restaurant,
-                            price: food.price,
-                            contact: res[0].contact,
-                            vote: food.vote
-                        }, 1);
-                        foodService.setAlertMessage(food.name + " has been deleted!");
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: "modal-title",
+                ariaDescribedBy: "modal-body",
+                backdrop: false,
+                templateUrl: "components/modal/food/delete-food.html",
+                controller: "DeleteFoodController",
+                controllerAs: "deleteFoodCtrl",
+                resolve: {
+                    foodParam: function () {
+                        return food;
                     }
-                    return foodService.getFoodList();
-                });
+                }
+            });
 
-                $uibModalInstance.dismiss('cancel');
-            }
+            modalInstance.result.then(function () {
+
+            }, function () {
+                $log.info("Food delete confirm modal dismissed on " + new Date());
+            });
         };
     };
 })();

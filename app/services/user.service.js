@@ -2,12 +2,11 @@
 
     "use strict";
 
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
 
         .factory("commonService", commonService);
 
     function commonService() {
-        var vm = this;
 
         var users = [
             {username: "rowanfa", password: "rowanfa@123", role: "admin"},
@@ -25,12 +24,6 @@
         ];
 
         return {
-            // setUser: function (userName) {
-            //     user = userName;
-            // },
-            getUsers: function () {
-                return users;
-            },
             validateUser: function (loggedInUser) {
                 return users.filter(function (user) {
                     return user.username === loggedInUser.username && user.password === loggedInUser.password;

@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
         .factory("restaurantService", restaurantService);
 
     function restaurantService() {

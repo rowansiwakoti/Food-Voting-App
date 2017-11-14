@@ -1,11 +1,17 @@
 (function () {
     "use strict";
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
         .controller("HeaderController", HeaderController);
     HeaderController.$inject = ["APP"];
 
     function HeaderController(APP) {
+
         var vm = this;
-        vm.appName = APP.APP_NAME;
+
+        var appName = APP.APP_NAME;
+
+        vm.getAppName = function(){
+            return appName;
+        }
     }
 })();

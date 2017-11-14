@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
         .component("fvFooter", {
             templateUrl: "components/footer/footer.html",
             controller: "FooterController as footer"

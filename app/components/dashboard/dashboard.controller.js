@@ -2,12 +2,12 @@
 
     "use strict";
 
-    angular.module("foodVotingApp")
+    angular.module("FoodVotingApp")
         .controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ["$scope", "$state", "APP", "$uibModal", "restaurantService", "foodService", "$sessionStorage"];
+    DashboardController.$inject = ["$scope", "$state", "APP", "$uibModal", "restaurantService", "foodService", "$sessionStorage", "$log"];
 
-    function DashboardController($scope, $state, APP, $uibModal, restaurantService, foodService, $sessionStorage) {
+    function DashboardController($scope, $state, APP, $uibModal, restaurantService, foodService, $sessionStorage, $log) {
 
         var vm = this;
 
@@ -32,10 +32,23 @@
         if ($sessionStorage.username) {
 
             vm.userLogout = function () {
-                if (confirm("Are you sure want to log out?")) {
-                    $sessionStorage.username = "";
-                    $state.go("login");
-                }
+                vm.message = "";
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    ariaLabelledBy: "modal-title",
+                    ariaDescribedBy: "modal-body",
+                    backdrop: false,
+                    templateUrl: "components/modal/user-logout/logout.html",
+                    controller: "LogoutController",
+                    controllerAs: "logoutCtrl"
+                });
+
+                modalInstance.result.then(function () {
+                    vm.message = restaurantService.getAlertMessage()
+                }, function () {
+                    $log.info("User Logout modal dismissed on " + new Date());
+                });
+
             };
 
             vm.addRestaurant = function () {
@@ -53,7 +66,7 @@
                 modalInstance.result.then(function () {
                     vm.message = restaurantService.getAlertMessage()
                 }, function () {
-
+                    $log.info("Add restaurant modal dismissed on " + new Date());
                 });
             };
 
@@ -71,7 +84,7 @@
                 modalInstance.result.then(function () {
                     vm.message = foodService.getAlertMessage();
                 }, function () {
-
+                    $log.info("Add food modal dismissed on " + new Date());
                 });
             };
 
@@ -103,7 +116,7 @@
                         });
                         vm.message = foodService.getAlertMessage();
                     }, function () {
-                        vm.message = foodService.getAlertMessage();
+                        $log.info("Edit food modal dismissed on " + new Date());
                     });
                 }
             }
