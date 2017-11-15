@@ -28,6 +28,10 @@
             });
 
             it("should add restaurant and food", function () {
+                // For now this works fine..
+                // I wrote like this coz i have not stored added data in any storage so every time the it block executes, the added data fades away.
+                // I do it asap by storing data in any storage.
+
                 dashboard.addRestaurantLink.click();
                 browser.sleep(2000);
                 dashboard.restaurantName.sendKeys("KFC");
@@ -46,8 +50,18 @@
                 dashboard.addFoodButton.click();
                 browser.sleep(2000);
                 expect(dashboard.foodList.count()).toBe(1);
-                dashboard.foodList.row(0).column("food.name").click();
-                browser.sleep(3000);
+                dashboard.foodList.first().all(by.tagName("td")).get(1).click();
+                dashboard.editFoodName.clear();
+                dashboard.editFoodName.sendKeys("Mashu Bhat");
+                dashboard.editFoodPrice.clear();
+                dashboard.editFoodPrice.sendKeys(550);
+                dashboard.editFoodButton.click();
+                browser.sleep(2000);
+
+                dashboard.foodList.first().all(by.tagName("td")).get(1).click();
+                dashboard.deleteFoodButton.click();
+                browser.sleep(2000);
+                dashboard.yesButton.click();
             });
         });
     });

@@ -31,7 +31,15 @@
 
         this.foodList = element.all(by.repeater("food in dashboard.foodItems"));
 
-        this.food = element(by.repeater("food in dashboard.foodItems"));
+        this.editFoodName = element(by.model("editFoodCtrl.foodDuplicate.name"));
+
+        this.editFoodPrice = element(by.model("editFoodCtrl.foodDuplicate.price"));
+
+        this.editFoodButton = element(by.buttonText("Edit Food"));
+
+        this.deleteFoodButton = element(by.buttonText("Delete Food"));
+
+        this.yesButton = element(by.buttonText("Yes"));
 
     };
     module.exports = DashboardPageObject;
