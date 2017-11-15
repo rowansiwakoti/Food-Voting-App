@@ -6,12 +6,15 @@
 
         .controller("LoginController", LoginController);
 
-    LoginController.$inject = ["CommonService", "$state", "$sessionStorage", "APP"];
+    LoginController.$inject = ["CommonService", "$state", "$sessionStorage", "APP_CONSTANT"];
 
-    function LoginController(CommonService, $state, $sessionStorage, APP) {
+    function LoginController(CommonService, $state, $sessionStorage, APP_CONSTANT) {
         var vm = this;
 
-        var pageName = APP.PAGE_NAME;
+        var pageName = APP_CONSTANT.PAGE_NAME;
+
+        vm.userInputLength = APP_CONSTANT.USER_INPUT_LENGTH;
+        vm.userInputFormat = APP_CONSTANT.USER_INPUT_FORMAT;
 
         vm.user = {};
 
@@ -28,7 +31,7 @@
                 $state.go("dashboard");
             }
             else {
-                vm.errorMessage = APP.INCORRECT_USER_PASSWORD;
+                vm.errorMessage = APP_CONSTANT.INCORRECT_USER_PASSWORD;
             }
         };
 

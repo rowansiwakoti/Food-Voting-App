@@ -8,9 +8,9 @@
         <div class="form-group">
             <label class="food-name">Food Name</label>
             <input type="text" name="foodName" placeholder="Food Name" ng-model="editFoodCtrl.foodDuplicate.name"
-                   class="form-control"
-                   required>
-            <p ng-show="foodForm.foodName.$error.required" style="color: red;">Food name is Required.</p>
+                   class="form-control" required>
+            <p ng-show="foodForm.foodName.$error.required" class="help-block"
+               style="color: red;">{{editFoodCtrl.foodNameReqMsg}}</p>
         </div>
         <div class="form-group">
             <label>Restaurant Name</label>
@@ -21,8 +21,13 @@
         </div>
         <div class="form-group">
             <label>Food Price</label>
-            <input type="text" name="price" placeholder="Food Price" ng-model="editFoodCtrl.foodDuplicate.price"
-                   class="form-control">
+            <input type="text" name="foodPrice" placeholder="Food Price" ng-model="editFoodCtrl.foodDuplicate.price"
+                   class="form-control" ng-pattern="/^\d+$/" required>
+            <p ng-show="foodForm.foodPrice.$error.required" class="help-block" style="color: red;">
+                {{editFoodCtrl.foodPriceReqMsg}}</p>
+            <p ng-show="foodForm.foodPrice.$error.pattern" class="help-block" style="color: red;">
+                {{editFoodCtrl.numbersOnlyMsg}}
+            </p>
         </div>
     </form>
 </div>

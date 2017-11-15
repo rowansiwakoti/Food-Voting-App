@@ -26,7 +26,7 @@
     <tbody>
     <tr ng-show="dashboard.foodItems == '' ||dashboard.foodItems.length == 0">
         <td colspan="6" style="text-align: center; color: red;">
-            <strong>No Food Added!</strong>
+            <strong>{{dashboard.noFoodMsg}}</strong>
         </td>
     </tr>
     <tr ng-repeat="food in dashboard.foodItems | orderBy: '-vote'">

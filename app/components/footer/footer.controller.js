@@ -2,13 +2,13 @@
     "use strict";
     angular.module("FoodVotingApp")
         .controller("FooterController", FooterController);
-    FooterController.$inject = ["APP"];
+    FooterController.$inject = ["APP_CONSTANT"];
 
-    function FooterController(APP) {
+    function FooterController(APP_CONSTANT) {
 
         var vm = this;
 
-        var appName = APP.APP_NAME;
+        var appName = APP_CONSTANT.APP_NAME;
 
         vm.getAppName = function () {
             return appName;

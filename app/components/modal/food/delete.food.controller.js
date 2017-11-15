@@ -2,10 +2,13 @@
     "use strict";
     angular.module("FoodVotingApp")
         .controller("DeleteFoodController", DeleteFoodController);
-    DeleteFoodController.$inject = ["$uibModalInstance", "FoodService", "foodParam", "APP"];
+    DeleteFoodController.$inject = ["$uibModalInstance", "FoodService", "foodParam", "APP_CONSTANT"];
 
-    function DeleteFoodController($uibModalInstance, FoodService, foodParam, APP) {
+    function DeleteFoodController($uibModalInstance, FoodService, foodParam, APP_CONSTANT) {
         var vm = this;
+
+        vm.delFoodMsg = APP_CONSTANT.DELETE_FOOD_MSG;
+
         vm.ok = function () {
 
             var food = foodParam;
@@ -24,7 +27,7 @@
                         vote: food.vote
                     }, 1);
 
-                    FoodService.setAlertMessage(food.name + " " + APP.DELETE_MSG);
+                    FoodService.setAlertMessage(food.name + " " + APP_CONSTANT.DELETE_MSG);
                 }
                 return FoodService.getFoodList();
             });

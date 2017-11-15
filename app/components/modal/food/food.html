@@ -10,7 +10,7 @@
                    class="form-control"
                    required>
             <p ng-show="foodForm.foodName.$invalid && foodForm.foodName.$touched" class="help-block"
-               style="color: red;">Food name is required.</p>
+               style="color: red;">{{foodCtrl.foodNameReqMsg}}</p>
         </div>
         <div class="form-group">
             <label>Restaurant Name</label>
@@ -20,16 +20,16 @@
                 </option>
             </select>
             <p ng-show="foodForm.restaurantName.$invalid && foodForm.restaurantName.$touched" class="help-block"
-               style="color: red;">Restaurant name is required.</p>
+               style="color: red;">{{foodCtrl.resNameReqMsg}}</p>
         </div>
         <div class="form-group">
             <label>Food Price</label>
             <input type="text" name="foodPrice" placeholder="Food Price" ng-model="food.price" class="form-control"
                    ng-pattern="/^\d+$/" required>
             <p ng-show="foodForm.foodPrice.$invalid && foodForm.foodPrice.$touched" class="help-block"
-               style="color: red;">Food price is required.</p>
+               style="color: red;">{{foodCtrl.foodPriceReqMsg}}</p>
             <p ng-show="foodForm.foodPrice.$error.pattern" class="help-block" style="color: red;">
-                Accepts numbers only.
+                {{foodCtrl.numbersOnlyMsg}}
             </p>
         </div>
     </form>

@@ -10,7 +10,7 @@
                    class="form-control"
                    required>
             <p ng-show="restaurantForm.name.$invalid && restaurantForm.name.$touched" class="help-block"
-               style="color: red;">Restaurant name is required.</p>
+               style="color: red;">{{restaurantCtrl.resNameReqMsg}}</p>
         </div>
         <div class="form-group">
             <label class="restaurant-contact">Restaurant Contact No.</label>
@@ -18,10 +18,10 @@
                    placeholder="Restaurant Contact No."
                    class="form-control" ng-maxlength="10" ng-pattern="/^\d+$/">
             <p ng-show="restaurantForm.contactNo.$error.maxlength" class="help-block" style="color: red;">
-                Contact No. should be 10 characters only
+                {{restaurantCtrl.contactNoMsg}}
             </p>
             <p ng-show="restaurantForm.contactNo.$error.pattern" class="help-block" style="color: red;">
-                Accepts numbers only.
+                {{restaurantCtrl.numbersOnlyMsg}}
             </p>
         </div>
     </form>

@@ -9,9 +9,8 @@
                    ng-model="login.user.username" ng-minlength="6" ng-maxlength="10" required
                    ng-pattern="/^[a-zA-Z0-9]*$/">
             <p ng-show="userForm.username.$error.minlength || userForm.username.$error.maxlength"
-               class="help-block">Username must be of 6-10
-                characters.</p>
-            <p ng-show="userForm.username.$error.pattern" class="help-block">Username must be alpha numeric.</p>
+               class="help-block">{{login.userInputLength}}</p>
+            <p ng-show="userForm.username.$error.pattern" class="help-block">{{login.userInputFormat}}</p>
         </div>
 
         <div class="form-group">
