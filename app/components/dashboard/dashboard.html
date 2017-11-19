@@ -1,18 +1,19 @@
 <div id="intro" style="text-align: right">
-    <h3 class="logged-in-user"><i>{{dashboard.userName}}</i></h3>/<a class="logout" ng-click="dashboard.userLogout()">Logout</a>
+    <h3 class="logged-in-user"><i>{{dashboardCtrl.userName}}</i></h3>/<a class="logout" ng-click="dashboardCtrl.userLogout()">Logout</a>
 </div>
-<a class="btn btn-default btn-sm" ng-click="dashboard.addRestaurant()" ng-show="dashboard.role == 'admin'">Add
+<a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addRestaurant()" ng-show="dashboardCtrl.role == 'admin'">Add
     Restaurant</a>
-<a class="btn btn-default btn-sm" ng-click="dashboard.addFood()" ng-show="dashboard.role == 'admin'">Add Food</a><br/>
+<a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addFood()" ng-show="dashboardCtrl.role == 'admin'">Add
+    Food</a>
 <br/>
-
-<div id="alertMessage" ng-show="dashboard.message" class="alert alert-success alert-dismissible fade in" role="alert">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>{{dashboard.message}}</strong>
+<br/>
+<div id="alertMessage" ng-show="dashboardCtrl.message" class="alert alert-success alert-dismissible fade in" role="alert"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{dashboardCtrl.message}}</strong>
 </div>
-
 <table class="table table-condensed table-hover table-striped table-bordered ">
-    <caption><h3>Foods</h3></caption>
+    <caption>
+        <h3>Foods</h3>
+    </caption>
     <thead>
     <tr>
         <th>S/N</th>
@@ -24,25 +25,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-show="dashboard.foodItems == '' ||dashboard.foodItems.length == 0">
-        <td colspan="6" style="text-align: center; color: red;">
-            <strong>{{dashboard.noFoodMsg}}</strong>
+    <tr ng-show="dashboardCtrl.foodItems == '' ||dashboardCtrl.foodItems.length == 0">
+        <td colspan="6" style="text-align: center; color: red;"> <strong>{{dashboardCtrl.noFoodMsg}}</strong>
         </td>
     </tr>
-    <tr ng-repeat="food in dashboard.foodItems | orderBy: '-vote'">
-        <td>{{food.id}}</td>
-        <td ng-click="dashboard.editFood(food.id)">{{food.name}}</td>
+    <tr ng-repeat="food in dashboardCtrl.foodItems | orderBy: '-vote'">
+        <td>{{$index + 1}}</td>
+        <td ng-click="dashboardCtrl.editFood(food.id)">{{food.name}}</td>
         <td>{{food.restaurant}}</td>
         <td>{{food.price}}</td>
-        <td>{{food.contact}}<p ng-show="food.contact=='' || food.contact == null">NA</p></td>
+        <td>{{food.contact}}
+            <p ng-show="food.contact=='' || food.contact == null">NA</p>
+        </td>
         <td>
-            <button ng-click="food.vote = food.vote+1" class="btn btn-sm btn-default">
-                +
-            </button>
-            {{food.vote}}
-            <button ng-click="food.vote = food.vote-1" class="btn btn-sm btn-default">
-                -
-            </button>
+            <button ng-click="food.vote = food.vote+1" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button> {{food.vote}}
+            <button ng-click="food.vote = food.vote-1" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></button>
         </td>
     </tr>
     </tbody>

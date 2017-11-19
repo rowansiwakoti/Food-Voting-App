@@ -120,8 +120,7 @@
                         $log.info("Edit food modal dismissed on " + new Date());
                     });
                 }
-            }
-            ;
+            };
         }
         else {
             $state.go("login");

@@ -1,21 +1,21 @@
 <div class="row col-md-offset-3 col-md-6">
-    <h3 class="page"><u>{{login.getPageName()}}</u></h3><br/>
-    <form name="userForm" ng-submit="login.validateUser(login.user)">
+    <h3 class="page"><u>{{loginCtrl.getPageName()}}</u></h3><br/>
+    <form name="userForm" ng-submit="loginCtrl.validateUser(loginCtrl.user)">
         <div class="form-group">
             <label name="user_name">Username</label>
-            <p ng-show="login.errorMessage" style="color: red;">{{login.errorMessage}}</p>
+            <p ng-show="loginCtrl.errorMessage" style="color: red;">{{loginCtrl.errorMessage}}</p>
 
             <input type="text" name="username" placeholder="Username" class="form-control"
-                   ng-model="login.user.username" ng-minlength="6" ng-maxlength="10" required
+                   ng-model="loginCtrl.user.username" ng-minlength="6" ng-maxlength="10" required
                    ng-pattern="/^[a-zA-Z0-9]*$/">
             <p ng-show="userForm.username.$error.minlength || userForm.username.$error.maxlength"
-               class="help-block">{{login.userInputLength}}</p>
-            <p ng-show="userForm.username.$error.pattern" class="help-block">{{login.userInputFormat}}</p>
+               class="help-block">{{loginCtrl.userInputLength}}</p>
+            <p ng-show="userForm.username.$error.pattern" class="help-block">{{loginCtrl.userInputFormat}}</p>
         </div>
 
         <div class="form-group">
             <label name="pass_word">Password</label>
-            <input type="password" placeholder="Password" class="form-control" ng-model="login.user.password">
+            <input type="password" placeholder="Password" class="form-control" ng-model="loginCtrl.user.password">
         </div>
         <button type="submit" class="btn btn-success" ng-disabled="userForm.$invalid">Login</button>
     </form>

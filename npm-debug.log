@@ -1,69 +1,51 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'start',
-1 verbose cli   '--force' ]
+1 verbose cli   'start' ]
 2 info using npm@3.10.10
 3 info using node@v6.10.3
-4 warn using --force I sure hope you know what you are doing.
-5 verbose run-script [ 'prestart', 'start', 'poststart' ]
-6 info lifecycle angular-seed@0.0.0~prestart: angular-seed@0.0.0
-7 verbose lifecycle angular-seed@0.0.0~prestart: unsafe-perm in lifecycle true
-8 verbose lifecycle angular-seed@0.0.0~prestart: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\ISS\Food-Voting-App-FA003\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Users\rowan\AppData\Roaming/npm;C:\Program Files\nodejs\;C:\Windows\System32;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\rowan\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_144\bin
-9 verbose lifecycle angular-seed@0.0.0~prestart: CWD: E:\ISS\Food-Voting-App-FA003
-10 silly lifecycle angular-seed@0.0.0~prestart: Args: [ '/d /s /c', 'npm install' ]
-11 silly lifecycle angular-seed@0.0.0~prestart: Returned: code: 0  signal: null
-12 info lifecycle angular-seed@0.0.0~start: angular-seed@0.0.0
-13 verbose lifecycle angular-seed@0.0.0~start: unsafe-perm in lifecycle true
-14 verbose lifecycle angular-seed@0.0.0~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\ISS\Food-Voting-App-FA003\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Users\rowan\AppData\Roaming/npm;C:\Program Files\nodejs\;C:\Windows\System32;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\rowan\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_144\bin
-15 verbose lifecycle angular-seed@0.0.0~start: CWD: E:\ISS\Food-Voting-App-FA003
-16 silly lifecycle angular-seed@0.0.0~start: Args: [ '/d /s /c', 'http-server -a localhost -p 8000 -c-1 ./app' ]
-17 silly lifecycle angular-seed@0.0.0~start: Returned: code: 3221225786  signal: null
-18 info lifecycle angular-seed@0.0.0~start: Failed to exec start script
-19 info lifecycle Error: angular-seed@0.0.0 start: `http-server -a localhost -p 8000 -c-1 ./app`
-19 info lifecycle Exit status 3221225786
-19 info lifecycle     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
-19 info lifecycle     at emitTwo (events.js:106:13)
-19 info lifecycle     at EventEmitter.emit (events.js:191:7)
-19 info lifecycle     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
-19 info lifecycle     at emitTwo (events.js:106:13)
-19 info lifecycle     at ChildProcess.emit (events.js:191:7)
-19 info lifecycle     at maybeClose (internal/child_process.js:886:16)
-19 info lifecycle     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
-19 info lifecycle  angular-seed@0.0.0~start: forced, continuing { Error: angular-seed@0.0.0 start: `http-server -a localhost -p 8000 -c-1 ./app`
-19 info lifecycle Exit status 3221225786
-19 info lifecycle     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
-19 info lifecycle     at emitTwo (events.js:106:13)
-19 info lifecycle     at EventEmitter.emit (events.js:191:7)
-19 info lifecycle     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
-19 info lifecycle     at emitTwo (events.js:106:13)
-19 info lifecycle     at ChildProcess.emit (events.js:191:7)
-19 info lifecycle     at maybeClose (internal/child_process.js:886:16)
-19 info lifecycle     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
-19 info lifecycle   code: 'ELIFECYCLE',
-19 info lifecycle   pkgid: 'angular-seed@0.0.0',
-19 info lifecycle   stage: 'start',
-19 info lifecycle   script: 'http-server -a localhost -p 8000 -c-1 ./app',
-19 info lifecycle   pkgname: 'angular-seed' }
-20 info lifecycle angular-seed@0.0.0~poststart: angular-seed@0.0.0
-21 verbose stack Error: kill ENOSYS
-21 verbose stack     at exports._errnoException (util.js:1018:11)
-21 verbose stack     at process.kill (internal/process.js:190:13)
-21 verbose stack     at process.listener (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
-21 verbose stack     at emitNone (events.js:91:20)
-21 verbose stack     at process.emit (events.js:185:7)
-21 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
-21 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
-21 verbose stack     at Signal.wrap.onsignal (internal/process.js:217:44)
-22 verbose cwd E:\ISS\Food-Voting-App-FA003
-23 error Windows_NT 10.0.10240
-24 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start" "--force"
-25 error node v6.10.3
-26 error npm  v3.10.10
-27 error code ENOSYS
-28 error errno ENOSYS
-29 error syscall kill
-30 error kill ENOSYS
-31 error If you need help, you may report this error at:
-31 error     <https://github.com/npm/npm/issues>
-32 verbose exit [ 1, true ]
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle angular-seed@0.0.0~prestart: angular-seed@0.0.0
+6 verbose lifecycle angular-seed@0.0.0~prestart: unsafe-perm in lifecycle true
+7 verbose lifecycle angular-seed@0.0.0~prestart: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\ISS\Food-Voting-App-FA003\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Users\rowan\AppData\Roaming/npm;C:\Program Files\nodejs\;C:\Windows\System32;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\rowan\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_144\bin
+8 verbose lifecycle angular-seed@0.0.0~prestart: CWD: E:\ISS\Food-Voting-App-FA003
+9 silly lifecycle angular-seed@0.0.0~prestart: Args: [ '/d /s /c', 'npm install' ]
+10 silly lifecycle angular-seed@0.0.0~prestart: Returned: code: 0  signal: null
+11 info lifecycle angular-seed@0.0.0~start: angular-seed@0.0.0
+12 verbose lifecycle angular-seed@0.0.0~start: unsafe-perm in lifecycle true
+13 verbose lifecycle angular-seed@0.0.0~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\ISS\Food-Voting-App-FA003\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Users\rowan\AppData\Roaming/npm;C:\Program Files\nodejs\;C:\Windows\System32;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\rowan\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_144\bin
+14 verbose lifecycle angular-seed@0.0.0~start: CWD: E:\ISS\Food-Voting-App-FA003
+15 silly lifecycle angular-seed@0.0.0~start: Args: [ '/d /s /c', 'http-server -a localhost -p 8000 -c-1 ./app' ]
+16 silly lifecycle angular-seed@0.0.0~start: Returned: code: 3221225786  signal: null
+17 info lifecycle angular-seed@0.0.0~start: Failed to exec start script
+18 verbose stack Error: angular-seed@0.0.0 start: `http-server -a localhost -p 8000 -c-1 ./app`
+18 verbose stack Exit status 3221225786
+18 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
+18 verbose stack     at emitTwo (events.js:106:13)
+18 verbose stack     at EventEmitter.emit (events.js:191:7)
+18 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+18 verbose stack     at emitTwo (events.js:106:13)
+18 verbose stack     at ChildProcess.emit (events.js:191:7)
+18 verbose stack     at maybeClose (internal/child_process.js:886:16)
+18 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+19 verbose pkgid angular-seed@0.0.0
+20 verbose cwd E:\ISS\Food-Voting-App-FA003
+21 error Windows_NT 10.0.10240
+22 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+23 error node v6.10.3
+24 error npm  v3.10.10
+25 error code ELIFECYCLE
+26 error angular-seed@0.0.0 start: `http-server -a localhost -p 8000 -c-1 ./app`
+26 error Exit status 3221225786
+27 error Failed at the angular-seed@0.0.0 start script 'http-server -a localhost -p 8000 -c-1 ./app'.
+27 error Make sure you have the latest version of node.js and npm installed.
+27 error If you do, this is most likely a problem with the angular-seed package,
+27 error not with npm itself.
+27 error Tell the author that this fails on your system:
+27 error     http-server -a localhost -p 8000 -c-1 ./app
+27 error You can get information on how to open an issue for this project with:
+27 error     npm bugs angular-seed
+27 error Or if that isn't available, you can get their info via:
+27 error     npm owner ls angular-seed
+27 error There is likely additional logging output above.
+28 verbose exit [ 1, true ]

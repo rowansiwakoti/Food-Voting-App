@@ -6,28 +6,30 @@ describe("controller", function () {
 
     describe("login controller", function () {
 
-        var $scope, _$state;
+        var $controller, $scope, UserService, $state, $sessionStorage, APP_CONSTANT;
 
-        beforeEach(inject(function ($rootScope, $state, $controller) {
-            $scope = $rootScope.$new();
-            _$state = $state;
+        beforeEach(inject(function (_$rootScope_, _$controller_, _UserService_, _$state_, _$sessionStorage_, _APP_CONSTANT_) {
 
-            $controller("LoginController as login", {
+            $scope = _$rootScope_.$new();
+            UserService = _UserService_;
+            $state = _$state_;
+            $sessionStorage = _$sessionStorage_;
+            APP_CONSTANT = _APP_CONSTANT_;
+
+            $controller = _$controller_("LoginController as loginCtrl", {
                 $scope: $scope,
-                $state: _$state
+                UserService: UserService,
+                $state: $state,
+                $sessionStorage: $sessionStorage,
+                APP_CONSTANT: APP_CONSTANT
             });
-
         }));
-
         it("should test on user login page", function () {
-            expect($state.current.name).toBe("login");
-            // expect($scope.login.getPageName()).toBe("User Login");
-            // spyOn(controller, "validateUser");
-            // expect(controller.validateUser).not.toHaveBeenCalled();
-            // controller.init();
-            // expect(controller.validateUser).toHaveBeenCalled();
-        });
+            var name = "User Login";
 
+            // expect($state.current.name).toBe("login");
+            // expect(loginCtrl.pageName).toBe(name);
+        });
     });
 
 });

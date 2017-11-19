@@ -28,11 +28,6 @@
             });
 
             it("should add restaurant and food", function () {
-                // For now this works fine..
-                // I wrote like this coz i have not stored added data in any storage so every time the it block executes, the added data fades away.
-                // So to prevent this, i wrote in a single it block
-                // I change it asap by storing data in any storage.
-
                 dashboard.addRestaurantLink.click();
                 browser.sleep(2000);
                 dashboard.restaurantName.sendKeys("KFC");

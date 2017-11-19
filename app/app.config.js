@@ -14,13 +14,13 @@
                 name: "login",
                 url: "/login",
                 templateUrl: "components/login/login.html",
-                controller: "LoginController as login"
+                controller: "LoginController as loginCtrl"
             })
             .state("dashboard", {
                 name: "dashboard",
                 url: "/dashboard",
                 templateUrl: "components/dashboard/dashboard.html",
-                controller: "DashboardController as dashboard"
-            })
+                controller: "DashboardController as dashboardCtrl"
+            });
     };
 })();
