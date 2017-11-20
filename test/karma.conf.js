@@ -18,19 +18,26 @@ module.exports = function (config) {
             '../app/assets/libs/bootstrap/bootstrap.min.js',
             '../app/assets/libs/angular/angular-mocks.js',
 
-
+            // source files
             '../app/app.module.js',
             '../app/app.config.js',
+            '../app/components/**/*.js',
+            '../app/constants/app-name.constants.js',
+            '../app/services/user.service.js',
 
-            '../app/components/login/login.controller.js',
-            '../test/spec/components//login/login.controller.spec.js'
-
-            // '../app/services/user.service.js',
-            // '../test/spec/services/user.service.spec.js',
-            // '../app/components/dashboard/dashboard.controller.js',
-            // '../test/spec/components/dashboard/dashboard.controller.spec.js'
-
+            // spec files
+            '../test/spec/app/components/login/login.controller.spec.js',
+            '../test/spec/app/components/dashboard/dashboard.controller.spec.js',
+            '../test/spec/app/components/modal/user-logout/logout.controller.spec.js',
+            '../test/spec/app/components/modal/restaurant/restaurant.controller.spec.js',
+            '../test/spec/app/components/modal/restaurant/restaurant.service.spec.js',
+            '../test/spec/app/components/modal/food/food.controller.spec.js',
+            // '../test/spec/app/components/modal/food/edit.food.controller.spec.js',
+            // '../test/spec/app/components/modal/food/delete.food.controller.spec.js',
+            '../test/spec/app/components/modal/food/food.service.spec.js'
         ],
+
+        exclude: ['test/e2e/**'],
 
         autoWatch: false,
 

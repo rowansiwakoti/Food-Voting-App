@@ -4,8 +4,8 @@
         .factory("RestaurantService", RestaurantService);
 
     function RestaurantService() {
-        var restaurantSvc = {};
 
+        var restaurantSvc = {};
         var alertMessage = "";
         var restaurantList = [];
 
@@ -25,18 +25,18 @@
                     contact: restaurant.contactNo
                 });
             }
-        }
+        };
 
         restaurantSvc.getRestaurantList = function () {
             return restaurantList;
-        }
+        };
 
         restaurantSvc.setAlertMessage = function (msg) {
             alertMessage = msg;
-        }
+        };
         restaurantSvc.getAlertMessage = function () {
             return alertMessage;
-        }
+        };
         return restaurantSvc;
     }
 })();

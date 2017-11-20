@@ -29,6 +29,9 @@
                 return users.filter(function (user) {
                     return user.username === loggedInUser.username && user.password === loggedInUser.password;
                 });
+            },
+            userList: function(){
+                return users;
             }
         }
 

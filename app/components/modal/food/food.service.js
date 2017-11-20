@@ -6,10 +6,9 @@
     FoodService.$inject = ["RestaurantService"];
 
     function FoodService(RestaurantService) {
+
         var foodSvc = {};
-
         var foodList = [];
-
         var alertMessage = "";
 
         foodSvc.setFood = function (food) {
