@@ -6,8 +6,20 @@ describe("component test", function () {
 
     describe("header component", function () {
 
+        var $componentController;
 
+        beforeEach(inject(function (_$componentController_) {
+            $componentController = _$componentController_;
+        }))
 
     });
 
 });
+
+
+
+
+
+
+
+
