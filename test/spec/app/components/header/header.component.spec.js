@@ -10,10 +10,13 @@ describe("component test", function () {
 
         beforeEach(inject(function (_$componentController_) {
             $componentController = _$componentController_;
-        }))
+        }));
 
+        it("should test on header component", function () {
+            expect($componentController.templateUrl).toBe("components/header/header.html");
+            expect($componentController.controller).toBe("HeaderController");
+        });
     });
-
 });
 
 

@@ -37,6 +37,8 @@ module.exports = function (config) {
             '../test/spec/app/components/modal/food/food.service.spec.js',
             '../test/spec/app/components/footer/footer.controller.spec.js',
             '../test/spec/app/components/header/header.controller.spec.js'
+            //'../test/spec/app/components/header/header.component.spec.js',
+            //'../test/spec/app/components/footer/footer.component.spec.js'
         ],
 
         exclude: ['test/e2e/**'],
