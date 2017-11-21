@@ -8,9 +8,17 @@ describe("controller", function () {
 
         var $scope, $uibModalInstance, foodParam;
 
-        beforeEach(inject(function (_$rootScope_, _foodParam_, $controller) {
+        beforeEach(inject(function (_$rootScope_, $controller) {
             $scope = _$rootScope_.$new();
-            foodParam = _foodParam_;
+
+            foodParam =
+                {
+                    name: "MoMo",
+                    restaurant: "Bota MoMo",
+                    price: 160
+                };
+
+
             $uibModalInstance = jasmine.createSpyObj("$uibModalInstance", ["close", "dismiss"]);
 
             $controller("DeleteFoodController as deleteFoodCtrl", {

@@ -6,13 +6,24 @@ describe("controller", function () {
 
     describe("edit food controller", function () {
 
-        var $scope, $uibModalInstance;
+        var $scope, $uibModalInstance, food;
 
         beforeEach(inject(function (_$rootScope_, $controller) {
             $scope = _$rootScope_.$new();
+
+            food = {
+                id: 1,
+                name: "Chicken Roast",
+                restaurant: "KFC",
+                price: 450,
+                contact: 9860232805,
+                vote: 5
+            };
+
             $uibModalInstance = jasmine.createSpyObj("$uibModalInstance", ["close", "dismiss"]);
             $controller("EditFoodController as editFoodCtrl", {
                 $scope: $scope,
+                food: food,
                 $uibModalInstance: $uibModalInstance
             });
         }));

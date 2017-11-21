@@ -32,8 +32,8 @@ module.exports = function (config) {
             '../test/spec/app/components/modal/restaurant/restaurant.controller.spec.js',
             '../test/spec/app/components/modal/restaurant/restaurant.service.spec.js',
             '../test/spec/app/components/modal/food/food.controller.spec.js',
-            // '../test/spec/app/components/modal/food/edit.food.controller.spec.js',
-            // '../test/spec/app/components/modal/food/delete.food.controller.spec.js',
+            '../test/spec/app/components/modal/food/edit.food.controller.spec.js',
+            '../test/spec/app/components/modal/food/delete.food.controller.spec.js',
             '../test/spec/app/components/modal/food/food.service.spec.js',
             '../test/spec/app/components/footer/footer.controller.spec.js',
             '../test/spec/app/components/header/header.controller.spec.js'
