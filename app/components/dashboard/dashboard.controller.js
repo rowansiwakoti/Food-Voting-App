@@ -112,38 +112,38 @@
             //     });
             // };
 
-            if ($sessionStorage.role == "admin") {
-                vm.editFood = function (foodId) {
-                    vm.message = "";
-                    var modalInstance = $uibModal.open({
-                        animation: true,
-                        ariaLabelledBy: "modal-title",
-                        ariaDescribedBy: "modal-body",
-                        backdrop: false,
-                        templateUrl: "components/modal/food/edit-food.html",
-                        controller: "EditFoodController",
-                        controllerAs: "editFoodCtrl",
-                        resolve: {
-                            food: function (FoodService) {
-                                return FoodService.getFood(foodId);
-                            }
-                        }
-                    });
-                    modalInstance.result.then(function (response) {
-                        FoodService.getFoodList().filter(function (food) {
-                            if (food.id === response.id) {
-                                food.name = response.name;
-                                food.restaurant = response.restaurant;
-                                food.price = response.price;
-                                food.contact = response.contact;
-                            }
-                        });
-                        vm.message = FoodService.getAlertMessage();
-                    }, function () {
-                        $log.info("Edit food modal dismissed on " + new Date());
-                    });
-                }
-            };
+            // if ($sessionStorage.role == "admin") {
+            //     vm.editFood = function (foodId) {
+            //         vm.message = "";
+            //         var modalInstance = $uibModal.open({
+            //             animation: true,
+            //             ariaLabelledBy: "modal-title",
+            //             ariaDescribedBy: "modal-body",
+            //             backdrop: false,
+            //             templateUrl: "components/modal/food/edit-food.html",
+            //             controller: "EditFoodController",
+            //             controllerAs: "editFoodCtrl",
+            //             resolve: {
+            //                 food: function (FoodService) {
+            //                     return FoodService.getFood(foodId);
+            //                 }
+            //             }
+            //         });
+            //         modalInstance.result.then(function (response) {
+            //             FoodService.getFoodList().filter(function (food) {
+            //                 if (food.id === response.id) {
+            //                     food.name = response.name;
+            //                     food.restaurant = response.restaurant;
+            //                     food.price = response.price;
+            //                     food.contact = response.contact;
+            //                 }
+            //             });
+            //             vm.message = FoodService.getAlertMessage();
+            //         }, function () {
+            //             $log.info("Edit food modal dismissed on " + new Date());
+            //         });
+            //     }
+            // };
         }
         else {
             $state.go("login");

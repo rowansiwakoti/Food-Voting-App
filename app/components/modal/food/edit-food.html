@@ -12,13 +12,13 @@
             <p ng-show="foodForm.foodName.$error.required" class="help-block"
                style="color: red;">{{editFoodCtrl.foodNameReqMsg}}</p>
         </div>
-        <div class="form-group">
-            <label>Restaurant Name</label>
-            <select class="form-control" name="restaurantName" ng-model="editFoodCtrl.foodDuplicate.restaurant"
-                    required>
-                <option ng-repeat="restaurant in editFoodCtrl.restaurantDuplicate">{{restaurant.name}}</option>
-            </select>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label>Restaurant Name</label>-->
+            <!--<select class="form-control" name="restaurantName" ng-model="editFoodCtrl.foodDuplicate.restaurant"-->
+                    <!--required>-->
+                <!--<option ng-repeat="restaurant in editFoodCtrl.restaurantDuplicate">{{restaurant.name}}</option>-->
+            <!--</select>-->
+        <!--</div>-->
         <div class="form-group">
             <label>Food Price</label>
             <input type="text" name="foodPrice" placeholder="Food Price" ng-model="editFoodCtrl.foodDuplicate.price"

@@ -16,7 +16,7 @@
             var foodList =[];
         }
 
-        foodSvc.setFood = function (food) {
+        foodSvc.setFood = function (food) {console.log(food)
 
             var rest = RestaurantService.getRestaurantList().filter(function (restaurant) {
                 return restaurant.name === food.restaurant;
@@ -30,7 +30,7 @@
                     name: food.name,
                     restaurant: food.restaurant,
                     price: food.price,
-                    contact: rest[0].contact,
+                    // contact: rest[0].contact,
                     vote: food.vote
                 });
             }
@@ -40,7 +40,7 @@
                     name: food.name,
                     restaurant: food.restaurant,
                     price: food.price,
-                    contact: rest[0].contact,
+                    // contact: rest[0].contact,
                     vote: food.vote
                 });
             }

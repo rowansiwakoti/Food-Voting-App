@@ -31,7 +31,7 @@
                 name: food.name,
                 restaurant: food.restaurant,
                 price: food.price,
-                contact: res[0].contact,
+                // contact: res[0].contact,
                 vote: food.vote
             };
 
