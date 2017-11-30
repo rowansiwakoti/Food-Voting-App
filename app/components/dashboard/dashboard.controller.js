@@ -9,6 +9,7 @@
 
     function DashboardController($state, APP_CONSTANT, $uibModal, RestaurantService, FoodService, $sessionStorage, $log) {
 
+        
         var vm = this;
 
         vm.noFoodMsg = APP_CONSTANT.NO_FOOD_MSG;
@@ -29,7 +30,7 @@
         //     event.preventDefault();
         // });
 
-         if ($sessionStorage.emailId) {
+        if ($sessionStorage.emailId) {
 
             vm.userLogout = function () {
                 vm.message = "";
@@ -120,7 +121,8 @@
                         $log.info("Edit food modal dismissed on " + new Date());
                     });
                 }
-            };
+            }
+            ;
         }
         else {
             $state.go("login");
