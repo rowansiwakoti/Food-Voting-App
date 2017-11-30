@@ -15,7 +15,7 @@
 
 
         vm.restaurants = RestaurantService.getRestaurantList();
-        vm.ok = function (food) {
+        vm.ok = function (food) {console.log(food)
             food.vote = 0;
             FoodService.setFood(food);
             FoodService.setAlertMessage(food.name + " " + APP_CONSTANT.ADD_MSG);

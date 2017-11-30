@@ -2,12 +2,17 @@
     "use strict";
     angular.module("FoodVotingApp")
         .factory("RestaurantService", RestaurantService);
-
-    function RestaurantService() {
+    RestaurantService.$inject=['$sessionStorage'];
+    function RestaurantService($sessionStorage) {
 
         var restaurantSvc = {};
         var alertMessage = "";
-        var restaurantList = [];
+        if($sessionStorage.restaurantList){
+            var restaurantList = $sessionStorage.restaurantList;
+        }
+        else {
+            var restaurantList = [];
+        }
 
         restaurantSvc.setRestaurant = function (restaurant) {
             if (restaurantList.length > 0) {
@@ -25,6 +30,7 @@
                     contact: restaurant.contactNo
                 });
             }
+         ($sessionStorage.restaurantList=restaurantList);
         };
 
         restaurantSvc.getRestaurantList = function () {
