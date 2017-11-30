@@ -3,13 +3,18 @@
     angular.module("FoodVotingApp")
         .factory("FoodService", FoodService);
 
-    FoodService.$inject = ["RestaurantService"];
+    FoodService.$inject = ["RestaurantService","$sessionStorage"];
 
-    function FoodService(RestaurantService) {
+    function FoodService(RestaurantService,$sessionStorage) {
 
         var foodSvc = {};
-        var foodList = [];
         var alertMessage = "";
+        if($sessionStorage.foodList){
+            var foodList = $sessionStorage.foodList;
+        }
+        else {
+            var foodList =[];
+        }
 
         foodSvc.setFood = function (food) {
 
@@ -39,6 +44,7 @@
                     vote: food.vote
                 });
             }
+            $sessionStorage.foodList =  foodList;
         };
         foodSvc.getFoodList = function () {
             return foodList;

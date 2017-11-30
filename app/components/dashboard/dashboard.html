@@ -1,17 +1,21 @@
+<div >
+    <a ui-sref="orderhistory">Order History</a>
+</div>
 <div id="intro" style="text-align: right">
     <h3 class="logged-in-user"><i>{{dashboardCtrl.userName}}</i></h3>/<a class="logout"
                                                                          ng-click="dashboardCtrl.userLogout()">Logout</a>
 </div>
 <a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addRestaurant()" ng-show="dashboardCtrl.role == 'admin'">Add
     Restaurant</a>
-<a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addFood()" ng-show="dashboardCtrl.role == 'admin'">Add
-    Food</a>
+<!--<a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addFood()" ng-show="dashboardCtrl.role == 'admin'">Add-->
+    <!--Food</a>-->
 <br/>
 <br/>
 <div id="alertMessage" ng-show="dashboardCtrl.message" class="alert alert-success alert-dismissible fade in"
      role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>{{dashboardCtrl.message}}</strong>
 </div>
+<<<<<<< HEAD
 <div class="super_div" ng-show="dashboardCtrl.role == 'nUser'">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -76,3 +80,11 @@
     </tr>
     </tbody>
 </table>
+=======
+<div class="row">
+    <div class="col-md-4" ng-repeat="restaurant in dashboardCtrl.restaurants">
+        <a ui-sref="restaurant({restaurant:restaurant.name})"><div class="image"></div></a>
+        {{restaurant.name}}
+    </div>
+</div>
+>>>>>>> 0fdb129c44d454074e921f970d02d8a1086d4918
