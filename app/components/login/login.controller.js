@@ -4,9 +4,9 @@
     angular.module("FoodVotingApp")
         .controller("LoginController", LoginController);
 
-    LoginController.$inject = ["UserService", "$state", "$sessionStorage", "APP_CONSTANT"];
+    LoginController.$inject = ["UserService", "$sessionStorage", "$state", "APP_CONSTANT"];
 
-    function LoginController(UserService, $state, $sessionStorage, APP_CONSTANT) {
+    function LoginController(UserService, $sessionStorage, $state, APP_CONSTANT) {
 
         var vm = this;
 
@@ -22,14 +22,21 @@
         vm.validateUser = function (user) {
             var users = UserService.validateUser(user);
 
+            console.log(users);
+            console.log(users.length);
+
             if (users.length > 0) {
-                $sessionStorage.role = users[0].role;
-                $sessionStorage.username = users[0].username;
+                $sessionStorage.emailId = users[0].emailId;
+                console.log(users[0].role);
                 $state.go("dashboard");
             }
             else {
                 vm.errorMessage = APP_CONSTANT.INCORRECT_USER_PASSWORD;
             }
+        };
+
+        vm.userRegister = function () {
+            $state.go("register");
         };
     };
 })();

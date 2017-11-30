@@ -1,25 +1,25 @@
 //jshint strict: false
 exports.config = {
 
-  allScriptsTimeout: 11000,
+    allScriptsTimeout: 11000,
 
-  specs: [
-      '../test/e2e/dashboard/dashboard.e2e.js',
-      '../test/e2e/dashboard/dashboard.page.js',
-     '../test/e2e/login/login.e2e.js',
-      '../test/e2e/dashboard/dashboard.e2e.js'
-  ],
+    specs: [
+        '../test/e2e/login/login.e2e.js',
+        '../test/e2e/login/login.page.js',
+        '../test/e2e/dashboard/dashboard.e2e.js',
+        '../test/e2e/dashboard/dashboard.page.js',
+    ],
 
-  capabilities: {
-    'browserName': 'chrome'
-  },
+    capabilities: {
+        'browserName': 'chrome'
+    },
 
-  baseUrl: 'http://localhost:8000/',
+    baseUrl: 'http://localhost:8000/',
 
-  framework: 'jasmine',
+    framework: 'jasmine',
 
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
-  }
+    jasmineNodeOpts: {
+        defaultTimeoutInterval: 30000
+    }
 
 };

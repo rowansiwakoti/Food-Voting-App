@@ -12,7 +12,7 @@
 
 
         vm.ok = function () {
-            $sessionStorage.username = "";
+            $sessionStorage.emailId = "";
             $uibModalInstance.close();
             $state.go("login");
         };

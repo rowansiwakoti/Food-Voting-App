@@ -5,9 +5,9 @@
     angular.module("FoodVotingApp")
         .controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ["$scope", "$state", "APP_CONSTANT", "$uibModal", "RestaurantService", "FoodService", "$sessionStorage", "$log"];
+    DashboardController.$inject = ["$state", "APP_CONSTANT", "$uibModal", "RestaurantService", "FoodService", "$sessionStorage", "$log"];
 
-    function DashboardController($scope, $state, APP_CONSTANT, $uibModal, RestaurantService, FoodService, $sessionStorage, $log) {
+    function DashboardController($state, APP_CONSTANT, $uibModal, RestaurantService, FoodService, $sessionStorage, $log) {
 
         var vm = this;
 
@@ -15,7 +15,7 @@
         vm.foodItems = FoodService.getFoodList();
         vm.message = "";
 
-        vm.userName = $sessionStorage.username;
+        vm.userName = $sessionStorage.emailId;
         vm.role = $sessionStorage.role;
 
         // $scope.$on("$stateChangeStart", function (event) {
@@ -29,7 +29,7 @@
         //     event.preventDefault();
         // });
 
-        if ($sessionStorage.username) {
+         if ($sessionStorage.emailId) {
 
             vm.userLogout = function () {
                 vm.message = "";

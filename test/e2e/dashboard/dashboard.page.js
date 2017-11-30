@@ -29,7 +29,7 @@
 
         this.addFoodButton = element(by.buttonText("Add Food"));
 
-        this.foodList = element.all(by.repeater("food in dashboard.foodItems"));
+        this.foodList = element.all(by.repeater("food in dashboardCtrl.foodItems"));
 
         this.editFoodName = element(by.model("editFoodCtrl.foodDuplicate.name"));
 

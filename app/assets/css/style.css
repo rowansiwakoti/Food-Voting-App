@@ -7,6 +7,16 @@ div.row {
     display: inline;
     text-align: right;
 }
+* {
+    border-radius: 0 !important;
+}
+
+.panel{
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 12px;
+}
 
 h3.page{
     text-align: center;

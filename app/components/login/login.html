@@ -5,18 +5,18 @@
             <label name="user_name">Username</label>
             <p ng-show="loginCtrl.errorMessage" style="color: red;">{{loginCtrl.errorMessage}}</p>
 
-            <input type="text" name="username" placeholder="Username" class="form-control"
-                   ng-model="loginCtrl.user.username" ng-minlength="6" ng-maxlength="10" required
-                   ng-pattern="/^[a-zA-Z0-9]*$/">
-            <p ng-show="userForm.username.$error.minlength || userForm.username.$error.maxlength"
-               class="help-block">{{loginCtrl.userInputLength}}</p>
-            <p ng-show="userForm.username.$error.pattern" class="help-block">{{loginCtrl.userInputFormat}}</p>
+            <input type="text" name="emailId" placeholder="Email ID" class="form-control"
+                   ng-model="loginCtrl.user.emailId">
+            <!--<p ng-show="userForm.username.$error.minlength || userForm.username.$error.maxlength"-->
+               <!--class="help-block">{{loginCtrl.userInputLength}}</p>-->
+            <!--<p ng-show="userForm.username.$error.pattern" class="help-block">{{loginCtrl.userInputFormat}}</p>-->
         </div>
 
         <div class="form-group">
             <label name="pass_word">Password</label>
             <input type="password" placeholder="Password" class="form-control" ng-model="loginCtrl.user.password">
         </div>
-        <button type="submit" class="btn btn-success" ng-disabled="userForm.$invalid">Login</button>
+        <button type="submit" class="btn btn-success">Login</button>
+        <a ng-click="loginCtrl.userRegister()">Register</a>
     </form>
 </div>

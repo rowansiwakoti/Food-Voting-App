@@ -17,7 +17,16 @@
         FOOD_NAME_REQ_MSG: "Food name is required.",
         FOOD_PRICE_REQ_MSG: "Food price is required.",
         DELETE_FOOD_MSG: "Are you sure want to delete the food?",
-        NO_FOOD_MSG: "No Food Added."
+        NO_FOOD_MSG: "No Food Added.",
+        FIRST_NAME_MSG: "First name is required.",
+        LAST_NAME_MSG: "Last name is required.",
+        EMAIL_MSG: "Email Id is required.",
+        INVALID_EMAIL_MSG: "Invalid email address.",
+        CONTACT_NUM_MSG: "Contact number is required.",
+        ADDRESS_MSG: "Address is required.",
+        PASSWORD_MSG: "Password is required.",
+        CONFIRM_PASSWORD_MSG: "Confirm password is required."
+
     };
     angular.module("FoodVotingApp")
         .constant("APP_CONSTANT", VALUES);

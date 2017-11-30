@@ -32,7 +32,7 @@ describe("controller test", function () {
 
         it("should let the user confirm the modal", function () {
             expect($scope.restaurantCtrl.ok).toBeDefined();
-            $scope.restaurantCtrl.ok({name: "KFC"});
+            $scope.restaurantCtrl.ok({name: "KFC", contact:9860232805});
             expect($uibModalInstance.close).toHaveBeenCalled();
         });
 
