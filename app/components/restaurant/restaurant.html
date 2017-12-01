@@ -1,0 +1,9 @@
+<a class="btn btn-default btn-sm" ng-click="restaurant.addFood()" ng-show="restaurant.role == 'admin'">Add
+    Food</a>
+<div class="row">
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="food in restaurant.foods">
+            <a>{{food.name}}</a>
+        </li>
+    </ul>
+</div>

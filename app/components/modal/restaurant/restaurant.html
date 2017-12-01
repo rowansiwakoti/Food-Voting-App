@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="restaurantCtrl.cancel()">&times;</button>
+    <h3 class="modal-title" id="modal-title">Add Restaurant</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form name="restaurantForm">
+        <div class="form-group">
+            <label class="restaurant-name">Restaurant Name</label>
+            <input type="text" name="name" placeholder="Restaurant Name" ng-model="restaurant.name"
+                   class="form-control"
+                   required>
+            <p ng-show="restaurantForm.name.$invalid && restaurantForm.name.$touched" class="help-block"
+               style="color: red;">{{restaurantCtrl.resNameReqMsg}}</p>
+        </div>
+        <div class="form-group">
+            <label class="restaurant-contact">Restaurant Contact No.</label>
+            <input type="text" name="contactNo" ng-model="restaurant.contactNo"
+                   placeholder="Restaurant Contact No."
+                   class="form-control" ng-maxlength="10" ng-pattern="/^\d+$/">
+            <p ng-show="restaurantForm.contactNo.$error.maxlength" class="help-block" style="color: red;">
+                {{restaurantCtrl.contactNoMsg}}
+            </p>
+            <p ng-show="restaurantForm.contactNo.$error.pattern" class="help-block" style="color: red;">
+                {{restaurantCtrl.numbersOnlyMsg}}
+            </p>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary pull-left" id="add-restaurant" type="button"
+            ng-click="restaurantCtrl.ok(restaurant)" ng-disabled="restaurantForm.$invalid">Add Restaurant
+    </button>
+    <button class="btn btn-warning pull-left" type="button" ng-click="restaurantCtrl.cancel()">Cancel</button>
+</div>

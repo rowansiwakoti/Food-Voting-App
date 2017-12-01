@@ -1,0 +1,41 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start',
+1 verbose cli   '--force' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.3
+4 warn using --force I sure hope you know what you are doing.
+5 verbose run-script [ 'prestart', 'start', 'poststart' ]
+6 info lifecycle angular-seed@0.0.0~prestart: angular-seed@0.0.0
+7 verbose lifecycle angular-seed@0.0.0~prestart: unsafe-perm in lifecycle true
+8 verbose lifecycle angular-seed@0.0.0~prestart: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\ISS\Food-Voting-App-FA003\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Users\rowan\AppData\Roaming/npm;C:\Program Files\nodejs\;C:\Windows\System32;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\rowan\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_144\bin
+9 verbose lifecycle angular-seed@0.0.0~prestart: CWD: E:\ISS\Food-Voting-App-FA003
+10 silly lifecycle angular-seed@0.0.0~prestart: Args: [ '/d /s /c', 'npm install' ]
+11 silly lifecycle angular-seed@0.0.0~prestart: Returned: code: 0  signal: null
+12 info lifecycle angular-seed@0.0.0~start: angular-seed@0.0.0
+13 verbose lifecycle angular-seed@0.0.0~start: unsafe-perm in lifecycle true
+14 verbose lifecycle angular-seed@0.0.0~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\ISS\Food-Voting-App-FA003\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Users\rowan\AppData\Roaming/npm;C:\Program Files\nodejs\;C:\Windows\System32;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\rowan\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_144\bin
+15 verbose lifecycle angular-seed@0.0.0~start: CWD: E:\ISS\Food-Voting-App-FA003
+16 silly lifecycle angular-seed@0.0.0~start: Args: [ '/d /s /c', 'http-server -a localhost -p 8000 -c-1 ./app' ]
+17 verbose stack Error: kill ENOSYS
+17 verbose stack     at exports._errnoException (util.js:1018:11)
+17 verbose stack     at process.kill (internal/process.js:190:13)
+17 verbose stack     at process.listener (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+17 verbose stack     at emitNone (events.js:91:20)
+17 verbose stack     at process.emit (events.js:185:7)
+17 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+17 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+17 verbose stack     at Signal.wrap.onsignal (internal/process.js:217:44)
+18 verbose cwd E:\ISS\Food-Voting-App-FA003\test
+19 error Windows_NT 10.0.10240
+20 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start" "--force"
+21 error node v6.10.3
+22 error npm  v3.10.10
+23 error code ENOSYS
+24 error errno ENOSYS
+25 error syscall kill
+26 error kill ENOSYS
+27 error If you need help, you may report this error at:
+27 error     <https://github.com/npm/npm/issues>
+28 verbose exit [ 1, true ]

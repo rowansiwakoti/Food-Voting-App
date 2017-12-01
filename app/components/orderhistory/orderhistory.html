@@ -1,0 +1,28 @@
+
+<table class="table table-condensed table-hover table-striped table-bordered ">
+    <caption>
+        <a ui-sref="dashboard">Go Back</a>
+        <h3>Confirm Order</h3>
+    </caption>
+    <thead>
+    <tr>
+        <th>S/N</th>
+        <th>Date</th>
+        <th>Food</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-show="dashboardCtrl.foodItems == '' ||dashboardCtrl.foodItems.length == 0">
+        <td colspan="6" style="text-align: center; color: red;"> <strong>{{dashboardCtrl.noFoodMsg}}</strong>
+        </td>
+    </tr>
+    <tr ng-repeat="">
+        <td>{{$index + 1}}</td>
+        <td></td>
+        <td >{{food.name}}</td>
+        <td>{{food.price}}</td>
+    </tr>
+    </tbody>
+
+</table>

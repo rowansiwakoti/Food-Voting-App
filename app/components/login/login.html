@@ -1,0 +1,22 @@
+<div class="row col-md-offset-3 col-md-6">
+    <h3 class="page"><u>{{loginCtrl.getPageName()}}</u></h3><br/>
+    <form name="userForm" ng-submit="loginCtrl.validateUser(loginCtrl.user)">
+        <div class="form-group">
+            <label name="user_name">Username</label>
+            <p ng-show="loginCtrl.errorMessage" style="color: red;">{{loginCtrl.errorMessage}}</p>
+
+            <input type="text" name="emailId" placeholder="Email ID" class="form-control"
+                   ng-model="loginCtrl.user.emailId">
+            <!--<p ng-show="userForm.username.$error.minlength || userForm.username.$error.maxlength"-->
+               <!--class="help-block">{{loginCtrl.userInputLength}}</p>-->
+            <!--<p ng-show="userForm.username.$error.pattern" class="help-block">{{loginCtrl.userInputFormat}}</p>-->
+        </div>
+
+        <div class="form-group">
+            <label name="pass_word">Password</label>
+            <input type="password" placeholder="Password" class="form-control" ng-model="loginCtrl.user.password">
+        </div>
+        <button type="submit" class="btn btn-success">Login</button>
+        <a ng-click="loginCtrl.userRegister()">Register</a>
+    </form>
+</div>

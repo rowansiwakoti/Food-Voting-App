@@ -1,36 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="foodVotingApp">
+<html lang="en" ng-app="FoodVotingApp">
 <head>
-    <meta charset="UTF-8">
-    <title>{{loginCtrl.appName}}</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<base href="/login/">-->
+    <title>Food Voting App</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 </head>
-<body ng-controller="LoginController as loginCtrl">
-<div class="main">
-    <h1>{{loginCtrl.appName}}</h1>
 
-    <div class="row col-md-offset-4 col-md-4">
-        <form name="userForm">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" placeholder="Username" class="form-control"
-                       ng-model="loginCtrl.user.username" ng-minlength="6" ng-maxlength="10" required
-                       ng-pattern="/^[a-zA-Z0-9]/">
-                <p ng-show="userForm.username.$error.minlength" class="help-block">Username must be of 6-10
-                    characters.</p>
-                <p ng-show="userForm.username.$error.pattern" class="help-block">Username must be alpha numeric.</p>
-            </div>
+<!--oncontextmenu="return false"-->
+<body>
+<div class="container">
+    <fv-header></fv-header>
+    <div ui-view>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" placeholder="Password" class="form-control" ng-model="loginCtrl.user.password">
-            </div>
-            <button type="submit" class="btn btn-success">Login</button>
-        </form>
+
     </div>
+    <!--<fv-footer></fv-footer>-->
 </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="assets/libs/angular/angular.js"></script>
+<script type="text/javascript" src="assets/libs/angular/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="assets/libs/angular/ngStorage.min.js"></script>
+<script type="text/javascript" src="assets/libs/angular/angular-animate.min.js"></script>
+<script type="text/javascript" src="assets/libs/angular/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="assets/libs/angular/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="assets/libs/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/libs/jquery/popper.min.js"></script>
+<script type="text/javascript" src="assets/libs/bootstrap/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="app.module.js"></script>
+<script type="text/javascript" src="app.config.js"></script>
+<script type="text/javascript" src="components/header/header.controller.js"></script>
+<script type="text/javascript" src="components/header/header.component.js"></script>
+<script type="text/javascript" src="components/footer/footer.controller.js"></script>
+<script type="text/javascript" src="components/footer/footer.component.js"></script>
+<script type="text/javascript" src="components/login/login.controller.js"></script>
+<script type="text/javascript" src="components/register/register.controller.js"></script>
+<script type="text/javascript" src="components/modal/user-logout/logout.controller.js"></script>
+<script type="text/javascript" src="components/dashboard/dashboard.controller.js"></script>
+<script type="text/javascript" src="components/modal/restaurant/restaurant.service.js"></script>
+<script type="text/javascript" src="components/modal/restaurant/restaurant.controller.js"></script>
+<script type="text/javascript" src="components/modal/food/food.service.js"></script>
+<script type="text/javascript" src="components/modal/food/edit.food.controller.js"></script>
+<script type="text/javascript" src="components/modal/food/delete.food.controller.js"></script>
+<script type="text/javascript" src="components/modal/food/food.controller.js"></script>
+<script type="text/javascript" src="services/user.service.js"></script>
+<<<<<<< HEAD
+<script type="text/javascript" src="constants/fvapp.constants.js"></script>
+=======
+<script type="text/javascript" src="constants/app-name.constants.js"></script>
+<script src="components/order/order.controller.js"></script>
+<script src="components/restaurant/restaurant.controller.js"></script>
+>>>>>>> 0fdb129c44d454074e921f970d02d8a1086d4918
 </body>
 </html>
