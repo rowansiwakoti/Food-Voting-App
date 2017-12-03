@@ -2,39 +2,27 @@
     "use strict";
     angular.module("FoodVotingApp")
         .controller("DeleteFoodController", DeleteFoodController);
-    DeleteFoodController.$inject = ["$uibModalInstance", "FoodService", "foodParam", "APP_CONSTANT"];
+    DeleteFoodController.$inject = ["$uibModalInstance", "FoodService", "foodParam", "APP_CONSTANT",'$scope','$rootScope'];
 
-    function DeleteFoodController($uibModalInstance, FoodService, foodParam, APP_CONSTANT) {
+    function DeleteFoodController($uibModalInstance, FoodService, foodParam, APP_CONSTANT,$scope,$rootScope) {
         var vm = this;
 
         vm.delFoodMsg = APP_CONSTANT.DELETE_FOOD_MSG;
 
         vm.ok = function () {
-
-            var food = foodParam;
-
-            var res = FoodService.getFoodList().filter(function (foodl) {
-                return foodl.restaurant === food.restaurant;
-            });
-
-            FoodService.getFoodList().filter(function (food2) {
-                if (food2.id === food.id) {
-                    FoodService.getFoodList().splice({
-                        name: food.name,
-                        restaurant: food.restaurant,
-                        price: food.price,
-                        contact: res[0].contact,
-                        vote: food.vote
-                    }, 1);
-
-                    FoodService.setAlertMessage(food.name + " " + APP_CONSTANT.DELETE_MSG);
-                }
+             var food = foodParam;
+             FoodService.deleteFood(food);
+             $scope.$watch(function(){
                 return FoodService.getFoodList();
-            });
-
-            $uibModalInstance.close();
-
+                },
+                 function(value){
+                    $rootScope.$broadcast('updateFoodList',{
+                    foodList:value
+                    })
+             });
+             $uibModalInstance.close();
         };
+
         vm.cancel = function () {
             $uibModalInstance.dismiss();
         };

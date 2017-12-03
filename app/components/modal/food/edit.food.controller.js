@@ -3,54 +3,29 @@
     angular.module("FoodVotingApp")
         .controller("EditFoodController", EditFoodController);
 
-    EditFoodController.$inject = ["$uibModal", "$uibModalInstance", "RestaurantService", "FoodService", "food", "$sessionStorage", "$log", "APP_CONSTANT"];
+    EditFoodController.$inject = ["$uibModal", "$uibModalInstance", "FoodService", "food", "$sessionStorage", "$log",'$scope'];
 
-    function EditFoodController($uibModal, $uibModalInstance, RestaurantService, FoodService, food, $sessionStorage, $log, APP_CONSTANT) {
+    function EditFoodController($uibModal, $uibModalInstance,  FoodService, food, $sessionStorage, $log,$scope) {
 
         var vm = this;
-
         vm.food = food;
-        vm.restaurant = RestaurantService.getRestaurantList();
-        vm.user = $sessionStorage.username;
-
         vm.foodDuplicate = angular.copy(vm.food);
-        vm.restaurantDuplicate = angular.copy(vm.restaurant);
-
-        vm.foodNameReqMsg = APP_CONSTANT.FOOD_NAME_REQ_MSG;
-        vm.foodPriceReqMsg = APP_CONSTANT.FOOD_PRICE_REQ_MSG;
-        vm.numbersOnlyMsg = APP_CONSTANT.NUMBERS_ONLY_MSG;
 
         vm.ok = function (food) {
-
-            var res = vm.restaurantDuplicate.filter(function (restaurant) {
-                return restaurant.name === food.restaurant;
-            });
-
-            var response = {
-                id: food.id,
-                name: food.name,
-                restaurant: food.restaurant,
-                price: food.price,
-                // contact: res[0].contact,
-                vote: food.vote
-            };
-
-            FoodService.setAlertMessage(food.name + " " + APP_CONSTANT.EDIT_MSG);
+            var response = FoodService.editFood(food);
             $uibModalInstance.close(response);
         };
-
         vm.cancel = function () {
             vm.message = "";
             $uibModalInstance.dismiss();
         };
 
         vm.deleteFood = function (food) {
-
             $uibModalInstance.dismiss();
 
             var modalInstance = $uibModal.open({
-                animation: true,
                 ariaLabelledBy: "modal-title",
+                animation: true,
                 ariaDescribedBy: "modal-body",
                 backdrop: false,
                 templateUrl: "components/modal/food/delete-food.html",
@@ -64,10 +39,23 @@
             });
 
             modalInstance.result.then(function () {
-
+                $log.info("Food delete confirm modal closed on " + new Date());
             }, function () {
                 $log.info("Food delete confirm modal dismissed on " + new Date());
             });
         };
     };
 })();
+
+// vm.restaurantDuplicate = angular.copy(vm.restaurant);
+// vm.restaurant = RestaurantService.getRestaurantList();
+// vm.user = $sessionStorage.username;
+// vm.foodNameReqMsg = APP_CONSTANT.FOOD_NAME_REQ_MSG;
+// vm.foodPriceReqMsg = APP_CONSTANT.FOOD_PRICE_REQ_MSG;
+// vm.numbersOnlyMsg = APP_CONSTANT.NUMBERS_ONLY_MSG;
+
+
+// vm.cancel = function () {
+//     vm.message = "";
+//     $uibModalInstance.dismiss();
+// };
