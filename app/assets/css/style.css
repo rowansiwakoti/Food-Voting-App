@@ -1,11 +1,22 @@
 div.row {
     text-align: center;
 }
-
+* {
+    border-radius: 0 !important;
+}
 #intro h3,
 #intro a {
     display: inline;
     text-align: right;
+}
+.restaurant-name{
+    display: inline;
+    /*float: right;*/
+    text-align: center;
+}
+
+.button-name{
+    float: left;
 }
 
 h3.page{
@@ -32,6 +43,7 @@ footer p {
 .alert {
     display:inline-block;
 }
-.image{height: 200px; border: 1px solid}
+/*.image{height: 200px; border: 1px solid}*/
 .number{width: 40px}
 .num-control{width: 30px}
+.image{height: 200px; border: 1px solid; padding: 80px;}

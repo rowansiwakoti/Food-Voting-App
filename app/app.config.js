@@ -8,7 +8,7 @@
     config.$inject = ["$stateProvider", "$urlRouterProvider"];
 
     function config($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/login");
+        // $urlRouterProvider.otherwise("/login");
         $stateProvider
             .state("login", {
                 name: "login",
@@ -26,7 +26,7 @@
                 name:"restaurant",
                 url:"/restaurant",
                 templateUrl:"components/restaurant/restaurant.html",
-                controller:"RestaurantCtrl as restaurant",
+                controller:"RestaurantController as restaurantCtrl",
                 params:{
                     restaurant:''
                 }
@@ -36,6 +36,11 @@
                 url:'/order',
                 templateUrl:"components/order/order.html",
                 controller:'OrderCtrl as order'
+            })
+            .state("register", {
+                url: "/register",
+                templateUrl: "components/register/register.html",
+                controller: "RegisterController as registerCtrl"
             })
             .state("orderhistory",{
                 name:'orderhistory',

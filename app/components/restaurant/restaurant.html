@@ -1,54 +1,98 @@
-<h1><u>{{restaurant.restaurant}}</u></h1>
-<a class="btn btn-default btn-sm" ng-click="restaurant.addFood()" ng-show="restaurant.role == 'admin'">Add Food</a>
-<a ui-sref="dashboard">Go Back</a>
-<h3 ng-hide="restaurant.role == 'admin'">Confirm Order</h3>
-<div class="row">
-    <div class="col-md-9">
+<h3>{{restaurantCtrl.restaurant}}</h3>
+<div ng-show="restaurantCtrl.role =='admin'">
+    <a class="btn btn-default btn-sm button-name" ng-click="restaurantCtrl.addFood()"
+       ng-show="restaurantCtrl.role == 'admin'">Add
+        Food</a>
+    <div style="text-align: center"><h3 class="restaurant-name"><u>{{restaurantCtrl.restaurant}}</u></h3></div>
+
+    <table class="table table-condensed table-hover table-striped table-bordered ">
+        <caption>
+            <h3 ng-hide="restaurantCtrl.role == 'admin'">Order</h3>
+        </caption>
+        <thead>
+        <tr>
+            <th>S/N</th>
+            <th>Food</th>
+            <th>Price</th>
+            <th style="width: 30%;">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr ng-show="restaurantCtrl.foods == '' || restaurantCtrl.foods.length == 0">
+            <td colspan="6" style="text-align: center; color: red;"><strong>No Food Added.</strong>
+            </td>
+        </tr>
+
+        <tr ng-repeat="food in restaurantCtrl.foods">
+            <td>{{$index + 1}}</td>
+            <td>{{food.name}}</td>
+            <td>{{food.price}}</td>
+            <td>
+                <a class="btn btn-default btn-sm" ng-click="restaurantCtrl.editFood(food.id)"><span
+                        class="glyphicon glyphicon-pencil"></span> Edit</a>
+                <a class="btn btn-default btn-sm" ng-click="restaurantCtrl.deleteFood(food)"><span
+                        class="glyphicon glyphicon-trash"></span> Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-hide="restaurantCtrl.role =='admin'" class="row">
+    <div class="col-md-8">
         <table class="table table-condensed table-hover table-striped table-bordered ">
+
             <thead>
             <tr>
                 <th>S/N</th>
                 <th>Food</th>
                 <th>Price</th>
-
-                <th ng-hide="restaurant.role == 'admin'">Select</th>
+                <th>Select</th>
+                <!--<th style="width: 30%;">Action</th>-->
             </tr>
             </thead>
             <tbody>
-            <tr ng-show="">
-                <td colspan="6" style="text-align: center; color: red;"> <strong>{{}}</strong>
+
+
+            <tr ng-show="restaurantCtrl.foods == '' || restaurantCtrl.foods.length == 0">
+                <td colspan="6" style="text-align: center; color: red;"><strong>No Food Added.</strong>
                 </td>
             </tr>
-            <tr ng-repeat="food in restaurant.foods  track by $index" ng-click="restaurant.editFood(food.id)">
+
+            <tr ng-repeat="food in restaurantCtrl.foods">
                 <td>{{$index + 1}}</td>
                 <td>{{food.name}}</td>
                 <td>{{food.price}}</td>
-                <td ng-hide="restaurant.role == 'admin'">
-                    <!--<input type="checkbox" ng-model="restaurant.select[$index]"  ng-change="restaurant.selectFood(restaurant.select[$index],$index,food)">-->
-                    <a  ng-click="restaurant.selectFood($index,food)"><span class="glyphicon glyphicon-plus-sign" ></span> </a>
+                <td ng-click="restaurantCtrl.addOrder(food)">
+                    <a><span class="glyphicon glyphicon-plus-sign"></span></a>
                 </td>
             </tr>
             </tbody>
-
         </table>
     </div>
-    <div class="col-md-3">
-        <table class="table table-condensed table-hover table-striped table-bordered ">
+    <div class="col-md-4">
+        <table class="table table-condensed table-hover table-striped table-bordered " ng-hide="restaurantCtrl.order.length<=0">
             <thead>
-                <tr>
-                    <th>Order</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>S/N</th>
+                <th>Order</th>
+                <th>Remove</th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="food in restaurant.order">
+                <tr ng-repeat="food in restaurantCtrl.order">
+                    <td>{{$index+1}}</td>
                     <td>{{food.name}}</td>
-                    <td>
-                        <a ng-click="restaurant.removeFood(food)"><span class="glyphicon glyphicon-remove"></span></a>
+                    <td ng-click="restaurantCtrl.deleteOrder(food)">
+                        <a><span class="glyphicon glyphicon-remove"></span> </a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <button ng-click="restaurant.placeOrder()" class="btn btn-primary" ng-hide="restaurant.role == 'admin'" ng-disabled="">Payment</button>
+        <button class="btn btn-default btn-sm" ng-click="restaurantCtrl.confirmOrder()" ng-hide="restaurantCtrl.order.length<=0">Confirm Order</button>
     </div>
 </div>
+
+<a ui-sref="dashboard">Go Back</a>

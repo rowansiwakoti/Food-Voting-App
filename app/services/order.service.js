@@ -21,7 +21,7 @@
             if(flag==1){
                 orderList.push(order);
             }
-            console.log(orderList);
+            // console.log(orderList);
         }
 
 //Delete the order from the order list

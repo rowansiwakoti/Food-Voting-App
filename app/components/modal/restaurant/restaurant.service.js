@@ -2,35 +2,52 @@
     "use strict";
     angular.module("FoodVotingApp")
         .factory("RestaurantService", RestaurantService);
-    RestaurantService.$inject=['$sessionStorage'];
-    function RestaurantService($sessionStorage) {
+    RestaurantService.$inject = ['$sessionStorage', 'FoodService'];
+
+    function RestaurantService($sessionStorage, FoodService) {
 
         var restaurantSvc = {};
         var alertMessage = "";
-        if($sessionStorage.restaurantList){
-            var restaurantList = $sessionStorage.restaurantList;
+        var restaurantList = [];
+        if ($sessionStorage.restaurantList) {
+            restaurantList = $sessionStorage.restaurantList;
         }
         else {
-            var restaurantList = [];
+            restaurantList = [];
         }
 
-        restaurantSvc.setRestaurant = function (restaurant) {
-            if (restaurantList.length > 0) {
-                var flag = restaurantList.length;
-                restaurantList.push({
-                    id: flag + 1,
-                    name: restaurant.name,
-                    contact: restaurant.contactNo
-                });
-            }
-            else {
-                restaurantList.push({
-                    id: 1,
-                    name: restaurant.name,
-                    contact: restaurant.contactNo
-                });
-            }
-         ($sessionStorage.restaurantList=restaurantList);
+        restaurantSvc.addRestaurant = function (restaurant) {
+            restaurantList.push({
+                id: Math.floor(Math.random() * 10000),
+                name: restaurant.name,
+                contact: restaurant.contact
+            });
+            ($sessionStorage.restaurantList = restaurantList);
+        };
+
+        restaurantSvc.deleteRestaurant = function (restaurant) {
+            restaurantList.forEach(function (restaurantParam) {
+                if (restaurantParam.id === restaurant.id) {
+                    restaurantList.splice(restaurantList.indexOf(restaurantParam), 1);
+                    FoodService.getFoodList().forEach(function (food) {
+                        if (food.restaurant === restaurant.name) {
+                            FoodService.getFoodList().splice(FoodService.getFoodList().indexOf(food));
+                        }
+                    });
+                }
+            });
+        };
+
+        restaurantSvc.editRestaurant = function (restaurant) {
+            var position = null;
+            restaurantList.forEach(function (eachRestaurant, index) {
+                if (restaurant.id === eachRestaurant.id) {
+                    position = index;
+                }
+            });
+            restaurantList[position] = restaurant;
+            $sessionStorage.restaurantList = restaurantList;
+            return restaurantSvc.restaurantList;
         };
 
         restaurantSvc.getRestaurantList = function () {

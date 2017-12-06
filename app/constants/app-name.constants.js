@@ -2,7 +2,7 @@
     "use strict";
 
     var VALUES = {
-        APP_NAME: "Food Voting App",
+        APP_NAME: "Food Ordering App",
         PAGE_NAME: "User Login",
         USER_INPUT_LENGTH: "Username must be of 6-10 characters.",
         USER_INPUT_FORMAT: "Username must be alpha numeric.",

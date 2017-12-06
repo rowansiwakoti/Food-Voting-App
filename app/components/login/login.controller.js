@@ -19,18 +19,21 @@
             return pageName;
         };
 
+        vm.userRegister = function () {
+            $state.go("register");
+        };
+
         vm.validateUser = function (user) {
             var users = UserService.validateUser(user);
 
-            if (users.length > 0) {
+            if (users.length > 0 ) {       console.log(users[0])
+                $sessionStorage.emailId = users[0].emailId;
                 $sessionStorage.role = users[0].role;
-                $sessionStorage.username = users[0].username;
-                $sessionStorage.userId = users[0].id;
-                $state.go("dashboard");
+                $state.go('dashboard');
             }
             else {
                 vm.errorMessage = APP_CONSTANT.INCORRECT_USER_PASSWORD;
             }
         };
-    };
+    }
 })();
