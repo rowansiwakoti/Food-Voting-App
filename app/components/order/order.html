@@ -9,7 +9,9 @@
         <th>S/N</th>
         <th>Food</th>
         <th>Price</th>
-        <th ng-hide="dashboardCtrl.role == 'admin'">Remove</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+        <th>Remove</th>
     </tr>
     </thead>
     <tbody>
@@ -21,7 +23,18 @@
         <td>{{$index + 1}}</td>
         <td>{{food.name}}</td>
         <td>{{food.price}}</td>
-        <td ng-hide="dashboardCtrl.role == 'admin'"><button><span class="glyphicon glyphicon-remove"></span> </button> </td>
+        <td>
+        <button class="num-control" ng-click="order.quantityDecrease($index,food)" >-</button>
+        &nbsp;&nbsp;
+            <input type="text" class="number" ng-model="food.quantity">
+        &nbsp;&nbsp;
+        <button class="num-control" ng-click="order.quantityIncrease($index,food)" >+</button>
+        </td>
+        <td>{{food.price * food.quantity}}</td>
+        <td><button ng-click="order.deleteOrder(food)"><span class="glyphicon glyphicon-remove"></span> </button> </td>
+    </tr>
+    <tr>
+        <td>Total Amount: {{order.getTotal()}}</td>
     </tr>
     </tbody>
 

@@ -33,3 +33,5 @@ footer p {
     display:inline-block;
 }
 .image{height: 200px; border: 1px solid}
+.number{width: 40px}
+.num-control{width: 30px}

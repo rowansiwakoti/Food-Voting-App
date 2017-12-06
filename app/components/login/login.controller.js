@@ -25,6 +25,7 @@
             if (users.length > 0) {
                 $sessionStorage.role = users[0].role;
                 $sessionStorage.username = users[0].username;
+                $sessionStorage.userId = users[0].id;
                 $state.go("dashboard");
             }
             else {

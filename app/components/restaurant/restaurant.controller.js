@@ -2,13 +2,16 @@
     "use strict";
     angular.module('FoodVotingApp')
         .controller('RestaurantCtrl',RestaurantCtrl);
-    RestaurantCtrl.$inject=["FoodService", "$sessionStorage","$state","$stateParams",'$uibModal','$log','$scope'];
+    RestaurantCtrl.$inject=["FoodService", "$sessionStorage","$state","$stateParams",'$uibModal','$log','$scope','OrderService'];
 
-    function RestaurantCtrl(FoodService,$sessionStorage,$state,$stateParams,$uibModal,$log,$scope) {
+    function RestaurantCtrl(FoodService,$sessionStorage,$state,$stateParams,$uibModal,$log,$scope,OrderService) {
         var that = this;
         that.foodItems = FoodService.getFoodList();
         that.restaurant;
-        that.foods=[];
+        that.foods = [];
+        that.quantity = [];
+        that.selection = [];
+        that.order = OrderService.getOrder();
         that.role=$sessionStorage.role;
 
         //Getting/Setting the Current Restaurant
@@ -21,7 +24,6 @@
         }
 
         //Getting Foods for the current Restaurant
-
         that.getFood = function () {
             that.foods = [];
             that.foodItems.forEach(function (food) {
@@ -29,8 +31,17 @@
                     that.foods.push(food);
                 }
             })
+            that.quantity.length = that.foods.length;
+            that.selection.length = that.foods.length;
+            // that.quantity.forEach(function (quan) {
+            //     quan = 0;
+            // })
+            for(var i=0;i<that.quantity.length;i++){
+                that.quantity[i]=0
+            }
         }
         that.getFood();
+
         $scope.$on('updateFoodList',function (event,data) {
             that.foodItems = FoodService.getFoodList();
             that.getFood();
@@ -89,5 +100,47 @@
                 });
             }
         };
+
+        //Increase and Decrease Quantity
+        that.quantityIncrease = function (num,food) {
+             if(that.quantity[num]<5){
+                 ++that.quantity[num];
+             }
+             that.order ={
+                 food:food,
+                 quantity:that.quantity[num],
+                 user:$sessionStorage.username
+             }
+             OrderService.addOrder(that.order);
+        }
+
+        that.quantityDecrease = function (num,food) {
+            if(that.quantity[num]>0){
+                --that.quantity[num];
+            }
+            that.order ={
+                food:food,
+                quantity:that.quantity[num],
+                user:$sessionStorage.username
+            }
+            OrderService.addOrder(that.order);
+        }
+        //While the food is checked
+        that.selectFood = function ($index,food) {
+                OrderService.addOrder(food);
+                that.order = OrderService.getOrder();
+            console.log('add food to order')
+        }
+
+        that.removeFood = function (food) {
+            console.log('delete: ' , food);
+            OrderService.deleteOrder(food);
+            that.order = OrderService.getOrder();
+        }
+
+        //Placing the order
+        that.placeOrder = function () {
+            $state.go('order')
+        }
     }
 })();
