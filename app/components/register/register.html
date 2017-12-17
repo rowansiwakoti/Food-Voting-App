@@ -10,7 +10,7 @@
 
             <div class="form-group col-sm-6">
                 <label name="first_name">First Name</label>
-                <input type="text" name="firstName" placeholder="First Name" class="form-control"
+                <input type="text" name=0"firstName" placeholder="First Name" class="form-control"
                        ng-model="registerCtrl.user.firstName" required>
                 <p ng-show="registerForm.firstName.$invalid && registerForm.firstName.$touched" class="help-block"
                    style="color: red;">{{registerCtrl.firstNameMsg}}</p>
@@ -36,7 +36,7 @@
             <div class="form-group col-sm-6">
                 <label name="email_id">Email ID</label>
                 <input type="email" name="emailId" placeholder="Email ID" class="form-control"
-                       ng-model="registerCtrl.user.emailId"
+                       ng-model="registerCtrl.user.email"
                        required>
                 <p ng-show="registerForm.emailId.$invalid && registerForm.emailId.$touched" class="help-block"
                    style="color: red;">{{registerCtrl.emailMsg}}</p>
@@ -70,7 +70,7 @@
             <div class="form-group col-sm-6">
                 <label name="password">Password</label>
                 <input type="password" name="password" placeholder="Password" class="form-control"
-                       ng-model="registerCtrl.user.password" required>
+                       ng-model="registerCtrl.user.userPassword" required>
                 <p ng-show="registerForm.password.$invalid && registerForm.password.$touched" class="help-block"
                    style="color: red;">{{registerCtrl.passwordMsg}}</p>
             </div>

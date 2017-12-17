@@ -5,16 +5,32 @@
     angular.module("FoodVotingApp")
         .controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ["$state", "APP_CONSTANT", "$uibModal", "RestaurantService", "FoodService", "$sessionStorage", "$log"];
+    DashboardController.$inject = ["$state", "APP_CONSTANT", "$uibModal", "RestaurantService", "FoodService", "$sessionStorage", "$log","OrderService"];
 
-    function DashboardController($state, APP_CONSTANT, $uibModal, RestaurantService, FoodService, $sessionStorage, $log) {
+    function DashboardController($state, APP_CONSTANT, $uibModal, RestaurantService, FoodService, $sessionStorage, $log,OrderService) {
 
         var vm = this;
 
         vm.noFoodMsg = APP_CONSTANT.NO_FOOD_MSG;
-        vm.foodItems = FoodService.getFoodList();
-        vm.restaurants = RestaurantService.getRestaurantList();
+        // vm.foodItems = FoodService.getFoodList();
+        vm.restaurants = [];
 
+        vm.initRestaurants = function () {
+            vm.list = RestaurantService.getRestaurantList();
+            vm.list.then(
+                function(answer) {
+                    vm.restaurants = answer.data;
+                },
+                function(error) {
+                    console.log(error)
+                },
+                function(progress) {
+                    console.log(progress)
+                }
+            )
+        }
+
+        vm.initRestaurants();
         vm.message = "";
         vm.emailId = $sessionStorage.emailId;
         vm.role = $sessionStorage.role;
@@ -36,10 +52,10 @@
 
                 modalInstance.result.then(function () {
                     vm.message = RestaurantService.getAlertMessage();
+                    OrderService.initOrder();
                 }, function () {
                     $log.info("User Logout modal dismissed on " + new Date());
                 });
-
             };
 
             vm.addRestaurant = function () {
@@ -62,12 +78,17 @@
                     }
                 });
 
-                modalInstance.result.then(function () {
+                modalInstance.result.then(function (restaurant) {
                     vm.message = RestaurantService.getAlertMessage();
+                    vm.add(restaurant);
                 }, function () {
                     $log.info("Add restaurant modal dismissed on " + new Date());
                 });
             };
+
+            vm.add = function (restaurant) {
+                vm.restaurants.push(restaurant);
+            }
 
             vm.deleteRestaurant = function (restaurant) {
 
@@ -91,12 +112,23 @@
                     }
                 });
 
-                modalInstance.result.then(function () {
+                modalInstance.result.then(function (id) {
                     vm.message = RestaurantService.getAlertMessage();
+                    vm.delete(id);
                 }, function () {
                     $log.info("Delete restaurant modal dismissed on " + new Date());
                 });
             };
+
+            vm.delete = function (id) {
+                var pos;
+                vm.restaurants.forEach(function (restro,index) {
+                    if(restro.id == id){
+                        pos = index;
+                    }
+                })
+                vm.restaurants.splice(pos,1);
+            }
 
             vm.editRestaurant = function (editRestaurant) {
                 vm.message = "";
@@ -118,12 +150,24 @@
                     }
                 });
 
-                modalInstance.result.then(function () {
+                modalInstance.result.then(function (restaurant) {
                     vm.message = RestaurantService.getAlertMessage();
+                    vm.edit(restaurant);
                 }, function () {
                     $log.info("Edit restaurant modal dismissed on " + new Date());
                 });
             };
+
+            vm.edit = function (restaurant) {
+                var pos;
+                vm.restaurants.forEach(function (restro,index) {
+                    if(restro.id == restaurant.id){
+                        pos = index;
+                    }
+                })
+                vm.restaurants[pos] = restaurant;
+            }
+
         }
         else {
             $state.go("login");

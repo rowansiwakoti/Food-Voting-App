@@ -26,17 +26,15 @@
         <td>
         <button class="num-control" ng-click="order.quantityDecrease($index,food)" >-</button>
         &nbsp;&nbsp;
-            <input type="text" class="number" ng-model="food.quantity">
+            {{food.quantity}}
         &nbsp;&nbsp;
         <button class="num-control" ng-click="order.quantityIncrease($index,food)" >+</button>
         </td>
         <td>{{food.price * food.quantity}}</td>
         <td><button ng-click="order.deleteOrder(food)"><span class="glyphicon glyphicon-remove"></span> </button> </td>
     </tr>
-    <tr>
-        <td>Total Amount: {{order.getTotal()}}</td>
-    </tr>
     </tbody>
-
 </table>
+<p ng-hide="order.getTotal()<=0">Total Amount: {{order.getTotal()}}</p>
+<br>
 <button ng-click="dashboardCtrl.placeOrder()" class="btn btn-primary" ng-hide="dashboardCtrl.role == 'admin'" ng-disabled="">Confirm</button>

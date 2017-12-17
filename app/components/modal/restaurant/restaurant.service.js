@@ -2,59 +2,52 @@
     "use strict";
     angular.module("FoodVotingApp")
         .factory("RestaurantService", RestaurantService);
-    RestaurantService.$inject = ['$sessionStorage', 'FoodService'];
+    RestaurantService.$inject = ['$sessionStorage', 'FoodService','$http'];
 
-    function RestaurantService($sessionStorage, FoodService) {
+    function RestaurantService($sessionStorage, FoodService,$http) {
 
         var restaurantSvc = {};
         var alertMessage = "";
         var restaurantList = [];
-        if ($sessionStorage.restaurantList) {
-            restaurantList = $sessionStorage.restaurantList;
-        }
-        else {
-            restaurantList = [];
-        }
 
+        //Add the restaurant
         restaurantSvc.addRestaurant = function (restaurant) {
-            restaurantList.push({
-                id: Math.floor(Math.random() * 10000),
-                name: restaurant.name,
-                contact: restaurant.contact
-            });
-            ($sessionStorage.restaurantList = restaurantList);
+            var req = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                url: 'http://localhost:8080/restaurants',
+                data: restaurant
+            }
+            return ($http(req));
         };
 
+        //Delete the restaurant
         restaurantSvc.deleteRestaurant = function (restaurant) {
-            restaurantList.forEach(function (restaurantParam) {
-                if (restaurantParam.id === restaurant.id) {
-                    restaurantList.splice(restaurantList.indexOf(restaurantParam), 1);
-                    FoodService.getFoodList().forEach(function (food) {
-                        if (food.restaurant === restaurant.name) {
-                            FoodService.getFoodList().splice(FoodService.getFoodList().indexOf(food));
-                        }
-                    });
-                }
-            });
+            return ($http.delete('http://localhost:8080/restaurants/'+restaurant.id));
         };
 
+        //Edit the restaurant
         restaurantSvc.editRestaurant = function (restaurant) {
-            var position = null;
-            restaurantList.forEach(function (eachRestaurant, index) {
-                if (restaurant.id === eachRestaurant.id) {
-                    position = index;
-                }
-            });
-            restaurantList[position] = restaurant;
-            $sessionStorage.restaurantList = restaurantList;
-            return restaurantSvc.restaurantList;
+            var req = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                url: 'http://localhost:8080/restaurants/'+restaurant.id,
+                data: restaurant
+            }
+            return ($http(req));
         };
 
+        //Get the list of restaurants
         restaurantSvc.getRestaurantList = function () {
-            return restaurantList;
+             return ($http.get('http://localhost:8080/restaurants'));
         };
 
         restaurantSvc.setAlertMessage = function (msg) {
+            console.log('set alert message');
             alertMessage = msg;
         };
         restaurantSvc.getAlertMessage = function () {

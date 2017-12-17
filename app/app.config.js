@@ -5,10 +5,18 @@
     angular.module("FoodVotingApp")
         .config(config);
 
-    config.$inject = ["$stateProvider", "$urlRouterProvider"];
+    config.$inject = ["$stateProvider", "$urlRouterProvider","$httpProvider"];
 
-    function config($stateProvider, $urlRouterProvider) {
-        // $urlRouterProvider.otherwise("/login");
+    function config($stateProvider, $urlRouterProvider,$httpProvider) {
+
+        $httpProvider.defaults.headers.common = {};
+        $httpProvider.defaults.headers.post = {};
+        $httpProvider.defaults.headers.put = {};
+        $httpProvider.defaults.headers.patch = {};
+        // $httpProvider.defaults.useXDomain = true;
+        // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+        $urlRouterProvider.otherwise("/login");
         $stateProvider
             .state("login", {
                 name: "login",

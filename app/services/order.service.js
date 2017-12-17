@@ -8,7 +8,10 @@
     function OrderService($sessionStorage) {
         var orderSvc = {};
         var orderList = [];
-
+        orderSvc.initOrder = function () {
+            console.log('order list initialize')
+            orderList = [];
+        }
 //Add to the order list
         orderSvc.addOrder = function (order) {
             order.quantity = 1;

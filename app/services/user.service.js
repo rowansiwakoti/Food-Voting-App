@@ -6,9 +6,9 @@
 
         .factory("UserService", UserService);
 
-    UserService.$inject = ["$sessionStorage"];
+    UserService.$inject = ["$sessionStorage",'$http'];
 
-    function UserService($sessionStorage) {
+    function UserService($sessionStorage,$http) {
 
         var userList = [
             {
@@ -35,9 +35,16 @@
 
 
         return {
-            setUser: function (user) {
-                user.role = 'user';
-                userList.push(user);
+            setUser: function (user) {console.log(user,'add this user')
+              var req = {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                data:user,
+                url:'http://localhost:8080/User'
+              }
+                return($http(req));
             },
             validateUser: function (loggedInUser) {
                 return userList.filter(function (user) {

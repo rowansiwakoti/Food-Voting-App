@@ -3,45 +3,36 @@
     angular.module("FoodVotingApp")
         .factory("FoodService", FoodService);
 
-    FoodService.$inject = ["$sessionStorage"];
+    FoodService.$inject = ["$sessionStorage",'$http'];
 
-    function FoodService($sessionStorage) {
+    function FoodService($sessionStorage,$http) {
 
         var foodSvc = {};
         var alertMessage = "";
         var foodList = [];
-        if ($sessionStorage.foodList) {
-            foodList = $sessionStorage.foodList;
-        }
 
         // Get Food List
-        foodSvc.getFoodList = function () {
-            return foodList;
+        foodSvc.getFoodList = function (id) {console.log(id);
+            return ($http.get('http://localhost:8080/restaurants/'+id+'/foods'))
         };
 
         //Delete Food from the list
         foodSvc.deleteFood = function (food) {
-            var position;
-            foodList.forEach(function (foodItem, index) {
-                if (foodItem.id === food.id) {
-                    position = index;
-                }
-            });
-            foodList.splice(position, 1);
-            return foodList;
+            return($http.delete('http://localhost:8080/foods/'+food.id))
         };
 
         //Edit Food
-        foodSvc.editFood = function (newFood) {
-            var position;
-            foodList.forEach(function (food, index) {
-                if (newFood.id === food.id) {
-                    position = index;
-                }
-            })
-            foodList[position] = newFood;
-            $sessionStorage.foodList = foodList;
-            return (foodSvc.foodList);
+        foodSvc.editFood = function (food) {
+            console.log(food)
+            var req ={
+                method:'PUT',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                data:food,
+                url:'http://localhost:8080/foods/'+food.id
+            }
+            return($http(req));
         };
 
         //Get Food
@@ -53,15 +44,17 @@
         };
 
         //Add Food to the List
-        foodSvc.addFood = function (food) {
-            foodList.push({
-                id: Math.floor(Math.random() * 10000),
-                name: food.name,
-                restaurant: food.restaurant,
-                price: food.price
-            });
-            $sessionStorage.foodList = foodList;
-            return foodList;
+        foodSvc.addFood = function (food,restaurantId) {console.log(food,restaurantId)
+            var url = 'http://localhost:8080/restaurants/'+restaurantId;
+            var req = {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                url:url,
+                data:food
+            }
+            return($http(req));
         };
 
         // Set and Get Alert Messages

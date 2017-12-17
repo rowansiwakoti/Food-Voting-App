@@ -1,9 +1,9 @@
-<h3>{{restaurantCtrl.restaurant}}</h3>
-<div ng-show="restaurantCtrl.role =='admin'">
+<div style="text-align: center"><h3>{{restaurantCtrl.restaurant.name}}</h3></div>
+    <div ng-show="restaurantCtrl.role =='admin'">
     <a class="btn btn-default btn-sm button-name" ng-click="restaurantCtrl.addFood()"
        ng-show="restaurantCtrl.role == 'admin'">Add
         Food</a>
-    <div style="text-align: center"><h3 class="restaurant-name"><u>{{restaurantCtrl.restaurant}}</u></h3></div>
+    <!--<div style="text-align: center"><h3 class="restaurant-name"><u>{{restaurantCtrl.restaurant.name}}</u></h3></div>-->
 
     <table class="table table-condensed table-hover table-striped table-bordered ">
         <caption>
@@ -30,7 +30,7 @@
             <td>{{food.name}}</td>
             <td>{{food.price}}</td>
             <td>
-                <a class="btn btn-default btn-sm" ng-click="restaurantCtrl.editFood(food.id)"><span
+                <a class="btn btn-default btn-sm" ng-click="restaurantCtrl.editFood(food)"><span
                         class="glyphicon glyphicon-pencil"></span> Edit</a>
                 <a class="btn btn-default btn-sm" ng-click="restaurantCtrl.deleteFood(food)"><span
                         class="glyphicon glyphicon-trash"></span> Delete</a>

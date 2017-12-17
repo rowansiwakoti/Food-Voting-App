@@ -14,6 +14,14 @@
                style="color: red;">{{restaurantModalCtrl.resNameReqMsg}}</p>
         </div>
         <div class="form-group">
+            <label class="restaurant-name">Restaurant address</label>
+            <input type="text" name="name" placeholder="Restaurant Address" ng-model="restaurantModalCtrl.restaurant.address"
+                   class="form-control"
+                   required>
+            <p ng-show="restaurantForm.name.$invalid && restaurantForm.name.$touched" class="help-block"
+               style="color: red;">{{restaurantModalCtrl.resNameReqMsg}}</p>
+        </div>
+        <div class="form-group">
             <label class="restaurant-contact">Restaurant Contact No.</label>
             <input type="text" name="contact" ng-model="restaurantModalCtrl.restaurant.contact"
                    placeholder="Restaurant Contact No."

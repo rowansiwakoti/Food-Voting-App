@@ -10,7 +10,10 @@
         var that=this;
         that.order = OrderService.getOrder();
         that.quantity = [];
-
+//Checking if the quantity of the order
+        that.checkOrder = function(order,quantity){
+            console.log(order,quantity);
+        }
 //Deleting an item from the order
         that.deleteOrder = function(order){
             OrderService.deleteOrder(order);

@@ -25,9 +25,19 @@
         };
 
         vm.registerUser = function (user) {
-            if (user.password == user.confirmPassword) {
-                $sessionStorage.userList = user;
-                UserService.setUser(user);
+            if (user.userPassword == user.confirmPassword) {
+                var add = UserService.setUser(user);
+                add.then(
+                    function (answer) {
+                        console.log(answer)
+                    },
+                    function (error) {
+                        console.log(error)
+                    },
+                    function (progress) {
+                        console.log(progress)
+                    }
+                )
                 $state.go("login");
             }
             else {

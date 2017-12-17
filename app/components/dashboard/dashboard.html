@@ -16,11 +16,11 @@
 <div style="background: #dfd6ff; color: red"></div>
 <div class="row" style="margin-bottom: 50px;">
     <div class="col-md-4" style="margin-bottom: 20px;" ng-repeat="restaurant in dashboardCtrl.restaurants">
-        <a ui-sref="restaurant({restaurant:restaurant.name})">
+        <a ui-sref="restaurant({restaurant})">
             <div class="image">
-                <b>ID: {{restaurant.id}}</b><br/>
-                {{restaurant.name}} <br/>
-                {{restaurant.contact}}
+                <!--<b>ID: {{restaurant.id}}</b><br/>-->
+                <h3 style="text-decoration: underline">{{restaurant.name}}</h3>
+                <h4>{{restaurant.contact}}</h4>
             </div>
         </a>
         <br/>
