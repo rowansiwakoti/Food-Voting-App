@@ -12,7 +12,7 @@
 
         describe("Login page elements", function () {
 
-            it("should load the login page and check the app name", function () {
+            it("should load the login page and  check the app name", function () {
                 browser.getCurrentUrl().then(function (url) {
                     expect(url).toBe(baseUrl + "#!/login");
                 });

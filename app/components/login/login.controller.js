@@ -24,16 +24,31 @@
         };
 
         vm.validateUser = function (user) {
-            var users = UserService.validateUser(user);
-
-            if (users.length > 0 ) {       console.log(users[0])
-                $sessionStorage.emailId = users[0].emailId;
-                $sessionStorage.role = users[0].role;
-                $state.go('dashboard');
-            }
-            else {
-                vm.errorMessage = APP_CONSTANT.INCORRECT_USER_PASSWORD;
-            }
+            console.log(user);
+            var login = UserService.validateUser(user);
+            login.then(
+                function (message) {
+                    console.log(message.data);
+                    $sessionStorage.role = message.data.userRole;
+                    $sessionStorage.emailId = message.data.firstName;
+                    $state.go('dashboard');
+                },
+                function (error) {
+                    console.log(error);
+                },
+                function (progress) {
+                    console.log(progress);
+                }
+            );
+            //
+            // if (users.length > 0 ) {       console.log(users[0])
+            //     $sessionStorage.emailId = users[0].emailId;
+            //     $sessionStorage.role = users[0].role;
+            //     $state.go('dashboard');
+            // }
+            // else {
+            //     vm.errorMessage = APP_CONSTANT.INCORRECT_USER_PASSWORD;
+            // }
         };
     }
 })();

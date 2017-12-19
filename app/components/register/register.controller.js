@@ -24,7 +24,7 @@
             $state.go("login");
         };
 
-        vm.registerUser = function (user) {
+        vm.registerUser = function (user) {console.log(user);
             if (user.userPassword == user.confirmPassword) {
                 var add = UserService.setUser(user);
                 add.then(
