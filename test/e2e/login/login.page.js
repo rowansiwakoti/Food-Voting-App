@@ -4,14 +4,14 @@
         this.appName = element(by.css("h1"));
         this.pageName = element(by.css("h3"));
 
-        this.usernameLabel = element(by.name("user_name"));
-        this.passwordLabel = element(by.name("pass_word"));
-        this.username = element(by.model("login.user.username"));
-        this.password = element(by.model("login.user.password"));
+        this.usernameLabel = element(by.name("user_email"));
+        this.passwordLabel = element(by.name("pass_word"))  ;
+        this.userEmail = element(by.model("loginCtrl.user.email"));
+        this.password = element(by.model("loginCtrl.user.userPassword"));
 
         this.loginButton = element(by.buttonText("Login"));
 
-        this.footerContent = element(by.tagName("a"));
+        this.linkRegister = element(by.tagName("a"));
     };
     module.exports = LoginPageObject;
 })();

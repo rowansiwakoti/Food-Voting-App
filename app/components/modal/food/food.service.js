@@ -44,7 +44,7 @@
         };
 
         //Add Food to the List
-        foodSvc.addFood = function (food,restaurantId) {console.log(food,restaurantId)
+        foodSvc.addFood = function (food,restaurantId) {
             var url = 'http://localhost:8080/restaurants/'+restaurantId;
             var req = {
                 method:'POST',

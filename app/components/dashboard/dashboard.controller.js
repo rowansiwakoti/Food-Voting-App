@@ -150,7 +150,7 @@
                     }
                 });
 
-                modalInstance.result.then(function (restaurant) {
+                modalInstance.result.then(function (restaurant) {console.log(restaurant)
                     vm.message = RestaurantService.getAlertMessage();
                     vm.edit(restaurant);
                 }, function () {

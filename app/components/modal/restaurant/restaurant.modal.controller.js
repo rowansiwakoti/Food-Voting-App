@@ -44,8 +44,8 @@
             var edit = RestaurantService.editRestaurant(restaurant);
             edit.then(
                 function(answer) {
-                    // console.log(answer);
-                    $uibModalInstance.close(answer.data);
+                    console.log(restaurant);
+                    $uibModalInstance.close(restaurant);
                 },
                 function(error) {
                     console.log(error)
@@ -60,8 +60,7 @@
             var del = RestaurantService.deleteRestaurant(delRestaurant);
             del.then(
                 function(answer) {
-                 // console.log(answer);
-                    $uibModalInstance.close(answer.data);
+                    $uibModalInstance.close(delRestaurant.id);
                 },
                 function(error) {
                     console.log(error)

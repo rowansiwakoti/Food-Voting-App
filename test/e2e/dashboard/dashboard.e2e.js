@@ -1,65 +1,118 @@
 (function () {
     "use strict";
     var Dashboard = require("../dashboard/dashboard.page.js");
+    var Login = require('../login/login.page');
+    var Restaurant = require('../restaurant/restaurant.page');
 
     describe("dashboard", function () {
-
         var baseUrl = browser.baseUrl,
-            dashboard = new Dashboard();
+        dashboard = new Dashboard(),
+        login = new Login(),
+        restaurant = new Restaurant();
 
-        beforeEach(function () {
-            browser.get("#!/dashboard");
-        });
+        describe('dashboard elements',function () {
 
-        describe("dashboard page elements", function () {
-
-            it("should load the dashboard page", function () {
-                browser.getCurrentUrl().then(function (url) {
-                    expect(url).toBe(baseUrl + "#!/dashboard");
-                });
-                expect(dashboard.appName.getText()).toBe("Food Voting App");
+            //Adding a dummy restaurant
+            it('click add restaurant', function () {
+                dashboard.addRestaurant.click();
+                dashboard.restaurantName.sendKeys('Dummy Restaurant Name');
+                dashboard.restaurantAddress.sendKeys('Dummy Restaurant Address');
+                dashboard.restaurantContact.sendKeys('0124568798');
+                // browser.sleep(1000);
+                dashboard.okAddRestaurant.click();
+                browser.sleep(1000);
             });
 
-            it("should display username and logout option", function () {
-                expect(dashboard.username.isPresent()).toBeTruthy();
-                console.log("working....")
-                expect(dashboard.logoutOption.isPresent()).toBeTruthy();
-                console.log("working....");
+            //Editing the restaurant
+            it('click edit',function () {
+                dashboard.editButton.click();
+                browser.sleep(1000);
+                dashboard.cancelButton.click();
+                browser.sleep(1000);
+
+                dashboard.editButton.click();
+                dashboard.restaurantName.clear();
+                dashboard.restaurantAddress.clear();
+                dashboard.restaurantContact.clear();
+                dashboard.restaurantName.sendKeys('Dummy Restaurant Name edited');
+                dashboard.restaurantAddress.sendKeys('Dummy Restaurant Address edited');
+                dashboard.restaurantContact.sendKeys('0124568798');
+                browser.sleep(1000);
+                dashboard.okEditRestaurant.click();
+                browser.sleep(1000);
             });
 
-            it("should add restaurant and food", function () {
-                dashboard.addRestaurantLink.click();
-                browser.sleep(2000);
-                dashboard.restaurantName.sendKeys("KFC");
-                dashboard.restaurantContact.sendKeys("9860232805");
-                browser.sleep(2000);
-                dashboard.addRestaurantButton.click();
-                browser.sleep(2000);
-                expect(dashboard.alertMessage.isDisplayed()).toBeTruthy();
+            //Selecting on the Restaurant
+            it('select the restaurant', function(){
+               dashboard.restaurantLink.click();
+               browser.sleep(1000);
+            });
 
-                dashboard.addFoodLink.click();
-                dashboard.foodName.sendKeys("Chicken Roast");
-                dashboard.restaurant.get(0).click();
-                dashboard.restaurant.first().click();
-                dashboard.foodPrice.sendKeys(450);
-                browser.sleep(3000)
-                dashboard.addFoodButton.click();
-                browser.sleep(2000);
-                expect(dashboard.foodList.count()).toBe(1);
-                dashboard.foodList.first().all(by.tagName("td")).get(1).click();
-                dashboard.editFoodName.clear();
-                dashboard.editFoodName.sendKeys("Mashu Bhat");
-                dashboard.editFoodPrice.clear();
-                dashboard.editFoodPrice.sendKeys(550);
-                dashboard.editFoodButton.click();
-                browser.sleep(2000);
+            //Add a food to restaurant
+            it('Add a food', function () {
+                restaurant.addFood.click();
+                restaurant.foodName.sendKeys('Dummy Food');
+                restaurant.foodPrice.sendKeys('100');
+                browser.sleep(1000);
+                restaurant.okAddFood.click();
+                browser.sleep(1000);
+            })
+            //Edit a food
+            it('Edit a food',function () {
+                restaurant.editFood.click();
+                browser.sleep(1000);
+                restaurant.foodName.clear();
+                restaurant.foodPrice.clear();
+                restaurant.foodName.sendKeys('Dummy Food edited');
+                restaurant.foodPrice.sendKeys('100');
+                browser.sleep(1000);
+                restaurant.okEditFood.click();
+                browser.sleep(1000);
+            })
+            //Delete a food
+            it('Delete a food',function(){
+                restaurant.deleteFood.click();
+                browser.sleep(1000);
+                restaurant.no.click();
+                browser.sleep(1000);
+                restaurant.deleteFood.click();
+                browser.sleep(1000);
+                restaurant.yes.click();
+                browser.sleep(1000);
+            })
+            //Go back to dashboard
+            it('Come to dashboard',function(){
+                restaurant.backLink.click();
+                browser.sleep(1000);
+            });
 
-                dashboard.foodList.first().all(by.tagName("td")).get(1).click();
-                dashboard.deleteFoodButton.click();
-                browser.sleep(2000);
-                dashboard.yesButton.click();
+            //Deleting the restaurant
+            it('click delete',function () {
+                dashboard.deleteButton.click();
+                browser.sleep(1000);
+                dashboard.no.click();
+                browser.sleep(1000);
+                dashboard.deleteButton.click();
+                browser.sleep(1000);
+                dashboard.yes.click();
+                browser.sleep(1000);
+            });
+
+
+            //Log out
+            it('log out',function () {
+                dashboard.linkLogOut.click();
+                browser.sleep(1000);
+                dashboard.yes.click();
+                browser.sleep(1000);
+            });
+
+            it('goto register page',function(){
+                login.linkRegister.click();
+                browser.sleep(1000);
             });
         });
     });
+
 
 })();

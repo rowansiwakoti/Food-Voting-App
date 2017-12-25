@@ -38,13 +38,9 @@
 <div class="modal-footer">
     <button ng-hide="restaurantModalCtrl.copyRestaurant" class="btn btn-primary pull-left" id="add-restaurant" type="button"
             ng-click="restaurantModalCtrl.addRestaurant(restaurantModalCtrl.restaurant)"
-            ng-disabled="restaurantForm.$invalid">Add
-        Restaurant
-    </button>
+            ng-disabled="restaurantForm.$invalid">Add Restaurant</button>
     <button ng-show="restaurantModalCtrl.copyRestaurant" class="btn btn-primary pull-left" type="button"
             ng-click="restaurantModalCtrl.editRestaurant(restaurantModalCtrl.restaurant)"
-            ng-disabled="restaurantForm.$invalid">Edit
-        Restaurant
-    </button>
+            ng-disabled="restaurantForm.$invalid">Edit Restaurant</button>
     <button class="btn btn-warning pull-left" type="button" ng-click="restaurantModalCtrl.modalCancel()">Cancel</button>
 </div>

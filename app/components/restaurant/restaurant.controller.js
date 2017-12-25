@@ -102,7 +102,7 @@
                         restaurantId:vm.restaurant.id
                     }
                 });
-                modalInstance.result.then(function (food) {
+                modalInstance.result.then(function (food) {console.log(food)
                     vm.edit(food);
                     $log.info("Edit food modal closed on " + new Date());
                     vm.message = FoodService.getAlertMessage();
@@ -111,7 +111,7 @@
                 });
             };
 
-            vm.edit = function (food) {
+            vm.edit = function (food) {console.log(food,'edit function')
                 var pos;
                 vm.foods.forEach(function (item,index) {
                     if(item.id == food.id){
@@ -145,7 +145,7 @@
                         restaurantId:vm.restaurant.id
                     }
                 });
-                modalInstance.result.then(function (food) {
+                modalInstance.result.then(function (food) {console.log(food);
                     vm.delete(food);
                     $log.info("Delete food modal closed on " + new Date());
                     vm.message = FoodService.getAlertMessage();
