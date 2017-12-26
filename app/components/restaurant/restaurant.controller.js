@@ -9,6 +9,13 @@
         vm.foodItems = [];
         vm.restaurant = "";
         vm.foods = [];
+        if($sessionStorage.addFoods){
+            vm.addFoods = $sessionStorage.addFoods;
+        }
+        else {
+            vm.addFoods = [];
+        }
+
         vm.order = OrderService.getOrder();
 
         $scope.$on("updateFoodList", function (event, data) {
@@ -68,7 +75,12 @@
 
             });
             modalInstance.result.then(function (food) {
-                vm.add(food);
+                // vm.add(food);
+                food.restaurantId = vm.restaurant.id;
+                food.restaurantName = vm.restaurant.name;
+                vm.addFoods.push(food);
+                $sessionStorage.addFoods = vm.addFoods;
+                console.log($sessionStorage.addFoods);
                 $log.info("Add food modal closed on " + new Date());
 
             }, function () {
@@ -169,18 +181,58 @@
         vm.addOrder = function (food) {
             OrderService.addOrder(food);
             vm.order = OrderService.getOrder();
-            console.log(vm.order);
         };
 
         vm.deleteOrder = function (food) {
             OrderService.deleteOrder(food);
             vm.order = OrderService.getOrder();
-            console.log(food,': delete order');
         }
 
         vm.confirmOrder = function () {
             $state.go('order');
-            console.log('Confirm Order');
+        }
+        //Add Food Functions
+        vm.deleteFoodToAdd = function (food) {
+            var pos;
+            vm.addFoods.forEach(function (item,index) {
+                if(item.name == food.name && item.restaurantId == food.restaurantId){
+                    pos = index
+                }
+            })
+            vm.addFoods.splice(pos,1);
+            $sessionStorage.addFoods = vm.addFoods;
+            console.log(food,pos);
+        }
+        vm.confirmAdd = function () {
+            var confirmAddFoods = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: "modal-title",
+                ariaDescribedBy: "modal-body",
+                backdrop: false,
+                templateUrl: "components/modal/food/food-add.html",
+                controller:'FoodAddConfirmController  as foodAddCtrl',
+                resolve: {
+                    foods:function(){
+                     return   vm.addFoods
+                    }
+                }
+            });
+            confirmAddFoods.result.then(
+                function (foods) {
+                    foods.forEach(function (food) {
+                        if(vm.restaurant.id == food.restaurantId){
+                            vm.foods.push(food);
+                        }
+                    })
+                    vm.addFoods = [];
+                    $sessionStorage.addFoods = vm.addFoods;
+                    console.log('add modal closed');
+                },
+                function () {
+                    console.log('add modal dismissed');
+                }
+            );
+
         }
     }
 })();

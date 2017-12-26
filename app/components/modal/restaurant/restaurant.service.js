@@ -25,6 +25,7 @@
 
         //Delete the restaurant
         restaurantSvc.deleteRestaurant = function (restaurant) {
+            FoodService.delteFromAddFoods(restaurant.id);
             return ($http.delete('http://localhost:8080/restaurants/'+restaurant.id));
         };
 

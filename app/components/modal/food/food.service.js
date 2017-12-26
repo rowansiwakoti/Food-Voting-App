@@ -44,15 +44,26 @@
         };
 
         //Add Food to the List
-        foodSvc.addFood = function (food,restaurantId) {
-            var url = 'http://localhost:8080/restaurants/'+restaurantId;
+        foodSvc.addFoods = function (foods) {
+            console.log(foods);
+            var addFoods = [];
+            var tempFood = {};
+            foods.forEach(function (food,index) {
+                addFoods.push({
+                    name:food.name,
+                    price:food.price,
+                    restaurantId:food.restaurantId
+                });
+            });
+            $sessionStorage.addFoods = [];
+            var url = 'http://localhost:8080/foods';
             var req = {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 url:url,
-                data:food
+                data:addFoods
             }
             return($http(req));
         };
@@ -64,6 +75,19 @@
         foodSvc.getAlertMessage = function () {
             return alertMessage;
         };
+
+        foodSvc.delteFromAddFoods = function (id) {
+            var addFoods = $sessionStorage.addFoods;
+            var tempFoods = [];
+            if(addFoods){
+                addFoods.forEach(function (food,index) {console.log(food);
+                    if(food.restaurantId != id){
+                        tempFoods.push(food)
+                    }
+                });
+            }
+            $sessionStorage.addFoods = tempFoods;
+        }
 
         // Return food service
         return foodSvc;

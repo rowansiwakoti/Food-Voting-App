@@ -25,6 +25,11 @@
         }
 
         vm.addFood = function (food) {
+            console.log(food);
+            $uibModalInstance.close(food);
+        }
+
+        vm.addFoodConfirm = function (food) {
             // food.restaurant = addRestaurant;
             var add  = FoodService.addFood(food,restaurantId);
             add.then(
