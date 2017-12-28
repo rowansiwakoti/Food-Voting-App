@@ -1,7 +1,7 @@
 <div class="col-sm-10 col-sm-offset-1">
 
 
-    <a class="btn btn-default btn-sm" ng-click="registerCtrl.backToLogin()" id="login-page"><span
+    <a class="btn btn-default btn-sm" ng-click="registerCtrl.backToLogin()"><span
             class="glyphicon glyphicon-arrow-left"></span> Back to Login</a>
     <h3 style="text-align: center;"><u>User Registration</u></h3>
 
@@ -10,7 +10,7 @@
 
             <div class="form-group col-sm-6">
                 <label name="first_name">First Name</label>
-                <input type="text" name="firstName" placeholder="First Name" class="form-control"
+                <input type="text" name=0"firstName" placeholder="First Name" class="form-control"
                        ng-model="registerCtrl.user.firstName" required>
                 <p ng-show="registerForm.firstName.$invalid && registerForm.firstName.$touched" class="help-block"
                    style="color: red;">{{registerCtrl.firstNameMsg}}</p>

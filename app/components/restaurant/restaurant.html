@@ -1,10 +1,21 @@
-<div style="text-align: center"><h3>{{restaurantCtrl.restaurant.name}} <a class="btn btn-default btn-sm button-name" ng-click="restaurantCtrl.addFood()" ng-show="restaurantCtrl.role == 'admin'" >Add Food</a></h3></div>
+<div style="text-align: center"><h3><u>{{restaurantCtrl.restaurant.name}}</u></h3></div>
+<div ng-show="restaurantCtrl.role =='admin'">
+    <a class="btn btn-default btn-sm button-name" ng-click="restaurantCtrl.addFood()"
+       ng-show="restaurantCtrl.role == 'admin'">Add
+        Food</a>
 
+    <div class="switch pull-right">
+        <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox"
+               ng-model="restaurantCtrl.status"
+               ng-change="restaurantCtrl.restaurantStatus(restaurantCtrl.restaurant.id, restaurantCtrl.status)">
+        <label for="cmn-toggle-4"></label>
+    </div>
+    <br/><br/>
     <div ng-show="restaurantCtrl.role =='admin'" class="row">
         <div class="col-md-8">
             <table class="table table-condensed table-hover table-striped table-bordered ">
                 <caption ng-hide="restaurantCtrl.role == 'admin'">
-                    <h3 >Order</h3>
+                    <h3>Order</h3>
                 </caption>
                 <thead>
                 <tr>
@@ -36,7 +47,8 @@
             </table>
         </div>
         <div class="col-md-4">
-            <table class="table table-condensed table-hover table-striped table-bordered " ng-hide="restaurantCtrl.addFoods.length<=0">
+            <table class="table table-condensed table-hover table-striped table-bordered "
+                   ng-hide="restaurantCtrl.addFoods.length<=0">
                 <thead>
                 <tr>
                     <th>Food</th>
@@ -56,63 +68,42 @@
                 </tr>
                 </tbody>
             </table>
-            <button class="btn btn-default btn-sm" ng-click="restaurantCtrl.confirmAdd()" ng-hide="restaurantCtrl.addFoods.length<=0">Confirm Order</button>
+            <button class="btn btn-default btn-sm" ng-click="restaurantCtrl.confirmAdd()"
+                    ng-hide="restaurantCtrl.addFoods.length<=0">Confirm
+            </button>
         </div>
     </div>
+</div>
 
 <div ng-hide="restaurantCtrl.role =='admin'" class="row">
-    <div class="col-md-8">
-        <table class="table table-condensed table-hover table-striped table-bordered ">
+    <table class="table table-condensed table-hover table-striped table-bordered ">
 
-            <thead>
-            <tr>
-                <th>S/N</th>
-                <th>Food</th>
-                <th>Price</th>
-                <th>Select</th>
-                <!--<th style="width: 30%;">Action</th>-->
-            </tr>
-            </thead>
-            <tbody>
+        <thead>
+        <tr>
+            <th>S/N</th>
+            <th>Food</th>
+            <th>Price</th>
+            <th>Select</th>
+        </tr>
+        </thead>
+        <tbody>
 
 
-            <tr ng-show="restaurantCtrl.foods == '' || restaurantCtrl.foods.length == 0">
-                <td colspan="6" style="text-align: center; color: red;"><strong>No Food Added.</strong>
-                </td>
-            </tr>
+        <tr ng-show="restaurantCtrl.foods == '' || restaurantCtrl.foods.length == 0">
+            <td colspan="6" style="text-align: center; color: red;"><strong>No Food Added.</strong>
+            </td>
+        </tr>
 
-            <tr ng-repeat="food in restaurantCtrl.foods">
-                <td>{{$index + 1}}</td>
-                <td>{{food.name}}</td>
-                <td>{{food.price}}</td>
-                <td ng-click="restaurantCtrl.addOrder(food)">
-                    <a><span class="glyphicon glyphicon-plus-sign"></span></a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-4">
-        <table class="table table-condensed table-hover table-striped table-bordered " ng-hide="restaurantCtrl.order.length<=0">
-            <thead>
-            <tr>
-                <th>S/N</th>
-                <th>Order</th>
-                <th>Remove</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="food in restaurantCtrl.order">
-                    <td>{{$index+1}}</td>
-                    <td>{{food.name}}</td>
-                    <td ng-click="restaurantCtrl.deleteOrder(food)">
-                        <a><span class="glyphicon glyphicon-remove"></span> </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <button class="btn btn-default btn-sm" ng-click="restaurantCtrl.confirmOrder()" ng-hide="restaurantCtrl.order.length<=0">Confirm Order</button>
-    </div>
+        <tr ng-repeat="food in restaurantCtrl.foods">
+            <td>{{$index + 1}}</td>
+            <td>{{food.name}}</td>
+            <td>{{food.price}}</td>
+            <td ng-click="restaurantCtrl.addOrder(food, restaurantCtrl.restaurant.name)">
+                <button class="btn btn-sm">Add to Cart</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-<hr>
+
 <a ui-sref="dashboard">Go Back</a>

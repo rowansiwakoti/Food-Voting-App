@@ -3,9 +3,9 @@
     angular.module("FoodVotingApp")
         .controller("RestaurantModalController", RestaurantModalController);
 
-    RestaurantModalController.$inject = ["$uibModalInstance", "RestaurantService", "APP_CONSTANT", "delRestaurant", "editRestaurant",'$scope'];
+    RestaurantModalController.$inject = ["$uibModalInstance", "RestaurantService", "APP_CONSTANT", "delRestaurant", "editRestaurant"];
 
-    function RestaurantModalController($uibModalInstance, RestaurantService, APP_CONSTANT, delRestaurant, editRestaurant,$scope) {
+    function RestaurantModalController($uibModalInstance, RestaurantService, APP_CONSTANT, delRestaurant, editRestaurant) {
         var vm = this;
 
         vm.restaurant = {};
@@ -24,51 +24,52 @@
         vm.numbersOnlyMsg = APP_CONSTANT.NUMBERS_ONLY_MSG;
 
         vm.addRestaurant = function (restaurant) {
-            var add = RestaurantService.addRestaurant(restaurant);
-            add.then(
-                    function(answer) {
+            RestaurantService.addRestaurant(restaurant)
+                .then(
+                    function (answer) {
                         $uibModalInstance.close(answer.data);
                     },
-                    function(error) {
-                        console.log(error)
+                    function (error) {
+                        console.log(error);
                     },
-                    function(progress) {
-                        console.log(progress)
+                    function (progress) {
+                        console.log(progress);
                     }
-            )
+                );
             RestaurantService.setAlertMessage(restaurant.name + " " + APP_CONSTANT.ADD_MSG);
 
         };
 
         vm.editRestaurant = function (restaurant) {
-            var edit = RestaurantService.editRestaurant(restaurant);
-            edit.then(
-                function(answer) {
-                    console.log(restaurant);
-                    $uibModalInstance.close(restaurant);
-                },
-                function(error) {
-                    console.log(error)
-                },
-                function(progress) {
-                    console.log(progress)
-                }
-            )
+            RestaurantService.editRestaurant(restaurant)
+                .then(
+                    function (answer) {
+
+                        $uibModalInstance.close(answer.data);
+                    },
+                    function (error) {
+                        console.log(error);
+                    },
+                    function (progress) {
+                        console.log(progress);
+                    }
+                );
         };
 
         vm.deleteRestaurant = function () {
-            var del = RestaurantService.deleteRestaurant(delRestaurant);
-            del.then(
-                function(answer) {
-                    $uibModalInstance.close(delRestaurant.id);
-                },
-                function(error) {
-                    console.log(error)
-                },
-                function(progress) {
-                    console.log(progress)
-                }
-            )
+            RestaurantService.deleteRestaurant(delRestaurant)
+                .then(
+                    function (answer) {
+
+                        $uibModalInstance.close(answer.data);
+                    },
+                    function (error) {
+                        console.log(error);
+                    },
+                    function (progress) {
+                        console.log(progress);
+                    }
+                );
 
         };
 

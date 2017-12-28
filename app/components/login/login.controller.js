@@ -4,9 +4,9 @@
     angular.module("FoodVotingApp")
         .controller("LoginController", LoginController);
 
-    LoginController.$inject = ["UserService", "$state", "$sessionStorage", "APP_CONSTANT"];
+    LoginController.$inject = ["$rootScope", "UserService", "$state", "$sessionStorage", "APP_CONSTANT"];
 
-    function LoginController(UserService, $state, $sessionStorage, APP_CONSTANT) {
+    function LoginController($rootScope, UserService, $state, $sessionStorage, APP_CONSTANT) {
 
         var vm = this;
 
@@ -24,31 +24,24 @@
         };
 
         vm.validateUser = function (user) {
-            console.log(user);
-            var login = UserService.validateUser(user);
-            login.then(
-                function (message) {
-                    console.log(message.data);
-                    $sessionStorage.role = message.data.userRole;
-                    $sessionStorage.emailId = message.data.firstName;
-                    $state.go('dashboard');
-                },
-                function (error) {
-                    console.log(error);
-                },
-                function (progress) {
-                    console.log(progress);
-                }
-            );
-            //
-            // if (users.length > 0 ) {       console.log(users[0])
-            //     $sessionStorage.emailId = users[0].emailId;
-            //     $sessionStorage.role = users[0].role;
-            //     $state.go('dashboard');
-            // }
-            // else {
-            //     vm.errorMessage = APP_CONSTANT.INCORRECT_USER_PASSWORD;
-            // }
+            UserService.validateUser(user)
+                .then(
+                    function (message) {
+                        $sessionStorage.role = message.data.userRole;
+                        $rootScope.$broadcast("instantUpdateRole", $sessionStorage.role);
+                        // $sessionStorage.emailId = message.data.firstName;
+                        $sessionStorage.firstName = message.data.firstName;
+                        $sessionStorage.userId = message.data.id;
+                        $state.go('dashboard');
+                        console.log(message.data);
+                    },
+                    function (error) {
+                        console.log(error);
+                    },
+                    function (progress) {
+                        console.log(progress);
+                    }
+                );
         };
     }
 })();

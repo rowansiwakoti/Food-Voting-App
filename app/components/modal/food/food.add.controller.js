@@ -14,9 +14,10 @@
                 add.then(
                     function (answer) {
                         $uibModalInstance.close(answer.data);
+                        console.log(answer);
                     },
                     function (error) {
-
+console.log(error);
                     },
                     function (progress) {
 
@@ -26,7 +27,7 @@
             };
             vm.addFoodDismiss = function () {
                 $uibModalInstance.dismiss();
-            }
+            };
 
         }
     }

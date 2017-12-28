@@ -43,7 +43,7 @@
                 name:'order',
                 url:'/order',
                 templateUrl:"components/order/order.html",
-                controller:'OrderCtrl as order'
+                controller:"OrderController as orderCtrl"
             })
             .state("register", {
                 url: "/register",

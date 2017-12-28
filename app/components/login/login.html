@@ -2,7 +2,7 @@
     <h3 class="page"><u>{{loginCtrl.getPageName()}}</u></h3><br/>
     <form name="userForm" ng-submit="loginCtrl.validateUser(loginCtrl.user)">
         <div class="form-group">
-            <label name="user_email">User Email</label>
+            <label name="user_name">Username</label>
             <p ng-show="loginCtrl.errorMessage" style="color: red;">{{loginCtrl.errorMessage}}</p>
 
             <input type="text" name="emailId" placeholder="Email ID" class="form-control"

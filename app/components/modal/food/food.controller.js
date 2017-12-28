@@ -6,14 +6,14 @@
     FoodController.$inject = ["$uibModalInstance","$scope", "$rootScope", "FoodService", "APP_CONSTANT", "addRestaurant", "editFood", "deleteFood",'restaurantId'];
 
     function FoodController($uibModalInstance,$scope, $rootScope, FoodService, APP_CONSTANT, addRestaurant, editFood, deleteFood,restaurantId) {
-    var vm = this;
+        var vm = this;
 
         vm.foodNameReqMsg = APP_CONSTANT.FOOD_NAME_REQ_MSG;
         vm.foodPriceReqMsg = APP_CONSTANT.FOOD_PRICE_REQ_MSG;
         vm.resNameReqMsg = APP_CONSTANT.RES_NAME_REQ_MSG;
         vm.numbersOnlyMsg = APP_CONSTANT.NUMBERS_ONLY_MSG;
         vm.food = {
-              };
+        };
 
         if (editFood) {
             vm.food = angular.copy(editFood);
