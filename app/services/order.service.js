@@ -55,6 +55,17 @@
             return ($http(req));
         };
 
+        orderSvc.getLog = function (role,id) {
+            var url;
+            if(role == 'admin'){
+                url = '';
+            }
+            else{
+                url = '';
+            }
+            return($http(url));
+        }
+
         //Delete the order from the order list
         orderSvc.deleteOrder = function (order) {
             var flag = 1;

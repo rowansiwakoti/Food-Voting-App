@@ -2,9 +2,9 @@
     "use strict";
     angular.module("FoodVotingApp")
         .controller("OrderModalController", OrderModalController);
-    OrderModalController.$inject = ['$uibModalInstance', 'OrderService', '$sessionStorage', '$state', '$uibModal', '$log'];
+    OrderModalController.$inject = ['$uibModalInstance', 'OrderService', '$sessionStorage', '$state', '$uibModal', '$log', '$scope', '$rootScope'];
 
-    function OrderModalController($uibModalInstance, OrderService, $sessionStorage, $state, $uibModal, $log) {
+    function OrderModalController($uibModalInstance, OrderService, $sessionStorage, $state, $uibModal, $log, $scope, $rootScope) {
         var vm = this;
         vm.order = OrderService.getOrder();
         vm.quantity = [];
@@ -79,7 +79,13 @@
         };
 
         vm.confirmOrderOk = function(){
-          $uibModalInstance.close();
+            $state.go('orderhistory')
+            $scope.$watch(function(){
+                return vm.order;
+            }, function(newValue){
+                $rootScope.$broadcast('updateOrdersInCart', newValue);
+            })
+            $uibModalInstance.close();
         };
 
         vm.continueOrder = function () {

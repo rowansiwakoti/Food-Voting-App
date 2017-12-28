@@ -8,6 +8,12 @@
 
         var vm = this;
 
+        //updateOrdersInCart
+
+        $scope.$on('updateOrdersInCart', function(data){
+           vm.order = data;
+        });
+
         var appName = APP_CONSTANT.APP_NAME;
 
         function activateController() {

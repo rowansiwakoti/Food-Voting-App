@@ -53,7 +53,9 @@
             .state("orderhistory",{
                 name:'orderhistory',
                 url:'/orderhistory',
-                templateUrl:"components/orderhistory/orderhistory.html"
-            });;
+                templateUrl:"components/orderhistory/orderhistory.html",
+                controller: "OrderHistoryController as orderCtrl"
+            })
+
     };
 })();

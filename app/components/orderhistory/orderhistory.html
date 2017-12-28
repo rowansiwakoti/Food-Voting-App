@@ -2,27 +2,33 @@
 <table class="table table-condensed table-hover table-striped table-bordered ">
     <caption>
         <a ui-sref="dashboard">Go Back</a>
-        <h3>Confirm Order</h3>
+        <h3>Order History</h3>
     </caption>
     <thead>
     <tr>
         <th>S/N</th>
-        <th>Date</th>
+        <th>Restaurant</th>
         <th>Food</th>
         <th>Price</th>
+        <th>Quantity</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-show="dashboardCtrl.foodItems == '' ||dashboardCtrl.foodItems.length == 0">
-        <td colspan="6" style="text-align: center; color: red;"> <strong>{{dashboardCtrl.noFoodMsg}}</strong>
+
+    <tr ng-show="orderCtrl.items == '' ||orderCtrl.items.length == 0">
+        <td colspan="6" style="text-align: center; color: red;"> <strong>No Orders made yet.</strong>
         </td>
     </tr>
-    <tr ng-repeat="">
-        <td>{{$index + 1}}</td>
-        <td></td>
-        <td >{{food.name}}</td>
-        <td>{{food.price}}</td>
+    <tr ng-repeat="item in orderCtrl.items">
+        <td>{{$index+1}}</td>
+        <td>{{item.restaurant.name}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.quantity}}</td>
     </tr>
     </tbody>
-
+    <tr ng-show="orderCtrl.items.length > 0">
+        <td>Total Amount</td>
+        <td>{{orderCtrl.total}}</td>
+    </tr>
 </table>
