@@ -6,12 +6,12 @@
             <p ng-show="loginCtrl.errorMessage" style="color: red;">{{loginCtrl.errorMessage}}</p>
 
             <input type="text" name="emailId" placeholder="Email ID" class="form-control"
-                   ng-model="loginCtrl.user.emailId">
+                   ng-model="loginCtrl.user.email">
         </div>
 
         <div class="form-group">
             <label name="pass_word">Password</label>
-            <input type="password" placeholder="Password" class="form-control" ng-model="loginCtrl.user.password">
+            <input type="password" placeholder="Password" class="form-control" ng-model="loginCtrl.user.userPassword">
         </div>
         <button type="submit" class="btn btn-success">Login</button>
         <a ng-click="loginCtrl.userRegister()">Register</a>

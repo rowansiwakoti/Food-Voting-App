@@ -6,8 +6,8 @@
 
         this.usernameLabel = element(by.name("user_name"));
         this.passwordLabel = element(by.name("pass_word"));
-        this.username = element(by.model("login.user.username"));
-        this.password = element(by.model("login.user.password"));
+        this.username = element(by.model("loginCtrl.user.emailId"));
+        this.password = element(by.model("loginCtrl.user.password"));
 
         this.loginButton = element(by.buttonText("Login"));
 

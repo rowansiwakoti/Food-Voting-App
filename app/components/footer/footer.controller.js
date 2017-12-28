@@ -12,6 +12,6 @@
 
         vm.getAppName = function () {
             return appName;
-        }
+        };
     }
 })();

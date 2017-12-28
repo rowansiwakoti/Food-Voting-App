@@ -2,9 +2,9 @@
     "use strict";
     angular.module("FoodVotingApp")
         .controller("LogoutController", LogoutController);
-    LogoutController.$inject = ["$uibModalInstance", "$sessionStorage", "$state", "APP_CONSTANT"];
+    LogoutController.$inject = ["$rootScope", "$uibModalInstance", "$sessionStorage", "$state", "APP_CONSTANT"];
 
-    function LogoutController($uibModalInstance, $sessionStorage, $state, APP_CONSTANT) {
+    function LogoutController($rootScope, $uibModalInstance, $sessionStorage, $state, APP_CONSTANT) {
 
         var vm = this;
 
@@ -12,7 +12,10 @@
 
 
         vm.ok = function () {
-            $sessionStorage.emailId = "";
+            $sessionStorage.emailId = '';
+
+            $sessionStorage.role = '';
+            $rootScope.$broadcast("clearRole", $sessionStorage.role);
             $uibModalInstance.close();
             $state.go("login");
         };

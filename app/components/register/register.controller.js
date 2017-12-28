@@ -24,18 +24,18 @@
             $state.go("login");
         };
 
-        vm.registerUser = function (user) {
-            if (user.userPassword == user.confirmPassword) {
+        vm.registerUser = function (user) {console.log(user);
+            if (user.userPassword === user.confirmPassword) {
                 var add = UserService.setUser(user);
                 add.then(
                     function (answer) {
-                        console.log(answer)
+                        console.log(answer);
                     },
                     function (error) {
-                        console.log(error)
+                        console.log(error);
                     },
                     function (progress) {
-                        console.log(progress)
+                        console.log(progress);
                     }
                 )
                 $state.go("login");
