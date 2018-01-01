@@ -1,5 +1,12 @@
-<div class="page-header">
-    <h1 style="display: inline;">{{headerCtrl.getAppName()}}</h1>
+<div class="page-header clearfix">
+    <div class="header-left clearfix">
+        <div class="header-left-l">
+            <img src="assets/img/logo.png" class="logo">
+        </div>
+        <div class="header-left-r">
+            <h1 style="display: inline;">{{headerCtrl.getAppName()}}</h1>
+        </div>
+    </div>
     <div ng-hide="headerCtrl.role == 'admin' || headerCtrl.role=='' || headerCtrl.role == undefined " id="cart" class="btn-group pull-right" style="display: inline-block;" ng-click="headerCtrl.openCart()" >
         <a id="shopping-cart" class="btn btn-default btn-sm btn-link" style="font-size:36px;">
             <span class="glyphicon glyphicon-shopping-cart"></span>

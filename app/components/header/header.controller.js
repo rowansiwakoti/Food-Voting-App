@@ -19,7 +19,7 @@
         function activateController() {
             vm.order = $sessionStorage.orderList;
             vm.role = $sessionStorage.role;
-            console.log('HELLO WORLD', vm.order.length, $sessionStorage.role);
+            // console.log('HELLO WORLD', vm.order.length, $sessionStorage.role);
         }
 
         activateController();

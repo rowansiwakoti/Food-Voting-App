@@ -208,6 +208,7 @@
             if (status) {
                 RestaurantService.activateRestaurant(id).then(function (success) {
                     console.log(success.config.url);
+                    $sessionStorage.restaurant.active = true;
                 }, function (error) {
                     console.log(error);
                 });
@@ -215,6 +216,7 @@
             else {
                 RestaurantService.deactivateRestaurant(id).then(function (success) {
                     console.log(success.config.url);
+                    $sessionStorage.restaurant.active = false;
                 }, function (error) {
                     console.log(error);
                 });

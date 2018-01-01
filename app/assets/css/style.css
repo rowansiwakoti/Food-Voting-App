@@ -1,4 +1,16 @@
+body{background-color: #FFFAFA}
+.page-header{}
+.logo{height: 75px; width: 75px;}
+.header-left{float: left}
+    .header-left-l{float: left}
 
+    .header-left-r{float: right; padding: 29px 0 0 10px; }
+        .header-left-r h1{font-size: 50px}
+/*.form-group{display: inline}*/
+.form-control:before{
+    content: ".";
+}
+.form-control{display: inline}
 div.row {
     text-align: center;
 }
@@ -6,7 +18,9 @@ div.row {
 * {
     border-radius: 0;
 }
-
+/*Register Page*/
+.register h4 {font-size: 17px}
+/**/
 #intro h3,
 #intro a {
     display: inline;
@@ -165,3 +179,4 @@ input.cmn-toggle-round-flat:checked + label:after {
 
 
 
+/*sankfs*/

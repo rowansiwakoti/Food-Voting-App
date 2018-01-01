@@ -13,14 +13,28 @@
         var pageName = APP_CONSTANT.PAGE_NAME;
         vm.userInputLength = APP_CONSTANT.USER_INPUT_LENGTH;
         vm.userInputFormat = APP_CONSTANT.USER_INPUT_FORMAT;
-
+        vm.register = false;
+        vm.registerActive = '';
+        vm.loginActive = 'active'
         vm.user = {};
         vm.getPageName = function () {
             return pageName;
         };
 
         vm.userRegister = function () {
-            $state.go("register");
+            if(!vm.register){
+                vm.register = !vm.register;
+                vm.loginActive = '';
+                vm.registerActive = 'active';
+            }
+        };
+
+        vm.userLogin = function () {
+            if(vm.register){
+                vm.register = !vm.register;
+                vm.loginActive = 'active';
+                vm.registerActive = '';
+            }
         };
 
         vm.validateUser = function (user) {
