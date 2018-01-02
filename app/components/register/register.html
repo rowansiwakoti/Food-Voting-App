@@ -1,95 +1,93 @@
-<div class="col-sm-10 col-sm-offset-1">
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a   ui-sref="login">Login</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a  class="active" >Register</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
 
+                            <form name="registerForm" role="form" class="register">
+                                <div class="row">
+                                    <div class="col-md-1 form-group"><label><h4>Name</h4></label></div>
+                                    <div class="form-group col-md-4">
+                                        <input type="text"  tabindex="1" class="form-control" placeholder="First Name" ng-model="registerCtrl.user.firstName" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text"  tabindex="1" class="form-control" placeholder="Middle Name" ng-model="registerCtrl.user.middleName">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input type="text"  tabindex="1" class="form-control" placeholder="Last Name" ng-model="registerCtrl.user.lastName" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1 form-group"><label><h4>Email</h4></label></div>
+                                    <div class="form-group col-md-5">
+                                        <p ng-show="registerForm.emailId.$invalid && registerForm.emailId.$touched" class="help-block"
+                                           style="color: red;">{{registerCtrl.emailMsg}}</p>
+                                        <p class="help-block" style="color: red" ng-show="registerForm.emailId.$error.email">
+                                            {{registerCtrl.invalidEmailMsg}}</p>
+                                        <input name="emailId" type="email" tabindex="1" class="form-control" placeholder="Email Address" ng-model="registerCtrl.user.email" required>
+                                    </div>
+                                    <div class="col-md-1 form-group"><label><h4>Phone</h4></label></div>
+                                    <div class="form-group col-md-5">
+                                        <input type="text" name="contactNumber" tabindex="1" class="form-control" placeholder="Contact No." ng-model="registerCtrl.user.contactNo"  ng-pattern="/^[0-9]*$/" required>
+                                        <p ng-show="registerForm.contactNumber.$invalid && registerForm.contactNumber.$touched" class="help-block" style="color: red;">
+                                            {{registerCtrl.contactNumMsg}}
+                                        </p>
+                                        <p class="help-block" style="color: red;" ng-show="registerForm.contactNumber.$error.pattern">Accepts Numbers Only.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1 form-group"><label><h4>Address</h4></label></div>
+                                    <div class="form-group col-md-11">
+                                        <input type="text" tabindex="1" name="address" class="form-control" placeholder="Address" ng-model="registerCtrl.user.address" required>
+                                    </div>
+                                    <p ng-show="registerForm.address.$invalid && registerForm.address.$touched" class="help-block"
+                                       style="color: red;">{{registerCtrl.addressMsg}}</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1 form-group"><label><h4>Password</h4></label></div>
+                                    <div class="form-group col-md-5">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" ng-model="registerCtrl.user.userPassword" required>
+                                    </div><p ng-show="registerForm.password.$invalid && registerForm.password.$touched" class="help-block"
+                                             style="color: red;">{{registerCtrl.passwordMsg}}</p>
+                                    <!--<div class="col-md-1 form-group"></div>-->
+                                    <div class="col-md-1 form-group"><label><h4>Confirm</h4></label></div>
+                                    <div class="form-group col-md-5">
+                                        <input type="password" name="confirmPassword" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" ng-model="registerCtrl.user.confirmPassword" required>
+                                    </div>
+                                    <p ng-show="registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$touched"
+                                       class="help-block"
+                                       style="color: red;">{{registerCtrl.confirmPasswordMsg}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" tabindex="4" ng-click="registerCtrl.registerUser(registerCtrl.user)" class="form-control btn btn-register" value="Register User" ng-disabled="registerForm.$invalid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
 
-    <a class="btn btn-default btn-sm" ng-click="registerCtrl.backToLogin()"><span
-            class="glyphicon glyphicon-arrow-left"></span> Back to Login</a>
-    <h3 style="text-align: center;"><u>User Registration</u></h3>
-
-    <form name="registerForm" ng-submit="registerCtrl.registerUser(registerCtrl.user)">
-        <div class="row">
-
-            <div class="form-group col-sm-6">
-                <label name="first_name">First Name</label>
-                <input type="text" name=0"firstName" placeholder="First Name" class="form-control"
-                       ng-model="registerCtrl.user.firstName" required>
-                <p ng-show="registerForm.firstName.$invalid && registerForm.firstName.$touched" class="help-block"
-                   style="color: red;">{{registerCtrl.firstNameMsg}}</p>
-            </div>
-
-            <div class="form-group col-sm-6">
-                <label name="middle_name">Middle Name</label> (optional)
-                <input type="text" name="middleName" placeholder="Middle Name" class="form-control"
-                       ng-model="registerCtrl.user.middleName">
-            </div>
-
-        </div>
-        <div class="row">
-
-            <div class="form-group col-sm-6">
-                <label name="last_name">Last Name</label>
-                <input type="text" name="lastName" placeholder="Last Name" class="form-control"
-                       ng-model="registerCtrl.user.lastName" required>
-                <p ng-show="registerForm.lastName.$invalid && registerForm.lastName.$touched" class="help-block"
-                   style="color: red;">{{registerCtrl.lastNameMsg}}</p>
-            </div>
-
-            <div class="form-group col-sm-6">
-                <label name="email_id">Email ID</label>
-                <input type="email" name="emailId" placeholder="Email ID" class="form-control"
-                       ng-model="registerCtrl.user.email"
-                       required>
-                <p ng-show="registerForm.emailId.$invalid && registerForm.emailId.$touched" class="help-block"
-                   style="color: red;">{{registerCtrl.emailMsg}}</p>
-                <p class="help-block" style="color: red" ng-show="registerForm.emailId.$error.email">
-                    {{registerCtrl.invalidEmailMsg}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-6">
-                <label name="contact_number">Contact No.</label>
-                <input type="text" name="contactNumber" placeholder="Contact Number" class="form-control"
-                       ng-model="registerCtrl.user.contactNo" ng-pattern="/^\d+$/" required>
-                <p ng-show="registerForm.contactNumber.$invalid && registerForm.contactNumber.$touched"
-                   class="help-block" style="color: red;">
-                    {{registerCtrl.contactNumMsg}}
-                </p>
-                <p class="help-block" style="color: red;" ng-show="registerForm.contactNumber.$error.pattern">Accepts
-                    Numbers Only.</p>
-            </div>
-
-            <div class="form-group col-sm-6">
-                <label name="address">Address</label>
-                <input type="text" name="address" placeholder="Address" class="form-control"
-                       ng-model="registerCtrl.user.address" required>
-                <p ng-show="registerForm.address.$invalid && registerForm.address.$touched" class="help-block"
-                   style="color: red;">{{registerCtrl.addressMsg}}</p>
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="form-group col-sm-6">
-                <label name="password">Password</label>
-                <input type="password" name="password" placeholder="Password" class="form-control"
-                       ng-model="registerCtrl.user.userPassword" required>
-                <p ng-show="registerForm.password.$invalid && registerForm.password.$touched" class="help-block"
-                   style="color: red;">{{registerCtrl.passwordMsg}}</p>
-            </div>
-
-
-            <div class="form-group col-sm-6">
-                <label name="confirm_password">Confirm Password</label>
-                <input type="password" name="confirmPassword" placeholder="Confirm Password" class="form-control"
-                       ng-model="registerCtrl.user.confirmPassword" required>
-                <p ng-show="registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$touched"
-                   class="help-block"
-                   style="color: red;">{{registerCtrl.confirmPasswordMsg}}</p>
-                <!--<p ng-show="registerCtrl.user.password != registerCtrl.user.confirmPassword" style="color:red;">Password-->
-                <!--and Confirm Password did not match!</p>-->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <br/>
-        <div style="text-align: center">
-            <button type="submit" class="btn btn-success btn-lg" ng-disabled="registerForm.$invalid">Register</button>
-        </div>
-    </form>
+    </div>
 </div>
+
+<style>
+
+</style>

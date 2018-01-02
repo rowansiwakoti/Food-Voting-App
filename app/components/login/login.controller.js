@@ -4,9 +4,9 @@
     angular.module("FoodVotingApp")
         .controller("LoginController", LoginController);
 
-    LoginController.$inject = ["$rootScope", "UserService", "$state", "$sessionStorage", "APP_CONSTANT"];
+    LoginController.$inject = ["$rootScope", "UserService", "$state", "$sessionStorage", "APP_CONSTANT",'$location'];
 
-    function LoginController($rootScope, UserService, $state, $sessionStorage, APP_CONSTANT) {
+    function LoginController($rootScope, UserService, $state, $sessionStorage, APP_CONSTANT, $location) {
 
         var vm = this;
 
@@ -19,22 +19,6 @@
         vm.user = {};
         vm.getPageName = function () {
             return pageName;
-        };
-
-        vm.userRegister = function () {
-            if(!vm.register){
-                vm.register = !vm.register;
-                vm.loginActive = '';
-                vm.registerActive = 'active';
-            }
-        };
-
-        vm.userLogin = function () {
-            if(vm.register){
-                vm.register = !vm.register;
-                vm.loginActive = 'active';
-                vm.registerActive = '';
-            }
         };
 
         vm.validateUser = function (user) {

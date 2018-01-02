@@ -19,11 +19,7 @@
         vm.confirmPasswordMsg = APP_CONSTANT.CONFIRM_PASSWORD_MSG;
 
         vm.user = {};
-
-        vm.backToLogin = function () {
-            $state.go("login");
-        };
-
+        
         vm.registerUser = function (user) {console.log(' I am here');
             if (user.userPassword === user.confirmPassword) {
                 var add = UserService.setUser(user);
