@@ -16,6 +16,7 @@
             $sessionStorage.orderList = [];
             $sessionStorage.order = [];
             $sessionStorage.role = '';
+            $sessionStorage.balance = '';
             $rootScope.$broadcast("clearRole", $sessionStorage.role);
             $uibModalInstance.close();
             $state.go("login");

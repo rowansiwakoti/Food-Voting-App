@@ -7,10 +7,17 @@
             <h1 style="display: inline;">{{headerCtrl.getAppName()}}</h1>
         </div>
     </div>
-    <div ng-hide="headerCtrl.role == 'admin' || headerCtrl.role=='' || headerCtrl.role == undefined " id="cart" class="btn-group pull-right" style="display: inline-block;" ng-click="headerCtrl.openCart()" >
-        <a id="shopping-cart" class="btn btn-default btn-sm btn-link" style="font-size:36px;">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-        </a>
-        <span class="badge badge-notify">{{headerCtrl.order.length || 0}}</span>
+    <div class="header-right clearfix">
+        <div ng-hide="headerCtrl.role == 'admin' || headerCtrl.role=='' || headerCtrl.role == undefined " class="header-right-l" ng-click="headerCtrl.openWallet()">
+            <a>
+                <img src="assets/img/wallet.png">
+            </a>
+        </div>
+        <div ng-hide="headerCtrl.role == 'admin' || headerCtrl.role=='' || headerCtrl.role == undefined " class="header-right-r"  ng-click="headerCtrl.openCart()" >
+            <!--<a>-->
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+            <!--</a>-->
+            <span class="badge badge-notify ">{{headerCtrl.order.length || 0}}</span>
+        </div>
     </div>
 </div>

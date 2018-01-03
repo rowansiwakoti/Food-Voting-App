@@ -27,9 +27,12 @@
                     function (message) {
                         $sessionStorage.role = message.data.userRole;
                         $rootScope.$broadcast("instantUpdateRole", $sessionStorage.role);
+                        $sessionStorage.balance = message.data.balance;
+                        $rootScope.$broadcast("instantUpdateBalance", $sessionStorage.balance);
                         // $sessionStorage.emailId = message.data.firstName;
                         $sessionStorage.firstName = message.data.firstName;
                         $sessionStorage.userId = message.data.id;
+
                         $state.go('dashboard');
                         console.log(message.data);
                     },
