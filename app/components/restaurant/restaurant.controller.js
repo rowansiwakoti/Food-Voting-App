@@ -17,6 +17,11 @@
             vm.addFoods = [];
         }
 
+        if($sessionStorage.firstName == ''){
+            console.log($sessionStorage.firstName)
+            $state.go('login');
+        }
+
         vm.order = OrderService.getOrder();
 
 
@@ -185,14 +190,36 @@
 
         vm.addOrder = function (food, restaurantName) {
 
-            OrderService.addOrder(food, restaurantName);
-            vm.order = OrderService.getOrder();
-            $scope.$watch(function () {
-                return vm.order;
-            }, function (newValue) {console.log(newValue);
-                $rootScope.$broadcast("updateOrders", newValue);
+            var order = {
+                id : food.id,
+                name : food.name,
+                restaurantName : restaurantName,
+                price : food.price
+            };
+
+            var confirmAddOrder = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: "modal-title",
+                ariaDescribedBy: "modal-body",
+                backdrop: false,
+                templateUrl: "components/modal/add-to-cart/cart.html",
+                controller: 'CartController as cartCtrl',
+                size: 'md',
+                resolve: {
+                    order : function () {
+                        return order;
+                    }
+                }
             });
-            // console.log(vm.order);
+
+            confirmAddOrder.result.then(
+                function () {
+
+                },
+                function () {
+
+                }
+            )
         };
 
         vm.deleteOrder = function (food) {

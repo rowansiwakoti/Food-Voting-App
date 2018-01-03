@@ -14,8 +14,8 @@
         }
         //updateOrdersInCart
 
-        $scope.$on('updateOrdersInCart', function(data){
-           vm.order = data;
+        $scope.$on('updateOrdersInCart', function(event,data){
+           vm.order = data;console.log('m here', data)
         });
 
         var appName = APP_CONSTANT.APP_NAME;
@@ -47,10 +47,6 @@
             console.log($sessionStorage.orderList);
         });
 
-
-        $scope.$on("updateOrders", function (event, data) {
-            vm.order = data;
-        });
 
         vm.getAppName = function () {
             return appName;

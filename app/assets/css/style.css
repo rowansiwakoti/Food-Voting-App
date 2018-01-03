@@ -25,6 +25,10 @@ div.row {
 }
 /*Register Page*/
 .register h4 {font-size: 17px}
+
+/*Cart Model*/
+.cart-left{float: left}
+.cart-right{float: right}
 /**/
 #intro h3,
 #intro a {

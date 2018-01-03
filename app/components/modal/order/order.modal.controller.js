@@ -80,11 +80,6 @@
 
         vm.confirmOrderOk = function(){
             $state.go('orderhistory')
-            $scope.$watch(function(){
-                return vm.order;
-            }, function(newValue){
-                $rootScope.$broadcast('updateOrdersInCart', newValue);
-            })
             $uibModalInstance.close();
         };
 

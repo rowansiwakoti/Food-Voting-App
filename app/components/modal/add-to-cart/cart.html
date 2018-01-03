@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <div class="cart-left">
+        <h2>{{cartCtrl.order.name}}</h2>
+        <h5>Rs. {{cartCtrl.order.price}}</h5>
+    </div>
+    <div class="cart-right">
+        <button type="button" class="close" ng-click="cartCtrl.modalCancel()">&times;</button>
+    </div>
+</div>
+<div class="modal-body clearfix">
+   <div class="cart-left">
+       <button ng-click="cartCtrl.decreaseOrder()" style="width: 30px">-</button>
+       <label style="border: 1px solid; padding: 3px 10px">{{cartCtrl.count}}</label>
+       <button ng-click="cartCtrl.increaseOrder()" style="width: 30px">+</button>
+   </div>
+    <div class="cart-right">
+        <button class="btn-primary" ng-click="cartCtrl.addToCart()">Add to Cart Rs.{{cartCtrl.amount}}</button>
+    </div>
+</div>

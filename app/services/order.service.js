@@ -3,9 +3,9 @@
     angular.module('FoodVotingApp')
         .factory('OrderService', OrderService);
 
-    OrderService.$inject = ['$sessionStorage', '$http'];
+    OrderService.$inject = ['$sessionStorage', '$http', '$rootScope'];
 
-    function OrderService($sessionStorage, $http) {
+    function OrderService($sessionStorage, $http, $rootScope) {
         var orderSvc = {};
         var orderList = [];
 
@@ -14,11 +14,11 @@
         };
 
         //Add to the order list
-        orderSvc.addOrder = function (order, restaurantName) {
-            order.quantity = 1;
-            order.restaurantName = restaurantName;
+        orderSvc.addOrder = function (order) {
+            // order.quantity = 1;
+            // order.restaurantName = restaurantName;
             var flag = 1;
-
+            console.log($sessionStorage.orderList)
             // set flag to zero // ignores duplicate order
             if($sessionStorage.orderList){
                 $sessionStorage.orderList.forEach(function (item) {
@@ -27,7 +27,7 @@
                     }
                 });
             }
-
+            console.log(order,flag,$sessionStorage.orderList);
             if (flag === 1) {
 
                 if ($sessionStorage.orderList) {
@@ -40,6 +40,7 @@
                     $sessionStorage.orderList = orderList;
                     orderList = $sessionStorage.orderList;
                 }
+                $rootScope.$broadcast('updateOrdersInCart', orderList);
             }
         };
 

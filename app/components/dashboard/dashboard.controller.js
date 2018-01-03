@@ -33,6 +33,9 @@
         vm.message = "";
         vm.firstName = $sessionStorage.firstName;
         vm.role = $sessionStorage.role;
+        if(!$sessionStorage.firstName){
+            $state.go('login');
+        }
 
         if ($sessionStorage.firstName) {
 

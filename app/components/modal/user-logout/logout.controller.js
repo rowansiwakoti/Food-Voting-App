@@ -12,7 +12,7 @@
 
 
         vm.ok = function () {
-            $sessionStorage.emailId = '';
+            $sessionStorage.firstName = '';
             $sessionStorage.orderList = [];
             $sessionStorage.order = [];
             $sessionStorage.role = '';
