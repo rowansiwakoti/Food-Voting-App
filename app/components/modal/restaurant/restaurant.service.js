@@ -1,13 +1,13 @@
 (function () {
-    "use strict";
-    angular.module("FoodVotingApp")
-        .factory("RestaurantService", RestaurantService);
-    RestaurantService.$inject = ['$sessionStorage', 'FoodService', '$http'];
+    'use strict';
+    angular.module('FoodOrderingApp')
+        .factory('RestaurantService', RestaurantService);
+    RestaurantService.$inject = ['FoodService', '$http'];
 
-    function RestaurantService($sessionStorage, FoodService, $http) {
+    function RestaurantService(FoodService, $http) {
 
         var restaurantSvc = {};
-        var alertMessage = "";
+        var alertMessage = '';
 
         //Add the restaurant
         restaurantSvc.addRestaurant = function (restaurant) {
@@ -25,6 +25,7 @@
 
         //Delete the restaurant
         restaurantSvc.deleteRestaurant = function (restaurant) {
+            console.log(restaurant);
             FoodService.delteFromAddFoods(restaurant.id);
             return ($http.delete('http://localhost:8080/restaurants/' + restaurant.id));
         };

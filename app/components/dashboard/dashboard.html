@@ -1,16 +1,15 @@
 <div id="intro" style="text-align: right">
-    <h3 class="logged-in-user"><i>{{dashboardCtrl.firstName}}</i></h3>/<a class="logout"
-                                                                          ng-click="dashboardCtrl.userLogout()">Logout</a>
+    <h3 class="logged-in-user"><i>{{dashboardCtrl.firstName}}</i></h3>/<a class="logout" ng-click="dashboardCtrl.userLogout()">Logout</a>
 </div>
 <a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addRestaurant()" ng-hide="dashboardCtrl.role=='user'">Add
     Restaurant</a>
+
 <br/>
 <br/>
 <div id="alertMessage" ng-show="dashboardCtrl.message" class="alert alert-success alert-dismissible fade in"
-     role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+     role="alert"><a class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>{{dashboardCtrl.message}}</strong>
 </div>
-<div style="background: #dfd6ff; color: red"></div>
 <div class="row" style="margin-bottom: 50px;">
     <div class="col-md-4" ng-hide="restaurant.active===false && dashboardCtrl.role==='user'"
          style="margin-bottom: 20px;" ng-repeat="restaurant in dashboardCtrl.restaurants">
@@ -29,4 +28,3 @@
         </button>
     </div>
 </div>
-

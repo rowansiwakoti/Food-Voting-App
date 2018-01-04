@@ -1,8 +1,8 @@
 (function () {
-    "use strict";
-    angular.module("FoodVotingApp")
-        .controller("FooterController", FooterController);
-    FooterController.$inject = ["APP_CONSTANT"];
+    'use strict';
+    angular.module('FoodOrderingApp')
+        .controller('FooterController', FooterController);
+    FooterController.$inject = ['APP_CONSTANT'];
 
     function FooterController(APP_CONSTANT) {
 

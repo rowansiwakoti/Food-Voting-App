@@ -1,7 +1,8 @@
 (function () {
-    "use strict";
+    'use strict';
 
-    angular.module("FoodVotingApp", ["ui.router", "ui.bootstrap", "ngStorage"]);
+    angular.module('FoodOrderingApp', ['ngAnimate', 'ui.bootstrap', 'ngSanitize', 'ui.router', 'ngStorage']);
 
 })();
 
+//'ngAnimate', 'ngSanitize', ''

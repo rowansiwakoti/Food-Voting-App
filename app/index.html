@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="FoodVotingApp">
+<html lang="en" ng-app="FoodOrderingApp">
 <head>
-    <title>Food Voting App</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Food Ordering App</title>
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
     <link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/bootstrap.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <!--oncontextmenu="return false"-->
@@ -15,6 +16,7 @@
     </div>
     <!--<fv-footer></fv-footer>-->
 </div>
+
 <script type="text/javascript" src="assets/libs/angular/angular.js"></script>
 <script type="text/javascript" src="assets/libs/angular/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="assets/libs/angular/ngStorage.min.js"></script>
@@ -24,7 +26,7 @@
 <script type="text/javascript" src="assets/libs/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/libs/jquery/popper.min.js"></script>
 <script type="text/javascript" src="assets/libs/bootstrap/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="assets/libs/angular/angularPrint.js"></script>
 
 <script type="text/javascript" src="app.module.js"></script>
 <script type="text/javascript" src="app.config.js"></script>
@@ -33,14 +35,15 @@
 <script type="text/javascript" src="components/footer/footer.controller.js"></script>
 <script type="text/javascript" src="components/footer/footer.component.js"></script>
 <script type="text/javascript" src="components/login/login.controller.js"></script>
-<script type="text/javascript" src="components/modal/user-logout/logout.controller.js"></script>
+<script type="text/javascript" src="components/modal/logout/logout.controller.js"></script>
 <script type="text/javascript" src="components/dashboard/dashboard.controller.js"></script>
 <script type="text/javascript" src="components/modal/restaurant/restaurant.service.js"></script>
 <script type="text/javascript" src="components/modal/restaurant/restaurant.modal.controller.js"></script>
-<script type="text/javascript" src="components/modal/food/food.add.controller.js"></script>
 <script type="text/javascript" src="components/modal/food/food.service.js"></script>
 
-
+<script type="text/javascript" src="components/modal/add-to-cart/cart.controller.js"></script>
+<script type="text/javascript" src="components/modal/wallet/wallet.controller.js"></script>
+<script type="text/javascript" src="components/orderhistory/orderhistory.controller.js"></script>
 <script type="text/javascript" src="components/modal/order/order.modal.controller.js"></script>
 <script type="text/javascript" src="components/modal/food/food.controller.js"></script>
 <script type="text/javascript" src="services/user.service.js"></script>

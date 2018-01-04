@@ -1,11 +1,12 @@
 (function () {
-    "use strict";
-    angular.module('FoodVotingApp')
+    'use strict';
+    angular.module('FoodOrderingApp')
         .factory('OrderService', OrderService);
 
-    OrderService.$inject = ['$sessionStorage', '$http'];
+    OrderService.$inject = ['$sessionStorage', '$http', '$rootScope'];
 
-    function OrderService($sessionStorage, $http) {
+    function OrderService($sessionStorage, $http, $rootScope) {
+
         var orderSvc = {};
         var orderList = [];
 
@@ -14,13 +15,13 @@
         };
 
         //Add to the order list
-        orderSvc.addOrder = function (order, restaurantName) {
-            order.quantity = 1;
-            order.restaurantName = restaurantName;
+        orderSvc.addOrder = function (order) {
+            // order.quantity = 1;
+            // order.restaurantName = restaurantName;
             var flag = 1;
 
             // set flag to zero // ignores duplicate order
-            if($sessionStorage.orderList){
+            if ($sessionStorage.orderList) {
                 $sessionStorage.orderList.forEach(function (item) {
                     if (item.id === order.id) {
                         flag = 0;
@@ -29,7 +30,6 @@
             }
 
             if (flag === 1) {
-
                 if ($sessionStorage.orderList) {
                     orderList = $sessionStorage.orderList;
                     orderList.push(order);
@@ -41,9 +41,11 @@
                     orderList = $sessionStorage.orderList;
                 }
             }
+            $rootScope.$broadcast('updateOrders', orderList);
         };
 
         orderSvc.confirmOrder = function (order) {
+
             var req = {
                 method: 'POST',
                 headers: {
@@ -53,6 +55,17 @@
                 url: 'http://localhost:8080/order'
             };
             return ($http(req));
+        };
+
+        orderSvc.getLog = function (role,id) {
+            var url;
+            if(role === 'admin'){
+                url = '';
+            }
+            else{
+                url = '';
+            }
+            return($http(url));
         };
 
         //Delete the order from the order list

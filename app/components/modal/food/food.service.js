@@ -1,7 +1,7 @@
 (function () {
-    "use strict";
-    angular.module("FoodVotingApp")
-        .factory("FoodService", FoodService);
+    'use strict';
+    angular.module('FoodOrderingApp')
+        .factory('FoodService', FoodService);
 
     FoodService.$inject = ['$sessionStorage', '$http'];
 
@@ -23,7 +23,6 @@
 
         //Edit Food
         foodSvc.editFood = function (food) {
-            console.log(food)
             var req = {
                 method: 'PUT',
                 headers: {
@@ -53,8 +52,7 @@
                     restaurantId: food.restaurantId
                 });
             });
-            // $sessionStorage.addFoods = [];
-console.log(foodList);
+
             var url = 'http://localhost:8080/foods';
             var req = {
                 method: 'POST',
@@ -79,15 +77,14 @@ console.log(foodList);
             var addFoods = $sessionStorage.addFoods;
             var tempFoods = [];
             if (addFoods) {
-                addFoods.forEach(function (food, index) {
-                    console.log(food);
-                    if (food.restaurantId != id) {
-                        tempFoods.push(food)
+                addFoods.forEach(function (food) {
+                    if (food.restaurantId !== id) {
+                        tempFoods.push(food);
                     }
                 });
             }
             $sessionStorage.addFoods = tempFoods;
-        }
+        };
 
         // Return food service
         return foodSvc;

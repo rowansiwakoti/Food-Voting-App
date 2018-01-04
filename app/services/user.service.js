@@ -1,10 +1,10 @@
 (function () {
 
-    "use strict";
+    'use strict';
 
-    angular.module("FoodVotingApp")
+    angular.module('FoodOrderingApp')
 
-        .factory("UserService", UserService);
+        .factory('UserService', UserService);
 
     UserService.$inject = ['$http'];
 
@@ -12,6 +12,7 @@
 
         return {
             setUser: function (user) {
+                user.balance = 1200;
                 var req = {
                     method: 'POST',
                     headers: {

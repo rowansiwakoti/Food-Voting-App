@@ -1,10 +1,10 @@
 (function () {
-    "use strict";
-    angular.module("FoodVotingApp")
-        .controller("OrderModalController", OrderModalController);
-    OrderModalController.$inject = ['$uibModalInstance', 'OrderService', '$sessionStorage', '$state', '$uibModal', '$log'];
+    'use strict';
+    angular.module('FoodOrderingApp')
+        .controller('OrderModalController', OrderModalController);
+    OrderModalController.$inject = ['$uibModalInstance', 'OrderService', '$sessionStorage', '$state', '$uibModal', '$log', '$rootScope', '$location'];
 
-    function OrderModalController($uibModalInstance, OrderService, $sessionStorage, $state, $uibModal, $log) {
+    function OrderModalController($uibModalInstance, OrderService, $sessionStorage, $state, $uibModal, $log, $rootScope, $location) {
         var vm = this;
         vm.order = OrderService.getOrder();
         vm.quantity = [];
@@ -47,39 +47,56 @@
             $uibModalInstance.close();
             var modalInstance = $uibModal.open({
                 animation: true,
-                ariaLabelledBy: "modal-title",
-                ariaDescribedBy: "modal-body",
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
                 backdrop: false,
-                templateUrl: "components/modal/order/order-confirm-modal.html",
-                controller: "OrderModalController",
-                controllerAs: "orderModalCtrl",
-                size: "sm"
+                templateUrl: 'components/modal/order/order-confirm-modal.html',
+                controller: 'OrderModalController',
+                controllerAs: 'orderModalCtrl',
+                size: 'sm'
             });
 
             modalInstance.result.then(function () {
 
             }, function () {
-                $log.info("User Logout modal dismissed on " + new Date());
+                $log.info('Confirm order modal dismissed on ' + new Date());
             });
-
-            // console.log(vm.order);
-            //
-            // var orderedItems = [];
-            //
-            // vm.order.forEach(function (order) {
-            //     orderedItems.push({foodId: order.id, quantity: order.quantity});
-            // });
-            //
-            // OrderService.confirmOrder({userId: $sessionStorage.userId, foodList: orderedItems});
-            // $state.go('dashboard');
         };
 
         vm.modalCancel = function () {
             $uibModalInstance.dismiss();
         };
 
+        vm.confirmOrderOk = function () {
+
+            var orderedItems = [];
+            var totalAmount = 0;
+
+            vm.order.forEach(function (order) {
+                totalAmount += (order.quantity * order.price);
+                orderedItems.push({
+                    foodName: order.name,
+                    foodPrice: order.price,
+                    restaurantName: order.restaurantName,
+                    quantity: order.quantity
+                });
+            });
+
+            OrderService.confirmOrder({userId: $sessionStorage.userId, foodList: orderedItems});
+
+            var balance = $sessionStorage.balance;
+            balance -= totalAmount;
+            $sessionStorage.balance = balance;
+
+            $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
+            $rootScope.$broadcast('updateOrdersAfterConfirm', vm.order);
+            $uibModalInstance.close();
+            $state.go('orderhistory');
+        };
+
         vm.continueOrder = function () {
-            $state.go('dashboard');
+            var url = $location.path();
+            $state.go(url);
             $uibModalInstance.dismiss();
         };
     }

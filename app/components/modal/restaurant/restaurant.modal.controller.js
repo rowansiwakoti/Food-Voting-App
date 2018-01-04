@@ -1,9 +1,9 @@
 (function () {
-    "use strict";
-    angular.module("FoodVotingApp")
-        .controller("RestaurantModalController", RestaurantModalController);
+    'use strict';
+    angular.module('FoodOrderingApp')
+        .controller('RestaurantModalController', RestaurantModalController);
 
-    RestaurantModalController.$inject = ["$uibModalInstance", "RestaurantService", "APP_CONSTANT", "delRestaurant", "editRestaurant"];
+    RestaurantModalController.$inject = ['$uibModalInstance', 'RestaurantService', 'APP_CONSTANT', 'delRestaurant', 'editRestaurant'];
 
     function RestaurantModalController($uibModalInstance, RestaurantService, APP_CONSTANT, delRestaurant, editRestaurant) {
         var vm = this;
@@ -44,7 +44,6 @@
             RestaurantService.editRestaurant(restaurant)
                 .then(
                     function (answer) {
-
                         $uibModalInstance.close(answer.data);
                     },
                     function (error) {
@@ -54,14 +53,15 @@
                         console.log(progress);
                     }
                 );
+            RestaurantService.setAlertMessage(restaurant.name + " " + APP_CONSTANT.EDIT_MSG);
         };
 
         vm.deleteRestaurant = function () {
             RestaurantService.deleteRestaurant(delRestaurant)
                 .then(
                     function (answer) {
-
                         $uibModalInstance.close(answer.data);
+                        console.log(answer.data);
                     },
                     function (error) {
                         console.log(error);
@@ -70,7 +70,7 @@
                         console.log(progress);
                     }
                 );
-
+            RestaurantService.setAlertMessage(delRestaurant.name + " " + APP_CONSTANT.DELETE_MSG);
         };
 
         vm.modalCancel = function () {

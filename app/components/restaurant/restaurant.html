@@ -1,4 +1,4 @@
-<div style="text-align: center"><h3><u>{{restaurantCtrl.restaurant.name}}</u></h3></div>
+<div style="text-align: center"><h3><u>{{restaurantCtrl.restaurant.name}}</u></h3></div><br/>
 <div ng-show="restaurantCtrl.role =='admin'">
     <a class="btn btn-default btn-sm button-name" ng-click="restaurantCtrl.addFood()"
        ng-show="restaurantCtrl.role == 'admin'">Add
@@ -22,7 +22,7 @@
                     <th>S/N</th>
                     <th>Food</th>
                     <th>Price</th>
-                    <th style="width: 30%;">Action</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>

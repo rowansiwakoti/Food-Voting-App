@@ -1,10 +1,10 @@
 (function () {
 
-    "use strict";
-    angular.module("FoodVotingApp")
-        .controller("LoginController", LoginController);
+    'use strict';
+    angular.module('FoodOrderingApp')
+        .controller('LoginController', LoginController);
 
-    LoginController.$inject = ["$rootScope", "UserService", "$state", "$sessionStorage", "APP_CONSTANT"];
+    LoginController.$inject = ['$rootScope', 'UserService', '$state', '$sessionStorage', 'APP_CONSTANT'];
 
     function LoginController($rootScope, UserService, $state, $sessionStorage, APP_CONSTANT) {
 
@@ -13,27 +13,32 @@
         var pageName = APP_CONSTANT.PAGE_NAME;
         vm.userInputLength = APP_CONSTANT.USER_INPUT_LENGTH;
         vm.userInputFormat = APP_CONSTANT.USER_INPUT_FORMAT;
-
+        vm.register = false;
+        vm.registerActive = '';
+        vm.loginActive = 'active'
         vm.user = {};
+        vm.inputType = 'password';
+
         vm.getPageName = function () {
             return pageName;
-        };
-
-        vm.userRegister = function () {
-            $state.go("register");
         };
 
         vm.validateUser = function (user) {
             UserService.validateUser(user)
                 .then(
                     function (message) {
-                        $sessionStorage.role = message.data.userRole;
-                        $rootScope.$broadcast("instantUpdateRole", $sessionStorage.role);
-                        $sessionStorage.emailId = message.data.email;
-                        $sessionStorage.firstName = message.data.firstName;
                         $sessionStorage.userId = message.data.id;
+                        $sessionStorage.firstName = message.data.firstName;
+                        $sessionStorage.middleName = message.data.middleName;
+                        $sessionStorage.lastName = message.data.lastName;
+                        $sessionStorage.contact = message.data.contact;
+                        $sessionStorage.address = message.data.address;
+                        $sessionStorage.role = message.data.role;
+                        $sessionStorage.emailId = message.data.email;
+                        $sessionStorage.balance = message.data.balance;
+                        $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
+                        $rootScope.$broadcast('instantUpdateRole', $sessionStorage.role);
                         $state.go('dashboard');
-                        console.log(message.data);
                     },
                     function (error) {
                         console.log(error);
