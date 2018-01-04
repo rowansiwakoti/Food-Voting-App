@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="restaurantModalCtrl.modalCancel()">&times;</button>
+    <h3 ng-hide="restaurantModalCtrl.copyRestaurant" class="modal-title" id="modal-title">Add Restaurant</h3>
+    <h3 ng-show="restaurantModalCtrl.copyRestaurant" class="modal-title">Edit Restaurant</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form name="restaurantForm">
+        <div class="form-group">
+            <label class="restaurant-name">Restaurant Name</label>
+            <input type="text" name="name" placeholder="Restaurant Name" ng-model="restaurantModalCtrl.restaurant.name"
+                   class="form-control"
+                   required>
+            <p ng-show="restaurantForm.name.$invalid && restaurantForm.name.$touched" class="help-block"
+               style="color: red;">{{restaurantModalCtrl.resNameReqMsg}}</p>
+        </div>
+        <div class="form-group">
+            <label class="restaurant-name">Restaurant address</label>
+            <input type="text" name="address" placeholder="Restaurant Address" ng-model="restaurantModalCtrl.restaurant.address"
+                   class="form-control"
+                   required>
+            <p ng-show="restaurantForm.address.$invalid && restaurantForm.address.$touched" class="help-block"
+               style="color: red;">Restaurant address is required.</p>
+        </div>
+        <div class="form-group">
+            <label class="restaurant-contact">Restaurant Contact No.</label>
+            <input type="text" name="contact" ng-model="restaurantModalCtrl.restaurant.contact"
+                   placeholder="Restaurant Contact No."
+                   class="form-control" ng-maxlength="10" ng-pattern="/^\d+$/">
+            <p ng-show="restaurantForm.contact.$error.maxlength" class="help-block" style="color: red;">
+                {{restaurantModalCtrl.contactNoMsg}}
+            </p>
+            <p ng-show="restaurantForm.contact.$error.pattern" class="help-block" style="color: red;">
+                {{restaurantModalCtrl.numbersOnlyMsg}}
+            </p>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button ng-hide="restaurantModalCtrl.copyRestaurant" class="btn btn-primary pull-left" id="add-restaurant" type="button"
+            ng-click="restaurantModalCtrl.addRestaurant(restaurantModalCtrl.restaurant)"
+            ng-disabled="restaurantForm.$invalid">Add
+        Restaurant
+    </button>
+    <button ng-show="restaurantModalCtrl.copyRestaurant" class="btn btn-primary pull-left" type="button"
+            ng-click="restaurantModalCtrl.editRestaurant(restaurantModalCtrl.restaurant)"
+            ng-disabled="restaurantForm.$invalid">Edit
+        Restaurant
+    </button>
+    <button class="btn btn-warning pull-left" type="button" ng-click="restaurantModalCtrl.modalCancel()">Cancel</button>
+</div>
