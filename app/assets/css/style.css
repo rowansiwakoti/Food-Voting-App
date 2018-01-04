@@ -1,0 +1,292 @@
+body{background-color: #FFFAFA}
+.page-header{}
+.logo{height: 75px; width: 75px;}
+.header-left{float: left}
+.header-left-l{float: left}
+.header-left-r{float: right; padding: 29px 0 0 10px;}
+.header-left-r h1{font-size: 50px}
+.header-right{float: right;padding-top: 29px}
+.header-right-l{float: left; margin-right: 5px}
+.header-right-l img{height: 36px; width: 36px}
+.header-right-r{float: right; position: relative; font-size: 36px; margin-left: 5px}
+
+table thead tr th {
+    text-align: center;
+}
+
+table tbody tr td {
+    text-align: center;
+}
+
+/*.form-group{display: inline}*/
+.form-control:before{
+    content: ".";
+}
+.form-control{display: inline}
+div.row {
+    text-align: center;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{background: #029f5b}
+
+* {
+    border-radius: 3px !important;
+}
+/*Register Page*/
+.register h4 {font-size: 17px}
+/**/
+#intro h3,
+#intro a {
+    display: inline;
+    text-align: right;
+}
+
+.restaurant-name {
+    display: inline;
+    /*float: right;*/
+    text-align: center;
+}
+
+.button-name {
+    float: left;
+}
+
+h3.page {
+    text-align: center;
+}
+
+footer {
+    background-color: silver;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    text-align: center;
+    color: #CCC;
+}
+
+footer p {
+    padding: 23px;
+    margin: 0px;
+    line-height: 100%;
+    color: #000;
+}
+
+.alert {
+    display: inline-block;
+}
+
+/*.image{height: 200px; border: 1px solid}*/
+.number {
+    width: 40px
+}
+
+.num-control {
+    width: 30px
+}
+
+.image {
+    height: 200px;
+    border: 1px solid;
+    padding: 60px;
+}
+
+.cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+}
+
+.cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input.cmn-toggle-round-flat + label {
+    padding: 2px;
+    width: 75px;
+    height: 30px;
+    background-color: #a94442;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    -ms-border-radius: 60px;
+    -o-border-radius: 60px;
+    border-radius: 60px;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+}
+
+input.cmn-toggle-round-flat + label:before, input.cmn-toggle-round-flat + label:after {
+    display: block;
+    position: absolute;
+    content: "";
+}
+
+input.cmn-toggle-round-flat + label:before {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: #fff;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    -ms-border-radius: 60px;
+    -o-border-radius: 60px;
+    border-radius: 60px;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+}
+
+input.cmn-toggle-round-flat + label:after {
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    width: 22px;
+    background-color: #a94442;
+    -webkit-border-radius: 52px;
+    -moz-border-radius: 52px;
+    -ms-border-radius: 52px;
+    -o-border-radius: 52px;
+    border-radius: 52px;
+    -webkit-transition: margin 0.4s, background 0.4s;
+    -moz-transition: margin 0.4s, background 0.4s;
+    -o-transition: margin 0.4s, background 0.4s;
+    transition: margin 0.4s, background 0.4s;
+}
+
+input.cmn-toggle-round-flat:checked + label {
+    background-color: green;
+}
+
+input.cmn-toggle-round-flat:checked + label:after {
+    margin-left: 45px;
+    background-color: green;
+}
+
+.badge-notify {
+    background: red;
+    position: absolute;
+    top: 5px;
+    /*left: -54px;*/
+
+}
+
+#shopping-cart {
+    z-index: -1;
+}
+
+#cart {
+    position: absolute;
+    top: 25px;
+    right: 100px;
+}
+
+
+
+/*sankfs*/
+.panel-login {
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
+    text-align:center;
+}
+.panel-login>.panel-heading a{
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+    color: #029f5b;
+    font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+    outline:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+.btn-login {
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+    color: #fff;
+    background-color: #53A3CD;
+    border-color: #53A3CD;
+}
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+    text-decoration: underline;
+    color: #666;
+}
+
+.btn-register {
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+    color: #fff;
+    background-color: #1CA347;
+    border-color: #1CA347;
+}

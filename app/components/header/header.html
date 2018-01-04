@@ -1,0 +1,22 @@
+<div class="page-header clearfix">
+    <div class="header-left clearfix">
+        <div class="header-left-l">
+            <img ng-src="assets/img/logo.png" class="logo">
+        </div>
+        <div class="header-left-r">
+            <h1 style="display: inline;">{{headerCtrl.getAppName()}}</h1>
+        </div>
+    </div>
+    <div class="header-right clearfix"
+         ng-hide="headerCtrl.role == 'admin' || headerCtrl.role=='' || headerCtrl.role == undefined ">
+        <div class="header-right-l" ng-click="headerCtrl.openWallet()">
+            <a>
+                <img ng-src="assets/img/wallet.png">
+            </a>
+        </div>
+        <div class="header-right-r" ng-click="headerCtrl.openCart()">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <span class="badge badge-notify ">{{headerCtrl.order.length || 0}}</span>
+        </div>
+    </div>
+</div>
