@@ -22,7 +22,7 @@ module.exports = function (config) {
             '../app/app.module.js',
             '../app/app.config.js',
             '../app/components/**/*.js',
-            '../app/constants/app-name.constants.js',
+            '../app/constants/foa.constants.js',
             '../app/services/user.service.js',
 
             // spec files

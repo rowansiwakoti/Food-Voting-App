@@ -6,9 +6,11 @@
 
         .factory('UserService', UserService);
 
-    UserService.$inject = ['$http'];
+    UserService.$inject = ['$http', 'APP_CONSTANT'];
 
-    function UserService($http) {
+    function UserService($http, APP_CONSTANT) {
+
+        var appUrl = APP_CONSTANT.FOA_APP;
 
         return {
             setUser: function (user) {
@@ -19,7 +21,7 @@
                         'Content-Type': 'application/json'
                     },
                     data: user,
-                    url: 'http://localhost:8080/user'
+                    url: appUrl + '/user'
                 };
 
                 return ($http(req));
@@ -31,7 +33,7 @@
                         'Content-Type': 'application/json'
                     },
                     data: user,
-                    url: 'http://localhost:8080/user/verify'
+                    url: appUrl + '/user/verify'
                 };
 
                 return ($http(req));

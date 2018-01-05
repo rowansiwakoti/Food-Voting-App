@@ -3,22 +3,23 @@
     angular.module('FoodOrderingApp')
         .factory('FoodService', FoodService);
 
-    FoodService.$inject = ['$sessionStorage', '$http'];
+    FoodService.$inject = ['$sessionStorage', '$http', 'APP_CONSTANT'];
 
-    function FoodService($sessionStorage, $http) {
+    function FoodService($sessionStorage, $http, APP_CONSTANT) {
 
         var foodSvc = {};
-        var alertMessage = "";
+        var alertMessage = '';
         var foodList = [];
+        var appUrl = APP_CONSTANT.FOA_APP;
 
         // Get Food List
         foodSvc.getFoodList = function (id) {
-            return ($http.get('http://localhost:8080/restaurants/' + id + '/foods'));
+            return ($http.get(appUrl + '/restaurants/' + id + '/foods'));
         };
 
         //Delete Food from the list
         foodSvc.deleteFood = function (food) {
-            return ($http.delete('http://localhost:8080/foods/' + food.id));
+            return ($http.delete(appUrl + '/foods/' + food.id));
         };
 
         //Edit Food
@@ -29,7 +30,7 @@
                     'Content-Type': 'application/json'
                 },
                 data: food,
-                url: 'http://localhost:8080/foods/' + food.id
+                url: appUrl + '/foods/' + food.id
             }
             return ($http(req));
         };
@@ -53,7 +54,7 @@
                 });
             });
 
-            var url = 'http://localhost:8080/foods';
+            var url = appUrl + '/foods';
             var req = {
                 method: 'POST',
                 headers: {

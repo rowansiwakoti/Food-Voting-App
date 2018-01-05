@@ -2,9 +2,10 @@
     'use strict';
     angular.module('FoodOrderingApp')
         .controller('OrderModalController', OrderModalController);
-    OrderModalController.$inject = ['$uibModalInstance', 'OrderService', '$sessionStorage', '$state', '$uibModal', '$log', '$rootScope', '$location'];
+    OrderModalController.$inject = ['$uibModalInstance', '$sessionStorage', '$state', '$uibModal', '$log', '$rootScope', '$location', 'OrderService'];
 
-    function OrderModalController($uibModalInstance, OrderService, $sessionStorage, $state, $uibModal, $log, $rootScope, $location) {
+    function OrderModalController($uibModalInstance, $sessionStorage, $state, $uibModal, $log, $rootScope, $location, OrderService) {
+
         var vm = this;
         vm.order = OrderService.getOrder();
         vm.quantity = [];
@@ -43,7 +44,7 @@
             return total;
         };
 
-        vm.confirmOrder = function () {
+        vm.Order = function () {
             $uibModalInstance.close();
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -67,8 +68,13 @@
             $uibModalInstance.dismiss();
         };
 
-        vm.confirmOrderOk = function () {
+        vm.OrderOk = function () {
+            confirmOrder();
+            $uibModalInstance.close();
+            $state.go('orderhistory');
+        };
 
+        function confirmOrder() {
             var orderedItems = [];
             var totalAmount = 0;
 
@@ -83,16 +89,12 @@
             });
 
             OrderService.confirmOrder({userId: $sessionStorage.userId, foodList: orderedItems});
-
             var balance = $sessionStorage.balance;
             balance -= totalAmount;
             $sessionStorage.balance = balance;
-
             $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
             $rootScope.$broadcast('updateOrdersAfterConfirm', vm.order);
-            $uibModalInstance.close();
-            $state.go('orderhistory');
-        };
+        }
 
         vm.continueOrder = function () {
             var url = $location.path();

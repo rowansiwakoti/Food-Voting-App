@@ -3,12 +3,13 @@
     angular.module('FoodOrderingApp')
         .factory('OrderService', OrderService);
 
-    OrderService.$inject = ['$sessionStorage', '$http', '$rootScope'];
+    OrderService.$inject = ['$sessionStorage', '$http', '$rootScope', 'APP_CONSTANT'];
 
-    function OrderService($sessionStorage, $http, $rootScope) {
+    function OrderService($sessionStorage, $http, $rootScope, APP_CONSTANT) {
 
         var orderSvc = {};
         var orderList = [];
+        var appUrl = APP_CONSTANT.FOA_APP;
 
         orderSvc.initOrder = function () {
             orderList = [];
@@ -16,8 +17,7 @@
 
         //Add to the order list
         orderSvc.addOrder = function (order) {
-            // order.quantity = 1;
-            // order.restaurantName = restaurantName;
+
             var flag = 1;
 
             // set flag to zero // ignores duplicate order
@@ -52,20 +52,9 @@
                     'Content-Type': 'application/json'
                 },
                 data: order,
-                url: 'http://localhost:8080/order'
+                url: appUrl + '/order'
             };
             return ($http(req));
-        };
-
-        orderSvc.getLog = function (role,id) {
-            var url;
-            if(role === 'admin'){
-                url = '';
-            }
-            else{
-                url = '';
-            }
-            return($http(url));
         };
 
         //Delete the order from the order list
@@ -91,7 +80,7 @@
 
         //Increase the quantity
         orderSvc.increseQuantity = function (food) {
-            if (food.quantity < 5) {
+            if (food.quantity < APP_CONSTANT.MAX_ORDERS) {
                 for (var i = 0; i < $sessionStorage.orderList.length; i++) {
                     if (food.id === $sessionStorage.orderList[i].id) {
                         $sessionStorage.orderList[i].quantity += 1;
@@ -102,7 +91,7 @@
 
         //Decrease the quantity
         orderSvc.decreaseQuantity = function (food) {
-            if (food.quantity > 1) {
+            if (food.quantity > APP_CONSTANT.MIN_ORDERS) {
                 for (var i = 0; i < $sessionStorage.orderList.length; i++) {
                     if (food.id === $sessionStorage.orderList[i].id) {
                         $sessionStorage.orderList[i].quantity -= 1;

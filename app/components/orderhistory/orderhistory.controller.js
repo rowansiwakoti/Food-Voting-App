@@ -19,15 +19,19 @@
         vm.items = $sessionStorage.orderList;
         vm.total = 0;
 
-        if ($sessionStorage.emailId === undefined || $sessionStorage.emailId === '') {
-            $state.go('login');
+        init()
+        function init(){
+            if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
+                $state.go('login');
+            }
+
+            if (vm.items) {
+                vm.items.forEach(function (item) {
+                    vm.total += item.price * item.quantity;
+                });
+            }
         }
 
-        if (vm.items) {
-            vm.items.forEach(function (item) {
-                vm.total += item.price * item.quantity;
-            });
-        }
         $sessionStorage.orderList = [];
 
         vm.printBillReceipt = function (printSectionId) {

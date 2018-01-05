@@ -15,14 +15,19 @@
         vm.numbersOnlyMsg = APP_CONSTANT.NUMBERS_ONLY_MSG;
         vm.food = {};
 
-        if (editFood) {
-            vm.food = angular.copy(editFood);
-            vm.copyFood = angular.copy(editFood);
+        init();
+
+        function init() {
+            if (editFood) {
+                vm.food = angular.copy(editFood);
+                vm.copyFood = angular.copy(editFood);
+            }
+
+            if (deleteFood) {
+                vm.foodToBeDeleted = deleteFood.name;
+            }
         }
 
-        if (deleteFood) {
-            vm.foodToBeDeleted = deleteFood.name;
-        }
 
         vm.addFood = function (food) {
             $uibModalInstance.close(food);

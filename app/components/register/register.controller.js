@@ -1,12 +1,13 @@
 (function () {
-    "use strict";
+    'use strict';
 
-    angular.module("FoodOrderingApp")
-        .controller("RegisterController", RegisterController);
+    angular.module('FoodOrderingApp')
+        .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ["$state", "UserService", "APP_CONSTANT", "$sessionStorage"];
+    RegisterController.$inject = ['$state', '$log', 'UserService', 'APP_CONSTANT'];
 
-    function RegisterController($state, UserService, APP_CONSTANT, $sessionStorage) {
+    function RegisterController($state, $log, UserService, APP_CONSTANT) {
+
         var vm = this;
 
         vm.firstNameMsg = APP_CONSTANT.FIRST_NAME_MSG;
@@ -21,7 +22,7 @@
         vm.user = {};
 
         vm.backToLogin = function () {
-            $state.go("login");
+            $state.go('login');
         };
 
         vm.registerUser = function (user) {
@@ -30,19 +31,19 @@
                 UserService.setUser(user)
                     .then(
                         function (answer) {
-                            console.log(answer);
+                            $log.info(answer);
                         },
                         function (error) {
-                            console.log(error);
+                            $log.info(error);
                         },
                         function (progress) {
-                            console.log(progress);
+                            $log.info(progress);
                         }
                     )
-                $state.go("login");
+                $state.go('login');
             }
             else {
-                alert("Password and confirm password did not match!");
+                alert('Password and confirm password did not match!');
             }
         };
     }

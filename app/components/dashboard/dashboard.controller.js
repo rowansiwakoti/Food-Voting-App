@@ -5,9 +5,9 @@
     angular.module('FoodOrderingApp')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$state', 'APP_CONSTANT', '$uibModal', 'RestaurantService', '$sessionStorage', '$log', 'OrderService'];
+    DashboardController.$inject = ['$state', '$uibModal', '$sessionStorage', '$log', 'APP_CONSTANT', 'RestaurantService', 'OrderService'];
 
-    function DashboardController($state, APP_CONSTANT, $uibModal, RestaurantService, $sessionStorage, $log, OrderService) {
+    function DashboardController($state, $uibModal, $sessionStorage, $log, APP_CONSTANT, RestaurantService, OrderService) {
 
         var vm = this;
 
@@ -23,10 +23,10 @@
                     vm.restaurants = answer.data;
                 },
                 function (error) {
-                    console.log(error);
+                   $log.info(error);
                 },
                 function (progress) {
-                    console.log(progress);
+                    $log.info(progress);
                 }
             );
         };
@@ -35,7 +35,7 @@
 
         if ($sessionStorage.emailId) {
             vm.userLogout = function () {
-                vm.message = "";
+                vm.message = '';
                 var modalInstance = $uibModal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',

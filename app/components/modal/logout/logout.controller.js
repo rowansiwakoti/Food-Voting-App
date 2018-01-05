@@ -11,18 +11,22 @@
 
 
         vm.ok = function () {
-            $sessionStorage.emailId = '';
-            $sessionStorage.orderList = [];
-            $sessionStorage.order = [];
-            $sessionStorage.role = '';
-            $sessionStorage.balance = '';
-            $rootScope.$broadcast("clearRole", $sessionStorage.role);
+            clearSession();
             $uibModalInstance.close();
-            $state.go("login");
+            $state.go('login');
         };
 
         vm.cancel = function () {
             $uibModalInstance.dismiss();
         };
-    };
+
+        function clearSession() {
+            $sessionStorage.emailId = '';
+            $sessionStorage.orderList = [];
+            $sessionStorage.order = [];
+            $sessionStorage.role = '';
+            $sessionStorage.balance = '';
+            $rootScope.$broadcast('clearRole', $sessionStorage.role);
+        }
+    }
 })();

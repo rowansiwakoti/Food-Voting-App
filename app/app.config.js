@@ -1,20 +1,13 @@
 (function () {
 
-    "use strict";
+    'use strict';
 
     angular.module('FoodOrderingApp')
         .config(config);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider) {
-
-        $httpProvider.defaults.headers.common = {};
-        $httpProvider.defaults.headers.post = {};
-        $httpProvider.defaults.headers.put = {};
-        $httpProvider.defaults.headers.patch = {};
-        // $httpProvider.defaults.useXDomain = true;
-        // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    function config($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/login');
         $stateProvider

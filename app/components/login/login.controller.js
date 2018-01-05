@@ -4,18 +4,15 @@
     angular.module('FoodOrderingApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$rootScope', 'UserService', '$state', '$sessionStorage', 'APP_CONSTANT'];
+    LoginController.$inject = ['$rootScope', '$state', '$sessionStorage', '$log', 'APP_CONSTANT', 'UserService'];
 
-    function LoginController($rootScope, UserService, $state, $sessionStorage, APP_CONSTANT) {
+    function LoginController($rootScope, $state, $sessionStorage, $log, APP_CONSTANT, UserService) {
 
         var vm = this;
 
         var pageName = APP_CONSTANT.PAGE_NAME;
         vm.userInputLength = APP_CONSTANT.USER_INPUT_LENGTH;
         vm.userInputFormat = APP_CONSTANT.USER_INPUT_FORMAT;
-        vm.register = false;
-        vm.registerActive = '';
-        vm.loginActive = 'active'
         vm.user = {};
         vm.inputType = 'password';
 
@@ -27,26 +24,30 @@
             UserService.validateUser(user)
                 .then(
                     function (message) {
-                        $sessionStorage.userId = message.data.id;
-                        $sessionStorage.firstName = message.data.firstName;
-                        $sessionStorage.middleName = message.data.middleName;
-                        $sessionStorage.lastName = message.data.lastName;
-                        $sessionStorage.contact = message.data.contact;
-                        $sessionStorage.address = message.data.address;
-                        $sessionStorage.role = message.data.role;
-                        $sessionStorage.emailId = message.data.email;
-                        $sessionStorage.balance = message.data.balance;
-                        $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
-                        $rootScope.$broadcast('instantUpdateRole', $sessionStorage.role);
+                        saveDataToSession(message);
                         $state.go('dashboard');
                     },
                     function (error) {
-                        console.log(error);
+                        $log.info(error);
                     },
                     function (progress) {
-                        console.log(progress);
+                        $log.info(progress);
                     }
                 );
         };
+
+        function saveDataToSession(message) {
+            $sessionStorage.userId = message.data.id;
+            $sessionStorage.firstName = message.data.firstName;
+            $sessionStorage.middleName = message.data.middleName;
+            $sessionStorage.lastName = message.data.lastName;
+            $sessionStorage.contact = message.data.contact;
+            $sessionStorage.address = message.data.address;
+            $sessionStorage.role = message.data.role;
+            $sessionStorage.emailId = message.data.email;
+            $sessionStorage.balance = message.data.balance;
+            $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
+            $rootScope.$broadcast('instantUpdateRole', $sessionStorage.role);
+        }
     }
 })();

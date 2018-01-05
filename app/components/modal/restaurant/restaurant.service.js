@@ -2,12 +2,13 @@
     'use strict';
     angular.module('FoodOrderingApp')
         .factory('RestaurantService', RestaurantService);
-    RestaurantService.$inject = ['FoodService', '$http'];
+    RestaurantService.$inject = ['$http', 'FoodService', 'APP_CONSTANT'];
 
-    function RestaurantService(FoodService, $http) {
+    function RestaurantService($http, FoodService, APP_CONSTANT) {
 
         var restaurantSvc = {};
         var alertMessage = '';
+        var appUrl = APP_CONSTANT.FOA_APP;
 
         //Add the restaurant
         restaurantSvc.addRestaurant = function (restaurant) {
@@ -17,7 +18,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                url: 'http://localhost:8080/restaurants',
+                url: appUrl + '/restaurants',
                 data: restaurant
             }
             return ($http(req));
@@ -27,7 +28,7 @@
         restaurantSvc.deleteRestaurant = function (restaurant) {
             console.log(restaurant);
             FoodService.delteFromAddFoods(restaurant.id);
-            return ($http.delete('http://localhost:8080/restaurants/' + restaurant.id));
+            return ($http.delete(appUrl + '/restaurants/' + restaurant.id));
         };
 
         //Edit the restaurant
@@ -37,7 +38,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                url: 'http://localhost:8080/restaurants/' + restaurant.id,
+                url: appUrl + '/restaurants/' + restaurant.id,
                 data: restaurant
             }
             return ($http(req));
@@ -45,7 +46,7 @@
 
         //Get the list of restaurants
         restaurantSvc.getRestaurantList = function () {
-            return ($http.get('http://localhost:8080/restaurants'));
+            return ($http.get(appUrl + '/restaurants'));
         };
 
         restaurantSvc.setAlertMessage = function (msg) {
@@ -56,11 +57,11 @@
         };
 
         restaurantSvc.activateRestaurant = function (id) {
-            return $http.get('http://localhost:8080/restaurants/' + id + '/activate');
+            return $http.get(appUrl + '/restaurants/' + id + '/activate');
         };
 
         restaurantSvc.deactivateRestaurant = function (id) {
-            return $http.get('http://localhost:8080/restaurants/' + id + '/deactivate');
+            return $http.get(appUrl + '/restaurants/' + id + '/deactivate');
         };
         return restaurantSvc;
     }

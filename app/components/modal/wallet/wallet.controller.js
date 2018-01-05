@@ -4,9 +4,9 @@
         angular.module('FoodOrderingApp')
             .controller('WalletController', WalletController);
 
-        WalletController.$inject = ['$sessionStorage', 'balance', '$uibModalInstance'];
+        WalletController.$inject = ['$sessionStorage', '$uibModalInstance', 'balance'];
 
-        function WalletController($sessionStorage, balance, $uibModalInstance) {
+        function WalletController($sessionStorage, $uibModalInstance, balance) {
 
             var vm = this;
             vm.user = $sessionStorage.firstName;
