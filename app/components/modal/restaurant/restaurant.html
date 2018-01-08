@@ -3,6 +3,7 @@
     <h3 ng-hide="restaurantModalCtrl.copyRestaurant" class="modal-title" id="modal-title">Add Restaurant</h3>
     <h3 ng-show="restaurantModalCtrl.copyRestaurant" class="modal-title">Edit Restaurant</h3>
 </div>
+
 <div class="modal-body" id="modal-body">
     <form name="restaurantForm">
         <div class="form-group">
@@ -15,7 +16,8 @@
         </div>
         <div class="form-group">
             <label class="restaurant-name">Restaurant address</label>
-            <input type="text" name="address" placeholder="Restaurant Address" ng-model="restaurantModalCtrl.restaurant.address"
+            <input type="text" name="address" placeholder="Restaurant Address"
+                   ng-model="restaurantModalCtrl.restaurant.address"
                    class="form-control"
                    required>
             <p ng-show="restaurantForm.address.$invalid && restaurantForm.address.$touched" class="help-block"
@@ -36,7 +38,8 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button ng-hide="restaurantModalCtrl.copyRestaurant" class="btn btn-primary pull-left" id="add-restaurant" type="button"
+    <button ng-hide="restaurantModalCtrl.copyRestaurant" class="btn btn-primary pull-left" id="add-restaurant"
+            type="button"
             ng-click="restaurantModalCtrl.addRestaurant(restaurantModalCtrl.restaurant)"
             ng-disabled="restaurantForm.$invalid">Add
         Restaurant

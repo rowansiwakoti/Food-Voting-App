@@ -1,0 +1,30 @@
+<div class="modal-title clearfix">
+    <div class="modal-title-right">
+        <button class="close" ng-click="userProfileCtrl.closeModal()">&times;</button>
+    </div>
+    <div class="modal-title-left">
+
+        <img ng-src="assets/img/user.png">
+        <h1>{{userProfileCtrl.user | uppercase}} </h1>
+
+    </div>
+
+</div>
+
+<div class="modal-body user-modal-body">
+
+    <ul class="list-group">
+
+        <li class="list-group-item">
+            <img src="assets/img/wallet.png" alt="Wallet icon">
+            <label>&nbsp;Current Balance: Rs. {{userProfileCtrl.balance}}</label>
+        </li>
+
+        <li class="list-group-item logout" alt="Logout icon" ng-click="userProfileCtrl.userLogout()">
+            <img src="assets/img/logout.png">
+            <label class="fav-icon">&nbsp;Log Out</label>
+        </li>
+
+    </ul>
+
+</div> 

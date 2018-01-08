@@ -43,6 +43,11 @@
                 url: '/orderhistory',
                 templateUrl: 'components/orderhistory/orderhistory.html',
                 controller: 'OrderHistoryController as orderHistoryCtrl'
+            })
+            .state('gotologin', {
+                url: '/gotologin',
+                templateUrl: 'components/goto-login/goto.login.html',
+                controller: 'GotoLoginController as gotoCtrl'
             });
     }
 })();

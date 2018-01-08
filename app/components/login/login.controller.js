@@ -4,9 +4,9 @@
     angular.module('FoodOrderingApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$rootScope', '$state', '$sessionStorage', '$log', 'APP_CONSTANT', 'UserService'];
+    LoginController.$inject = ['$rootScope', '$state', '$sessionStorage', '$timeout', '$log', 'APP_CONSTANT', 'UserService'];
 
-    function LoginController($rootScope, $state, $sessionStorage, $log, APP_CONSTANT, UserService) {
+    function LoginController($rootScope, $state, $sessionStorage, $timeout, $log, APP_CONSTANT, UserService) {
 
         var vm = this;
 
@@ -15,25 +15,27 @@
         vm.userInputFormat = APP_CONSTANT.USER_INPUT_FORMAT;
         vm.user = {};
         vm.inputType = 'password';
+        vm.dataLoading = false;
+
 
         vm.getPageName = function () {
             return pageName;
         };
 
         vm.validateUser = function (user) {
-            UserService.validateUser(user)
-                .then(
-                    function (message) {
-                        saveDataToSession(message);
-                        $state.go('dashboard');
-                    },
-                    function (error) {
-                        $log.info(error);
-                    },
-                    function (progress) {
-                        $log.info(progress);
-                    }
-                );
+            vm.dataLoading = true;
+            $timeout(function () {
+                UserService.validateUser(user)
+                    .then(
+                        function (message) {
+                            saveDataToSession(message);
+                            $state.go('dashboard');
+                        },
+                        function (error) {
+                            $log.info(error);
+                        }
+                    );
+            }, 2000);
         };
 
         function saveDataToSession(message) {

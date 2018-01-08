@@ -37,6 +37,10 @@
                 };
 
                 return ($http(req));
+            },
+
+            getUsers: function () {
+                return ($http.get(appUrl + '/user'));
             }
         };
 

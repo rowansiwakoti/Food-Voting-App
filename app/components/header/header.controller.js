@@ -54,9 +54,9 @@
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 backdrop: false,
-                templateUrl: 'components/modal/wallet/wallet.html',
-                controller: 'WalletController',
-                controllerAs: 'walletCtrl',
+                templateUrl: "components/modal/profile/user-profile.modal.html",
+                controller: "UserProfileController",
+                controllerAs: "userProfileCtrl",
                 size: 'sm',
                 resolve: {
                     balance: function () {
@@ -66,10 +66,10 @@
             });
             modalInstance.result.then(
                 function () {
-                    $log.info('Wallet modal closed on ' + new Date());
+                    $log.info('User profile modal closed on ' + new Date());
                 },
                 function () {
-                    $log.info('Wallet modal dismissed on ' + new Date());
+                    $log.info('User profile modal dismissed on ' + new Date());
                 }
             );
         };

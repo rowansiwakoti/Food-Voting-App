@@ -35,9 +35,6 @@
                     },
                     function (error) {
                         $log.info(error);
-                    },
-                    function (progress) {
-                        $log.info(progress);
                     }
                 );
             RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.ADD_MSG);
@@ -51,9 +48,6 @@
                     },
                     function (error) {
                         $log.info(error);
-                    },
-                    function (progress) {
-                        $log.info(progress);
                     }
                 );
             RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.EDIT_MSG);
@@ -67,9 +61,6 @@
                     },
                     function (error) {
                         $log.info(error);
-                    },
-                    function (progress) {
-                        $log.info(progress);
                     }
                 );
             RestaurantService.setAlertMessage(delRestaurant.name + ' ' + APP_CONSTANT.DELETE_MSG);

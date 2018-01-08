@@ -23,10 +23,7 @@
                     vm.restaurants = answer.data;
                 },
                 function (error) {
-                   $log.info(error);
-                },
-                function (progress) {
-                    $log.info(progress);
+                    $log.info(error);
                 }
             );
         };

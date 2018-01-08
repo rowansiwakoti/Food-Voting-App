@@ -3,9 +3,9 @@
     angular.module('FoodOrderingApp')
         .controller('FoodController', FoodController);
 
-    FoodController.$inject = ['$uibModalInstance', 'FoodService', 'APP_CONSTANT', 'editFood', 'deleteFood', 'foods'];
+    FoodController.$inject = ['$uibModalInstance', '$log', 'FoodService', 'APP_CONSTANT', 'editFood', 'deleteFood', 'foods'];
 
-    function FoodController($uibModalInstance, FoodService, APP_CONSTANT, editFood, deleteFood, foods) {
+    function FoodController($uibModalInstance, $log, FoodService, APP_CONSTANT, editFood, deleteFood, foods) {
 
         var vm = this;
 
@@ -41,10 +41,7 @@
                     $uibModalInstance.close(answer.data);
                 },
                 function (error) {
-                    console.log(error);
-                },
-                function (progress) {
-
+                    $log.info(error);
                 }
             );
         };
@@ -56,13 +53,10 @@
             FoodService.editFood(food)
                 .then(
                     function (answer) {
-                        console.log(answer.data);
+
                     },
                     function (error) {
-                        console.log(error);
-                    },
-                    function (progress) {
-                        console.log(progress);
+                        $log.info(error);
                     }
                 )
             $uibModalInstance.close(food);
@@ -72,13 +66,9 @@
             FoodService.deleteFood(deleteFood)
                 .then(
                     function (answer) {
-                        console.log(answer.data);
                     },
                     function (error) {
-                        console.log(error);
-                    },
-                    function (progress) {
-                        console.log(progress);
+                        $log.info(error);
                     }
                 )
             $uibModalInstance.close(deleteFood);
