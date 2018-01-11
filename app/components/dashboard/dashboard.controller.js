@@ -34,25 +34,7 @@
 
 
         if ($sessionStorage.emailId) {
-            vm.userLogout = function () {
-                vm.message = "";
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    backdrop: false,
-                    templateUrl: 'components/modal/logout/logout.html',
-                    controller: 'LogoutController',
-                    controllerAs: 'logoutCtrl',
-                    size: 'sm'
-                });
-                modalInstance.result.then(function () {
-                    vm.message = RestaurantService.getAlertMessage();
-                    OrderService.initOrder();
-                }, function () {
-                    $log.info('User Logout modal dismissed on ' + new Date());
-                });
-            };
+
 
             vm.addRestaurant = function () {
                 vm.message = '';

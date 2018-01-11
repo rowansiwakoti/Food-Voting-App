@@ -30,6 +30,7 @@
                 UserService.setUser(user)
                     .then(
                         function (answer) {
+                            $state.go('gotologin');
                             console.log(answer);
                         },
                         function (error) {

@@ -28,7 +28,7 @@
                 vm.total += item.price * item.quantity;
             });
         }
-        $sessionStorage.orderList = [];
+        // $sessionStorage.orderList = [];
 
         vm.printBillReceipt = function (printSectionId) {
             var innerContents = document.getElementById(printSectionId).innerHTML;

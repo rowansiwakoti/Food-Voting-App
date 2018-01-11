@@ -7,14 +7,19 @@
             <h1 style="display: inline;">{{headerCtrl.getAppName()}}</h1>
         </div>
     </div>
-    <div class="header-right clearfix"
-         ng-hide="headerCtrl.role == 'admin' || headerCtrl.role=='' || headerCtrl.role == undefined ">
-        <div class="header-right-l" ng-click="headerCtrl.openWallet()">
+    <div class="header-right clearfix">
+        <div class="header-right-l" ng-click="headerCtrl.openWallet()" ng-hide="headerCtrl.role=='' || headerCtrl.role == undefined ">
             <a>
-                <img ng-src="assets/img/wallet.png">
+                <img ng-src="assets/img/user.png">
             </a>
         </div>
-        <div class="header-right-r" ng-click="headerCtrl.openCart()">
+        <div class="header-right-r" ng-hide="headerCtrl.role == 'user' || headerCtrl.role=='' || headerCtrl.role == undefined ">
+            {{headerCtrl.orders.length}}
+            <a ng-click="headerCtrl.openNotification()">
+                <img src="assets/img/bell.png">
+            </a>
+        </div>
+        <div class="header-right-r" ng-click="headerCtrl.openCart()" ng-hide="headerCtrl.role == 'admin' || headerCtrl.role=='' || headerCtrl.role == undefined ">
             <span class="glyphicon glyphicon-shopping-cart"></span>
             <span class="badge badge-notify ">{{headerCtrl.order.length || 0}}</span>
         </div>

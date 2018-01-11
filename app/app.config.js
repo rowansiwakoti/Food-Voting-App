@@ -38,8 +38,8 @@
             })
             .state('order', {
                 url: '/order',
-                templateUrl: 'components/order/order.html',
-                controller: 'OrderController as orderCtrl'
+                templateUrl: 'components/order-lists/order.lists.html',
+                controller: 'OrderListController as orderCtrl'
             })
             .state('register', {
                 url: '/register',
@@ -50,6 +50,12 @@
                 url: '/orderhistory',
                 templateUrl: 'components/orderhistory/orderhistory.html',
                 controller: 'OrderHistoryController as orderHistoryCtrl'
+            })
+            .state('gotologin',{
+                url:'/gotologin',
+                templateUrl:'components/goto-login/goto.login.html',
+                controller:'GotoLoginController as gotoCtrl'
             });
+
     }
 })();

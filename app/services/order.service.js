@@ -3,9 +3,9 @@
     angular.module('FoodOrderingApp')
         .factory('OrderService', OrderService);
 
-    OrderService.$inject = ['$sessionStorage', '$http', '$rootScope'];
+    OrderService.$inject = ['$sessionStorage', '$http', '$rootScope', '$interval'];
 
-    function OrderService($sessionStorage, $http, $rootScope) {
+    function OrderService($sessionStorage, $http, $rootScope, $interval) {
 
         var orderSvc = {};
         var orderList = [];
@@ -55,6 +55,7 @@
                 url: 'http://localhost:8080/order'
             };
             return ($http(req));
+            console.log(order)
         };
 
         orderSvc.getLog = function (role,id) {
@@ -110,6 +111,76 @@
                 }
             }
         };
+
+        $sessionStorage.orderList = orderSvc.orderList;
+
+        var order;
+        var tempOrder = [];
+
+        orderSvc.getOrderList = function () {
+                return ($http.get('http://localhost:8080/order'));
+
+        };
+
+        orderSvc.receiveOrder = function (id) {
+            return($http.put('http://localhost:8080/order/'+id));
+            console.log('receive this order', id)
+        }
+
         return orderSvc;
     }
 })();
+
+
+
+
+
+// orderSvc.orderList = [
+//     {
+//         user:'Rowan',
+//         foods:[
+//             {
+//                 name:'Chicken Momo',
+//                 restaurant:'Bota',
+//                 price:150,
+//                 quantity:2
+//             },
+//             {
+//                 name:'Chicken Momoa',
+//                 restaurant:'Bota',
+//                 price:150,
+//                 quantity:2
+//             },
+//             {
+//                 name:'Chicken Momos',
+//                 restaurant:'Bota',
+//                 price:150,
+//                 quantity:2
+//             }
+//         ]
+//     },
+//     {
+//         user:'Nitish',
+//         foods:[
+//             {
+//                 name:'Chicken Momo',
+//                 restaurant:'Bota',
+//                 price:150,
+//                 quantity:2
+//             },
+//             {
+//                 name:'Chicken Momo',
+//                 restaurant:'Bota',
+//                 price:150,
+//                 quantity:2
+//             },
+//             {
+//                 name:'Chicken Momo',
+//                 restaurant:'Bota',
+//                 price:150,
+//                 quantity:2
+//             }
+//         ]
+//     }
+//
+// ];

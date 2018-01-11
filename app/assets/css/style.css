@@ -8,16 +8,9 @@ body{background-color: #FFFAFA}
 .header-right{float: right;padding-top: 29px}
 .header-right-l{float: left; margin-right: 5px}
 .header-right-l img{height: 36px; width: 36px}
+.header-right-r img{height: 36px; width: 36px}
 .header-right-r{float: right; position: relative; font-size: 36px; margin-left: 5px}
-
-table thead tr th {
-    text-align: center;
-}
-
-table tbody tr td {
-    text-align: center;
-}
-
+table th{text-align: center}
 /*.form-group{display: inline}*/
 .form-control:before{
     content: ".";
@@ -29,10 +22,28 @@ div.row {
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{background: #029f5b}
 
 * {
-    border-radius: 3px !important;
+    border-radius: 0;
 }
+/*Order List*/
+/*.order-list table{border: none}*/
+/*.order-list table thead{border: none}*/
+/*.order-list table th{border: none}*/
+/*.order-list table tr{border: none}*/
+/*.order-list table tbody{border: none}*/
+/*.order-list table td{border: none}*/
 /*Register Page*/
 .register h4 {font-size: 17px}
+/*User Model*/
+.modal-title-left{float: left; text-align: center; width: 285px}
+.modal-title-right{float: right}
+.fav-icon{color: red}
+.modal-title img{height: 100px; width: 100px}
+.modal-body-img{width: 100%}
+.modal-body img{height: 30px; width: 30px; }
+.user-modal-body a{display: block}
+/*Cart Model*/
+.cart-left{float: left}
+.cart-right{float: right}
 /**/
 #intro h3,
 #intro a {
@@ -88,7 +99,7 @@ footer p {
 .image {
     height: 200px;
     border: 1px solid;
-    padding: 60px;
+    padding: 80px;
 }
 
 .cmn-toggle {

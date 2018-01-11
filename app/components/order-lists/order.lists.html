@@ -1,0 +1,49 @@
+<div class="row ">
+    <table class="table table-condensed table-hover table-striped table-bordered ">
+        <caption ng-hide="restaurantCtrl.role == 'admin'">
+            <h3>Order</h3>
+        </caption>
+        <thead>
+        <tr>
+            <th>S/N</th>
+            <th>User</th>
+            <th>Details</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="order in orderCtrl.orderList" ng-init="orderCtrl.getIndex()">
+            <td>{{$index+1}}</td>
+            <td>{{order.userId}}</td>
+            <td>
+                <span  class="order-list">
+                    <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Food</th>
+                            <th>Restaurant</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="food in order.foodResList">
+                     <td>{{food.foodName}}</td>
+                     <td>{{food.restaurantName}}</td>
+                     <td>{{food.foodPrice}}</td>
+                     <td>{{food.quantity}}</td>
+                    </tr>
+                </table>
+                </span>
+            </td>
+            <td><button ng-click="orderCtrl.recieveOrder(order.orderId)">Receive</button></td>
+        </tr>
+        <!--<tr ng-repeat="food in orderCtrl.orderList[orderCtrl.index].foods">-->
+            <!--<td>{{food.name}}</td>-->
+            <!--<td>{{food.restaurant}}</td>-->
+            <!--<td>{{food.price}}</td>-->
+            <!--<td>{{food.quantity}}</td>-->
+            <!--&lt;!&ndash;{{orderCtrl.increaseIndex()}}&ndash;&gt;-->
+        <!--</tr>-->
+        </tbody>
+    </table>
+</div>

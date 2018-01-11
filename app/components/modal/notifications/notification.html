@@ -1,0 +1,18 @@
+<div class="modal-title">
+    <div class="modal-title-left">
+        <ul class="list-group">
+            <li ng-repeat="order in notificationCtrl.orderList" class="list-group-item">
+            User {{order.orderId}} ordered
+            </li>
+        </ul>
+    </div>
+    <div class="modal-title-right">
+        <button class="close" ng-click="notificationCtrl.closeModal()">&times;</button>
+    </div>
+</div>
+<hr>
+<div class="">
+    <a ng-click="notificationCtrl.gotoOrder()" ui-sref="order({orderList : 12})">
+        Goto order page...
+    </a>
+</div>

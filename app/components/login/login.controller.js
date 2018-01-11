@@ -26,7 +26,7 @@
         vm.validateUser = function (user) {
             UserService.validateUser(user)
                 .then(
-                    function (message) {
+                    function (message) {console.log(message)
                         $sessionStorage.userId = message.data.id;
                         $sessionStorage.firstName = message.data.firstName;
                         $sessionStorage.middleName = message.data.middleName;
