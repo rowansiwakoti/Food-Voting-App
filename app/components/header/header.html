@@ -1,7 +1,9 @@
 <div class="page-header clearfix">
     <div class="header-left clearfix">
         <div class="header-left-l">
-            <img ng-src="assets/img/logo.png" class="logo">
+            <a ng-click="headerCtrl.gotoDashboard()">
+                <img ng-src="assets/img/logo.png" class="logo">
+            </a>
         </div>
         <div class="header-left-r">
             <h1 style="display: inline;">{{headerCtrl.getAppName()}}</h1>
@@ -13,8 +15,8 @@
                 <img ng-src="assets/img/user.png">
             </a>
         </div>
-        <div class="header-right-r" ng-hide="headerCtrl.role == 'user' || headerCtrl.role=='' || headerCtrl.role == undefined ">
-            {{headerCtrl.orders.length}}
+        <div class="header-right-r" ng-hide="headerCtrl.role=='' || headerCtrl.role == undefined ">
+            <span class="badge badge-notify ">{{headerCtrl.orders.length}}</span>
             <a ng-click="headerCtrl.openNotification()">
                 <img src="assets/img/bell.png">
             </a>

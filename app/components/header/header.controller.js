@@ -28,6 +28,11 @@
             vm.orders = data
         })
 
+        vm.gotoDashboard = function(){
+            if($sessionStorage.role){
+                $state.go('dashboard');
+            }
+        }
         var appName = APP_CONSTANT.APP_NAME;
 
         function activateController() {
@@ -147,7 +152,17 @@
             var order = OrderService.getOrderList();
             order.then(
                 function (answer) {
-                    vm.orders = answer.data;
+                    if($sessionStorage.role == 'admin'){
+                        vm.orders = answer.data;
+                    }
+                    else if($sessionStorage.role == 'user'){
+                        var orders = answer.data;
+                        orders.forEach(function (order) {console.log(order.orderedDate)
+                            if(order.orderedDate == date){
+                                vm.orders.push(order);
+                            }
+                        })
+                    }
                     $sessionStorage.orders = answer.data;
                     $rootScope.$broadcast('getOrderList', answer.data);
                 },
@@ -156,13 +171,25 @@
                 }
             )
         }();
-
+            var date =new Date();
+            date = date.toISOString().slice(0,10);
+console.log($sessionStorage.role,date);
         $interval(function () {
-            if($sessionStorage.role == 'admin'){
+            if($sessionStorage.role == 'admin' || $sessionStorage.role == 'user'){
                 var order = OrderService.getOrderList();
                 order.then(
                     function (answer) {
-                        vm.orders = answer.data;
+                        if($sessionStorage.role == 'admin'){
+                            vm.orders = answer.data;
+                        }
+                        else if($sessionStorage.role == 'user'){
+                            var orders = answer.data;
+                            orders.forEach(function (order) {console.log(order.date)
+                                if(order.orderedDate == date){
+                                    vm.orders.push(order);
+                                }
+                            })
+                        }
                         $sessionStorage.orders = answer.data;
                         $rootScope.$broadcast('getOrderList', answer.data);
                     },

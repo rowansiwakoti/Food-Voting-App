@@ -118,7 +118,12 @@
         var tempOrder = [];
 
         orderSvc.getOrderList = function () {
-                return ($http.get('http://localhost:8080/order'));
+                if($sessionStorage.role == 'admin'){
+                    return ($http.get('http://localhost:8080/order'));
+                }
+                else if($sessionStorage.role == 'user'){
+                    return ($http.get('http://localhost:8080/user/userList/'+$sessionStorage.userId));
+                }
 
         };
 

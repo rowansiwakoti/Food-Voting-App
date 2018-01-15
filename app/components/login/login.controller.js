@@ -23,17 +23,17 @@
             return pageName;
         };
 
-        vm.validateUser = function (user) {
+        vm.validateUser = function (user) {console.log(user);
             UserService.validateUser(user)
                 .then(
-                    function (message) {console.log(message)
+                    function (message) {console.log(message.data)
                         $sessionStorage.userId = message.data.id;
                         $sessionStorage.firstName = message.data.firstName;
                         $sessionStorage.middleName = message.data.middleName;
                         $sessionStorage.lastName = message.data.lastName;
                         $sessionStorage.contact = message.data.contact;
                         $sessionStorage.address = message.data.address;
-                        $sessionStorage.role = message.data.role;
+                        $sessionStorage.role = message.data.userRole;
                         $sessionStorage.emailId = message.data.email;
                         $sessionStorage.balance = message.data.balance;
                         $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
