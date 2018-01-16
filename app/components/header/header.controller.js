@@ -149,27 +149,29 @@
         };
 
         vm.initOrderList = function () {
-            var order = OrderService.getOrderList();
-            order.then(
-                function (answer) {
-                    if($sessionStorage.role == 'admin'){
-                        vm.orders = answer.data;
+            if($sessionStorage.role == 'admin' || $sessionStorage.role == 'user'){
+                var order = OrderService.getOrderList();
+                order.then(
+                    function (answer) {
+                        if($sessionStorage.role == 'admin'){
+                            vm.orders = answer.data;
+                        }
+                        else if($sessionStorage.role == 'user'){
+                            var orders = answer.data;
+                            orders.forEach(function (order) {console.log(order.orderedDate)
+                                if(order.orderedDate == date){
+                                    vm.orders.push(order);
+                                }
+                            })
+                        }
+                        $sessionStorage.orders = answer.data;
+                        $rootScope.$broadcast('getOrderList', answer.data);
+                    },
+                    function (error) {
+                        console.log(error)
                     }
-                    else if($sessionStorage.role == 'user'){
-                        var orders = answer.data;
-                        orders.forEach(function (order) {console.log(order.orderedDate)
-                            if(order.orderedDate == date){
-                                vm.orders.push(order);
-                            }
-                        })
-                    }
-                    $sessionStorage.orders = answer.data;
-                    $rootScope.$broadcast('getOrderList', answer.data);
-                },
-                function (error) {
-                    console.log(error)
-                }
-            )
+                )
+            }
         }();
             var date =new Date();
             date = date.toISOString().slice(0,10);
