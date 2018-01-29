@@ -1,30 +1,26 @@
-<div id="intro" style="text-align: right">
-    <h3 class="logged-in-user"><i>{{dashboardCtrl.firstName}}</i></h3>/<a class="logout" ng-click="dashboardCtrl.userLogout()">Logout</a>
-</div>
-<a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addRestaurant()" ng-hide="dashboardCtrl.role=='user'">Add
+<a class="btn btn-default btn-sm" ng-click="dashboardCtrl.addRestaurant()" ng-hide="dashboardCtrl.role==='user'">Add
     Restaurant</a>
-
 <br/>
 <br/>
-<div id="alertMessage" ng-show="dashboardCtrl.message" class="alert alert-success alert-dismissible fade in"
+<div id="alertMessage" ng-show="dashboardCtrl.message" class="alert alert-success alert-msg alert-dismissible fade in"
      role="alert"><a class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>{{dashboardCtrl.message}}</strong>
 </div>
-<div class="row" style="margin-bottom: 50px;">
-    <div class="col-md-4" ng-hide="restaurant.active===false && dashboardCtrl.role==='user'"
-         style="margin-bottom: 20px;" ng-repeat="restaurant in dashboardCtrl.restaurants">
+<div class="row restaurant-dashboard">
+    <div class="col-md-4 restaurant" ng-hide="restaurant.active===false && dashboardCtrl.role==='user'"
+         ng-repeat="restaurant in dashboardCtrl.restaurants">
         <a ui-sref="restaurant({restaurant})">
-            <div class="image">
-                <h3 style="text-decoration: underline">{{restaurant.name}}</h3>
+            <div class="restaurant-card">
+                <h3 class="rest">{{restaurant.name}}</h3>
                 <h4>{{restaurant.contact}}</h4>
             </div>
         </a>
         <br/>
         <button class="btn btn-success btn-sm" ng-click="dashboardCtrl.editRestaurant(restaurant)"
-                ng-hide="dashboardCtrl.role=='user'">Edit Restaurant
+                ng-hide="dashboardCtrl.role==='user'">Edit Restaurant
         </button>
         <button class="btn btn-danger btn-sm" ng-click="dashboardCtrl.deleteRestaurant(restaurant)"
-                ng-hide="dashboardCtrl.role=='user'">Delete Restaurant
+                ng-hide="dashboardCtrl.role==='user'">Delete Restaurant
         </button>
     </div>
 </div>

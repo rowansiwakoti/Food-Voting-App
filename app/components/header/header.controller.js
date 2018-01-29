@@ -2,16 +2,29 @@
     'use strict';
     angular.module('FoodOrderingApp')
         .controller('HeaderController', HeaderController);
-    HeaderController.$inject = ['$scope', '$sessionStorage', '$uibModal', '$log', 'APP_CONSTANT'];
+    HeaderController.$inject = [
+        '$scope',
+        '$sessionStorage',
+        '$uibModal',
+        '$rootScope',
+        '$interval',
+        'APP_CONSTANT',
+        'OrderService'
+    ];
 
-    function HeaderController($scope, $sessionStorage, $uibModal, $log, APP_CONSTANT) {
+    function HeaderController($scope, $sessionStorage, $uibModal, $rootScope, $interval, APP_CONSTANT, OrderService) {
 
         var vm = this;
 
         vm.balance = null;
-        vm.order = $sessionStorage.orderList;
-        vm.role = $sessionStorage.role;
-        var appName = APP_CONSTANT.APP_NAME;
+        vm.orderList = [];
+        vm.orders = [];
+
+
+        vm.appName = appName;
+        vm.openWallet = openWallet;
+        vm.openCart = openCart;
+        vm.openNotification = openNotification;
 
         init();
 
@@ -19,6 +32,19 @@
             if ($sessionStorage.balance) {
                 vm.balance = $sessionStorage.balance;
             }
+            if ($sessionStorage.orderList) {
+                vm.orderList = $sessionStorage.orderList;
+            }
+        }
+
+        //update order list to receive
+        $scope.$on('updateOrder', function (event, data) {
+            vm.orders = data;
+        })
+
+        vm.$onInit = function () {
+            vm.order = $sessionStorage.orderList;
+            vm.role = $sessionStorage.role;
         }
 
         $scope.$on('updateOrdersAfterConfirm', function (data) {
@@ -28,7 +54,7 @@
         $scope.$on('instantUpdateRole', function (event, data) {
             $sessionStorage.role = data;
             vm.role = $sessionStorage.role;
-            vm.order = $sessionStorage.orderList;
+            vm.orderList = $sessionStorage.orderList;
         });
 
         $scope.$on('instantUpdateBalance', function (event, data) {
@@ -44,11 +70,30 @@
             vm.order = data;
         });
 
-        vm.getAppName = function () {
-            return appName;
-        };
+        function appName() {
+            return APP_CONSTANT.APP_NAME;
+        }
 
-        vm.openWallet = function () {
+        function openNotification() {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: "modal-title",
+                ariaDescribedBy: "modal-body",
+                backdrop: false,
+                templateUrl: "components/modal/notification/notification.html",
+                controller: "NotificationController",
+                controllerAs: "notificationCtrl",
+                size: "sm",
+                resolve: {
+                    orderList: function () {
+                        return vm.orders;
+                    }
+                }
+            });
+            modalInstance.result.then(angular.noop, angular.noop);
+        }
+
+        function openWallet() {
             var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
@@ -64,17 +109,10 @@
                     }
                 }
             });
-            modalInstance.result.then(
-                function () {
-                    $log.info('User profile modal closed on ' + new Date());
-                },
-                function () {
-                    $log.info('User profile modal dismissed on ' + new Date());
-                }
-            );
-        };
+            modalInstance.result.then(angular.noop, angular.noop);
+        }
 
-        vm.openCart = function () {
+        function openCart() {
             var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
@@ -85,12 +123,63 @@
                 controllerAs: 'orderModalCtrl',
                 size: 'lg'
             });
+            modalInstance.result.then(angular.noop, angular.noop);
+        }
 
-            modalInstance.result.then(function () {
-                $log.info('Cart modal closed on ' + new Date());
-            }, function () {
-                $log.info('Cart modal dismissed on ' + new Date());
-            });
-        };
+        var date = new Date();
+        date = date.toISOString().slice(0, 10);
+        vm.initOrderList = function () {
+            if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+                OrderService.getOrderList().then(
+                    function (answer) {
+                        if ($sessionStorage.role === 'admin') {
+                            vm.orders = answer.data;
+                        }
+                        else if ($sessionStorage.role === 'user') {
+                            var orders = answer.data;
+                            vm.orders = [];
+                            angular.forEach(orders, function (order) {
+
+                                var orderDate = new Date(order.orderedDate);
+                                if (orderDate.toISOString().slice(0, 10) === date) {
+                                    vm.orders.push(order);
+                                }
+                            });
+                        }
+                        $sessionStorage.orders = answer.data;
+                        $rootScope.$broadcast('getOrderList', answer.data);
+                    },
+                    function (error) {
+                    }
+                );
+            }
+        }();
+
+        $interval(function () {
+            if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+                OrderService.getOrderList().then(
+                    function (answer) {
+                        if ($sessionStorage.role === 'admin') {
+                            vm.orders = answer.data;
+                        }
+                        else if ($sessionStorage.role === 'user') {
+                            var orders = answer.data;
+                            vm.orders = [];
+                            angular.forEach(orders, function (order) {
+                                var orderDate = new Date(order.orderedDate);
+                                if (orderDate.toISOString().slice(0, 10) === date) {
+                                    vm.orders.push(order);
+                                }
+                            });
+                        }
+                        $sessionStorage.orders = answer.data;
+                        $rootScope.$broadcast('getOrderList', answer.data);
+                    },
+                    function (error) {
+                        console.log(error);
+                    }
+                );
+            }
+        }, 30000);
     }
 })();

@@ -4,7 +4,7 @@
     </div>
     <div class="modal-title-left">
 
-        <img ng-src="assets/img/user.png">
+        <img ng-src="assets/img/user.png" alt="User Profile">
         <h1>{{userProfileCtrl.user | uppercase}} </h1>
 
     </div>
@@ -16,12 +16,12 @@
     <ul class="list-group">
 
         <li class="list-group-item">
-            <img src="assets/img/wallet.png" alt="Wallet icon">
+            <img ng-src="assets/img/wallet.png" alt="User Balance">
             <label>&nbsp;Current Balance: Rs. {{userProfileCtrl.balance}}</label>
         </li>
 
-        <li class="list-group-item logout" alt="Logout icon" ng-click="userProfileCtrl.userLogout()">
-            <img src="assets/img/logout.png">
+        <li class="list-group-item logout" alt="Logout" ng-click="userProfileCtrl.userLogout()">
+            <img ng-src="assets/img/logout.png">
             <label class="fav-icon">&nbsp;Log Out</label>
         </li>
 

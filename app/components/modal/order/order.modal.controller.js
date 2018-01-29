@@ -2,49 +2,60 @@
     'use strict';
     angular.module('FoodOrderingApp')
         .controller('OrderModalController', OrderModalController);
-    OrderModalController.$inject = ['$uibModalInstance', '$sessionStorage', '$state', '$uibModal', '$log', '$rootScope', '$location', 'OrderService'];
+    OrderModalController.$inject = [
+        '$uibModalInstance',
+        '$sessionStorage',
+        '$state',
+        '$uibModal',
+        '$rootScope',
+        '$location',
+        'OrderService',
+        'RestaurantService',
+        'APP_CONSTANT'
+    ];
 
-    function OrderModalController($uibModalInstance, $sessionStorage, $state, $uibModal, $log, $rootScope, $location, OrderService) {
+    function OrderModalController($uibModalInstance, $sessionStorage, $state, $uibModal, $rootScope, $location, OrderService, RestaurantService, APP_CONSTANT) {
 
         var vm = this;
         vm.order = OrderService.getOrder();
         vm.quantity = [];
 
-        //Checking if the quantity of the order
-        vm.checkOrder = function (order, quantity) {
-            console.log(order, quantity);
-        };
+        vm.deleteOrder = deleteOrder;
+        vm.increaseQuantity = increaseQuantity;
+        vm.decreaseQuantity = decreaseQuantity;
+        vm.getTotal = getTotal;
+        vm.orderFood = orderFood;
+        vm.modalCancel = modalCancel;
+        vm.orderOk = orderOk;
+        vm.continueOrder = continueOrder;
 
-        //Deleting an item from the order
-        vm.deleteOrder = function (order) {
+
+        function deleteOrder(order) {
             OrderService.deleteOrder(order);
             vm.order = OrderService.getOrder();
-        };
+        }
 
-        //Increase the quantity
-        vm.quantityIncrease = function (index, food) {
-            OrderService.increseQuantity(food);
+        function increaseQuantity(food) {
+            OrderService.increaseQuantity(food);
             vm.order = OrderService.getOrder();
-        };
+        }
 
-        //Decrease the quantity
-        vm.quantityDecrease = function (index, food) {
+        function decreaseQuantity(food) {
             OrderService.decreaseQuantity(food);
             vm.order = OrderService.getOrder();
-        };
+        }
 
-        //Calculate the total amount
-        vm.getTotal = function () {
+        function getTotal() {
             var total = 0;
             if (vm.order) {
-                vm.order.forEach(function (order) {
+                angular.forEach(vm.order, function (order) {
                     total += order.price * order.quantity;
                 });
             }
             return total;
-        };
+        }
 
-        vm.Order = function () {
+        function orderFood() {
             $uibModalInstance.close();
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -54,31 +65,32 @@
                 templateUrl: 'components/modal/order/order-confirm-modal.html',
                 controller: 'OrderModalController',
                 controllerAs: 'orderModalCtrl',
-                size: 'sm'
+                size: 'lg'
             });
+            modalInstance.result.then(
+                function () {
+                    $rootScope.$broadcast("infoMsg", RestaurantService.setAlertMessage(APP_CONSTANT.ORDER_INFO_MSG));
+                },
+                angular.noop);
+        }
 
-            modalInstance.result.then(function () {
-
-            }, function () {
-                $log.info('Confirm order modal dismissed on ' + new Date());
-            });
-        };
-
-        vm.modalCancel = function () {
+        function modalCancel() {
             $uibModalInstance.dismiss();
-        };
+        }
 
-        vm.OrderOk = function () {
+        function orderOk() {
+
+            $sessionStorage.userOrders = $sessionStorage.orderList;
+            $sessionStorage.orderList=[];
             confirmOrder();
             $uibModalInstance.close();
-            $state.go('orderhistory');
-        };
+        }
 
         function confirmOrder() {
             var orderedItems = [];
             var totalAmount = 0;
 
-            vm.order.forEach(function (order) {
+            angular.forEach(vm.order, function (order) {
                 totalAmount += (order.quantity * order.price);
                 orderedItems.push({
                     foodName: order.name,
@@ -96,10 +108,10 @@
             $rootScope.$broadcast('updateOrdersAfterConfirm', vm.order);
         }
 
-        vm.continueOrder = function () {
+        function continueOrder() {
             var url = $location.path();
             $state.go(url);
             $uibModalInstance.dismiss();
-        };
+        }
     }
 })();

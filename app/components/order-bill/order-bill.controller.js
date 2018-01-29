@@ -1,11 +1,15 @@
 (function () {
     'use strict';
     angular.module('FoodOrderingApp')
-        .controller('OrderHistoryController', OrderHistoryController);
+        .controller('OrderBillController', OrderBillController);
 
-    OrderHistoryController.$inject = ['$sessionStorage', '$state'];
+    OrderBillController.$inject = [
+        '$sessionStorage',
+        '$state',
+        '$stateParams'
+    ];
 
-    function OrderHistoryController($sessionStorage, $state) {
+    function OrderBillController($sessionStorage, $state, $stateParams) {
 
         var vm = this;
 
@@ -15,33 +19,35 @@
         vm.address = $sessionStorage.address;
         vm.contact = $sessionStorage.contact;
         vm.todayDate = new Date();
-
-        vm.items = $sessionStorage.orderList;
+        if($stateParams.order){
+            $sessionStorage.userOrders = $stateParams.order.foodResList;
+        }
+        vm.items = $sessionStorage.userOrders;
         vm.total = 0;
 
-        init()
-        function init(){
+        vm.printBillReceipt = printBillReceipt;
+
+
+        vm.$onInit = function () {
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
 
             if (vm.items) {
                 vm.items.forEach(function (item) {
-                    vm.total += item.price * item.quantity;
+                    vm.total += item.foodPrice * item.quantity;
                 });
             }
-        }
+        }();
 
-        $sessionStorage.orderList = [];
-
-        vm.printBillReceipt = function (printSectionId) {
+        function printBillReceipt(printSectionId) {
             var innerContents = document.getElementById(printSectionId).innerHTML;
             var popupWindow = window.open('', '_blank', 'width=600,height=700');
             popupWindow.document.open();
             popupWindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="assets/css/style.css">\n' +
                 '    <link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/bootstrap.min.css"></head><body onload="window.print()">' + innerContents + '</body></html>');
             popupWindow.document.close();
-        };
+        }
     }
 
 })();

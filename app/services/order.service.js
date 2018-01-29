@@ -3,28 +3,37 @@
     angular.module('FoodOrderingApp')
         .factory('OrderService', OrderService);
 
-    OrderService.$inject = ['$sessionStorage', '$http', '$rootScope', 'APP_CONSTANT'];
+    OrderService.$inject = [
+        '$sessionStorage',
+        '$http',
+        '$rootScope',
+        'APP_CONSTANT'
+    ];
 
     function OrderService($sessionStorage, $http, $rootScope, APP_CONSTANT) {
 
-        var orderSvc = {};
         var orderList = [];
         var appUrl = APP_CONSTANT.FOA_APP;
 
-        orderSvc.initOrder = function () {
-            orderList = [];
+        var orderSvc = {
+            addOrder: addOrder,
+            confirmOrder: confirmOrder,
+            deleteOrder: deleteOrder,
+            getOrder: getOrder,
+            increaseQuantity: increaseQuantity,
+            decreaseQuantity: decreaseQuantity,
+            getOrderList: getOrderList,
+            receiveOrder: receiveOrder
         };
 
-        //Add to the order list
-        orderSvc.addOrder = function (order) {
-
+        function addOrder(order) {
             var flag = 1;
-
             // set flag to zero // ignores duplicate order
             if ($sessionStorage.orderList) {
-                $sessionStorage.orderList.forEach(function (item) {
+                angular.forEach($sessionStorage.orderList, function (item) {
                     if (item.id === order.id) {
                         flag = 0;
+                        item.quantity = order.quantity;
                     }
                 });
             }
@@ -42,10 +51,9 @@
                 }
             }
             $rootScope.$broadcast('updateOrders', orderList);
-        };
+        }
 
-        orderSvc.confirmOrder = function (order) {
-
+        function confirmOrder(order) {
             var req = {
                 method: 'POST',
                 headers: {
@@ -55,10 +63,9 @@
                 url: appUrl + '/order'
             };
             return ($http(req));
-        };
+        }
 
-        //Delete the order from the order list
-        orderSvc.deleteOrder = function (order) {
+        function deleteOrder(order) {
             var flag = 1;
             var position;
             if ($sessionStorage.orderList) {
@@ -69,17 +76,15 @@
                 }
                 $sessionStorage.orderList.splice(position, 1);
             }
-        };
+        }
 
-        //Return the order list
-        orderSvc.getOrder = function () {
+        function getOrder() {
             if ($sessionStorage.orderList) {
                 return $sessionStorage.orderList;
             }
-        };
+        }
 
-        //Increase the quantity
-        orderSvc.increseQuantity = function (food) {
+        function increaseQuantity(food) {
             if (food.quantity < APP_CONSTANT.MAX_ORDERS) {
                 for (var i = 0; i < $sessionStorage.orderList.length; i++) {
                     if (food.id === $sessionStorage.orderList[i].id) {
@@ -87,10 +92,9 @@
                     }
                 }
             }
-        };
+        }
 
-        //Decrease the quantity
-        orderSvc.decreaseQuantity = function (food) {
+        function decreaseQuantity(food) {
             if (food.quantity > APP_CONSTANT.MIN_ORDERS) {
                 for (var i = 0; i < $sessionStorage.orderList.length; i++) {
                     if (food.id === $sessionStorage.orderList[i].id) {
@@ -98,7 +102,22 @@
                     }
                 }
             }
-        };
+        }
+
+        function getOrderList() {
+            if ($sessionStorage.role === 'admin') {
+                return ($http.get(appUrl + '/order'));
+            }
+            else if ($sessionStorage.role === 'user') {
+                return ($http.get(appUrl + '/order/orderList/' + $sessionStorage.userId));
+            }
+        }
+
+        function receiveOrder(id) {
+            console.log('update this order', id)
+            return ($http.put(appUrl + '/order/' + id));
+        }
+
         return orderSvc;
     }
 })();

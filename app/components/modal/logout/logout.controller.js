@@ -2,31 +2,36 @@
     'use strict';
     angular.module('FoodOrderingApp')
         .controller('LogoutController', LogoutController);
-    LogoutController.$inject = ['$rootScope', '$uibModalInstance', '$sessionStorage', '$state', 'APP_CONSTANT'];
+    LogoutController.$inject = [
+        '$rootScope',
+        '$uibModalInstance',
+        '$sessionStorage',
+        '$state',
+        'APP_CONSTANT'
+    ];
 
     function LogoutController($rootScope, $uibModalInstance, $sessionStorage, $state, APP_CONSTANT) {
 
         var vm = this;
         vm.logoutMsg = APP_CONSTANT.LOGOUT_MSG;
 
+        vm.ok = ok;
+        vm.cancel = cancel;
 
-        vm.ok = function () {
+        function ok() {
             clearSession();
-            $uibModalInstance.close();
+            $rootScope.$broadcast('clearRole', $sessionStorage.role);
             $state.go('login');
-        };
+            $uibModalInstance.close('close');
+        }
 
-        vm.cancel = function () {
+        function cancel() {
             $uibModalInstance.dismiss();
-        };
+        }
 
         function clearSession() {
-            $sessionStorage.emailId = '';
-            $sessionStorage.orderList = [];
-            $sessionStorage.order = [];
-            $sessionStorage.role = '';
-            $sessionStorage.balance = '';
-            $rootScope.$broadcast('clearRole', $sessionStorage.role);
+           $sessionStorage.$reset();
+           //  $sessionStorage.orderList = [];
         }
     }
 })();

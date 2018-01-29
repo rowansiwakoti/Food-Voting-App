@@ -2,7 +2,17 @@
     'use strict';
     angular.module('FoodOrderingApp')
         .controller('RestaurantController', RestaurantController);
-    RestaurantController.$inject = ['$sessionStorage', '$state', '$stateParams', '$uibModal', '$log', '$scope', 'FoodService', 'RestaurantService', 'OrderService'];
+    RestaurantController.$inject = [
+        '$sessionStorage',
+        '$state',
+        '$stateParams',
+        '$uibModal',
+        '$log',
+        '$scope',
+        'FoodService',
+        'RestaurantService',
+        'OrderService'
+    ];
 
     function RestaurantController($sessionStorage, $state, $stateParams, $uibModal, $log, $scope, FoodService, RestaurantService, OrderService) {
 
@@ -12,6 +22,21 @@
         vm.foods = [];
         vm.order = OrderService.getOrder();
         vm.message = '';
+        vm.role = $sessionStorage.role;
+
+        $scope.$on("infoMsg", function (data) {
+            vm.infoMsg = RestaurantService.getAlertMessage();
+        });
+
+        vm.addFood = addFood;
+        vm.editFood = editFood;
+        vm.deleteFood = deleteFood;
+        vm.addOrder = addOrder;
+        vm.deleteOrder = deleteOrder;
+        vm.confirmOrder = confirmOrder;
+        vm.restaurantStatus = restaurantStatus;
+        vm.deleteFoodToAdd = deleteFoodToAdd;
+        vm.confirmAdd = confirmAdd;
 
         init();
 
@@ -31,21 +56,19 @@
                 vm.foods = data;
             });
 
-            vm.role = $sessionStorage.role;
             if ($stateParams.restaurant) {
                 $sessionStorage.restaurant = $stateParams.restaurant;
-                vm.restaurant = $sessionStorage.restaurant;
-                vm.status = vm.restaurant.active;
             }
-
-            else {
-                vm.restaurant = $sessionStorage.restaurant;
-                vm.status = vm.restaurant.active;
+            vm.restaurant = $sessionStorage.restaurant;
+            if ($sessionStorage.restaurant) {
+                vm.status = $sessionStorage.restaurant.active;
             }
         }
 
         //Getting Foods for the current Restaurant
-        vm.getFood = function () {
+        getFood();
+
+        function getFood() {
             if (vm.restaurant) {
                 FoodService.getFoodList(vm.restaurant.id)
                     .then(
@@ -54,17 +77,13 @@
                         },
                         function (error) {
                             $log.info(error);
-                        },
-                        function (progress) {
-                            $log.info(progress);
                         }
                     );
             }
-        };
+        }
 
-        vm.getFood();
 
-        vm.addFood = function () {
+        function addFood() {
             vm.message = '';
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -75,17 +94,8 @@
                 controller: 'FoodController',
                 controllerAs: 'foodCtrl',
                 resolve: {
-                    addRestaurant: function () {
-                        return vm.restaurant;
-                    },
-                    editFood: function () {
+                    food: function () {
                         return null;
-                    },
-                    deleteFood: function () {
-                        return null;
-                    },
-                    restaurantId: function () {
-                        return vm.restaurant.id;
                     },
                     foods: function () {
                         return vm.addFoods;
@@ -104,110 +114,90 @@
             }, function () {
                 $log.info('Add food modal dismissed on ' + new Date());
             });
-        };
+        }
 
-        vm.add = function (food) {
-            vm.foods.push(food);
-        };
+        // vm.add = function (food) {
+        //     vm.foods.push(food);
+        // };
 
-        if ($sessionStorage.role === 'admin') {
-            vm.editFood = function (food) {
-                vm.message = '';
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    backdrop: false,
-                    templateUrl: 'components/modal/food/food.html',
-                    controller: 'FoodController',
-                    controllerAs: 'foodCtrl',
-                    resolve: {
-                        editFood: function () {
-                            return food;
-                        },
-                        deleteFood: function () {
-                            return null;
-                        },
-                        addRestaurant: function () {
-                            return null;
-                        },
-                        restaurantId: function () {
-                            return vm.restaurant.id;
-                        },
-                        foods: function () {
-                            return vm.addFoods;
-                        }
+        function editFood(food) {
+            vm.message = '';
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                backdrop: false,
+                templateUrl: 'components/modal/food/food.html',
+                controller: 'FoodController',
+                controllerAs: 'foodCtrl',
+                resolve: {
+                    food: function () {
+                        return food;
+                    },
+                    foods: function () {
+                        return null;
                     }
-                });
-                modalInstance.result.then(function (food) {
-                    vm.edit(food);
-                    $log.info('Edit food modal closed on ' + new Date());
-                    vm.message = FoodService.getAlertMessage();
-                }, function () {
-                    $log.info('Edit food modal dismissed on ' + new Date());
-                });
-            };
+                }
+            });
+            modalInstance.result.then(function (food) {
+                edit(food);
+                vm.message = FoodService.getAlertMessage();
+            }, function () {
+                $log.info('Edit food modal dismissed on ' + new Date());
+            });
+        }
 
-            vm.edit = function (food) {
+        function edit(food) {
+            var pos;
+            angular.forEach(vm.foods, function (item, index) {
+                if (item.id === food.id) {
+                    pos = index;
+                }
+            });
+            vm.foods[pos] = food;
+        }
+
+        function deleteFood(food) {
+            vm.message = '';
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                backdrop: false,
+                templateUrl: 'components/modal/food/food-delete-confirm-modal.html',
+                controller: 'FoodController',
+                controllerAs: 'foodCtrl',
+                size: 'sm',
+                resolve: {
+                    food: function () {
+                        return food;
+                    },
+                    foods: function () {
+                        return null;
+                    }
+                }
+            });
+            modalInstance.result.then(function (food) {
+                deleteFoo(food);
+                $log.info('Delete food modal closed on ' + new Date());
+                vm.message = FoodService.getAlertMessage();
+            }, function () {
+                $log.info('Delete food modal dismissed on ' + new Date());
+            });
+
+            function deleteFoo(food) {
                 var pos;
-                vm.foods.forEach(function (item, index) {
+                angular.forEach(vm.foods, function (item, index) {
                     if (item.id === food.id) {
                         pos = index;
                     }
-                });
-                vm.foods[pos] = food;
-            };
-
-            vm.deleteFood = function (food) {
-                vm.message = '';
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    backdrop: false,
-                    templateUrl: 'components/modal/food/food-delete-confirm-modal.html',
-                    controller: 'FoodController',
-                    controllerAs: 'foodCtrl',
-                    size: 'sm',
-                    resolve: {
-                        editFood: function () {
-                            return null;
-                        },
-                        deleteFood: function () {
-                            return food;
-                        },
-                        addRestaurant: function () {
-                            return null;
-                        },
-                        restaurantId: function () {
-                            return vm.restaurant.id;
-                        },
-                        foods: function () {
-                            return vm.addFoods;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (food) {
-                    vm.delete(food);
-                    $log.info('Delete food modal closed on ' + new Date());
-                    vm.message = FoodService.getAlertMessage();
-                }, function () {
-                    $log.info('Delete food modal dismissed on ' + new Date());
-                });
-
-                vm.delete = function (food) {
-                    var pos;
-                    vm.foods.forEach(function (item, index) {
-                        if (item.id === food.id) {
-                            pos = index;
-                        }
-                    })
-                    vm.foods.splice(pos, 1);
-                };
-            };
+                })
+                vm.foods.splice(pos, 1);
+            }
         }
 
-        vm.addOrder = function (food, restaurantName) {
+        function addOrder(food, restaurantName) {
+            RestaurantService.setAlertMessage('');
             var order = {
                 id: food.id,
                 name: food.name,
@@ -215,40 +205,38 @@
                 price: food.price
             };
 
+            var previousOrders = OrderService.getOrder();
+
             var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 backdrop: false,
-                templateUrl: 'components/modal/add-to-cart/cart.html',
+                templateUrl: 'components/modal/cart/cart.html',
                 controller: 'CartController as cartCtrl',
                 size: 'md',
                 resolve: {
                     order: function () {
                         return order;
+                    },
+                    previousOrders: function () {
+                        return previousOrders;
                     }
                 }
             });
-            modalInstance.result.then(
-                function () {
-                    $log.info('Add order modal closed on ' + new Date());
-                },
-                function () {
-                    $log.info('Add order modal dismissed on ' + new Date());
-                }
-            );
-        };
+            modalInstance.result.then(angular.noop, angular.noop);
+        }
 
-        vm.deleteOrder = function (food) {
+        function deleteOrder(food) {
             OrderService.deleteOrder(food);
             vm.order = OrderService.getOrder();
-        };
+        }
 
-        vm.confirmOrder = function () {
+        function confirmOrder() {
             $state.go('order');
-        };
+        }
 
-        vm.restaurantStatus = function (id, status) {
+        function restaurantStatus(id, status) {
             if (status) {
                 RestaurantService.activateRestaurant(id).then(function (success) {
                     $log.info(success.data);
@@ -264,22 +252,21 @@
                 });
             }
             $sessionStorage.restaurant.active = status;
-        };
+        }
 
-        //Add Food Functions
-        vm.deleteFoodToAdd = function (food) {
+        function deleteFoodToAdd(food) {
             var pos;
-            vm.addFoods.forEach(function (item, index) {
+            angular.forEach(vm.addFoods, function (item, index) {
                 if (item.name === food.name && item.restaurantId === food.restaurantId) {
                     pos = index;
                 }
             })
             vm.addFoods.splice(pos, 1);
             $sessionStorage.addFoods = vm.addFoods;
-        };
+        }
 
-        vm.confirmAdd = function () {
-            var confirmAddFoods = $uibModal.open({
+        function confirmAdd() {
+            var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
@@ -291,27 +278,18 @@
                     foods: function () {
                         return vm.addFoods;
                     },
-                    editFood: function () {
-                        return null;
-                    },
-                    deleteFood: function () {
-                        return null;
-                    },
-                    addRestaurant: function () {
-                        return null;
-                    },
-                    restaurantId: function () {
+                    food: function () {
                         return null;
                     }
                 }
             });
-            confirmAddFoods.result.then(
+            modalInstance.result.then(
                 function (foods) {
-                    foods.forEach(function (food) {
+                    angular.forEach(foods, function (food) {
                         if (vm.restaurant.id === food.restaurantId) {
                             vm.foods.push(food);
                         }
-                    })
+                    });
                     vm.addFoods = [];
                     $sessionStorage.addFoods = vm.addFoods;
                     $log.info('Confirm add modal closed on ' + new Date());
@@ -321,7 +299,7 @@
                 }
             );
 
-        };
+        }
 
     }
 })();

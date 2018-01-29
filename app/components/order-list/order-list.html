@@ -1,0 +1,91 @@
+<!--<div class="row">-->
+    <!--<table class="table table-bordered">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th rowspan="2">S/N</th>-->
+            <!--<th rowspan="2">Customer</th>-->
+            <!--<th colspan="4">Order Details</th>-->
+            <!--<th rowspan="2">Order Date</th>-->
+            <!--<th rowspan="2">Action</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th>Food</th>-->
+            <!--<th>Restaurant</th>-->
+            <!--<th>Price</th>-->
+            <!--<th>Quantity</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+
+        <!--<pre>{{orderListCtrl.orderList | json}}</pre>-->
+
+        <!--<tbody>-->
+        <!--<tr ng-repeat="order in orderListCtrl.orderList">-->
+            <!--<td>{{$index+1}}</td>-->
+            <!--<td>{{order.userId}}</td>-->
+
+
+            <!--<td>MoMo</td>-->
+            <!--<td>Bota MoMo</td>-->
+            <!--<td>220</td>-->
+            <!--<td>2</td>-->
+            <!--<td>2017/02/10</td>-->
+
+
+            <!--<td>-->
+                <!--<button class="btn btn-default btn-sm">Receive</button>-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+
+
+<div class="row ">
+    <div ng-hide="orderListCtrl.orderList.length>=1">
+    <h2>Customers' orders completed.</h2>
+    <h3>Click <a ui-sref="dashboard">here</a> to go back to the dashboard page</h3>
+    </div>
+    <table ng-show="orderListCtrl.orderList.length>=1" class="table table-condensed table-striped table-bordered ">
+        <caption ng-hide="restaurantCtrl.role == 'admin'">
+            <h3>Order</h3>
+        </caption>
+        <thead>
+        <tr>
+            <th>S/N</th>
+            <th>User</th>
+            <th>Details</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="order in orderListCtrl.orderList">
+            <td>{{$index+1}}</td>
+            <td>{{order.userId}}</td>
+            <td>
+                <span class="order-list">
+                    <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Food</th>
+                            <th>Restaurant</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="food in order.foodResList">
+                     <td>{{food.foodName}}</td>
+                     <td>{{food.restaurantName}}</td>
+                     <td>{{food.foodPrice}}</td>
+                     <td>{{food.quantity}}</td>
+                    </tr>
+                </table>
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-default btn-sm" ng-click="orderListCtrl.receiveOrder(order.orderId)">Receive
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

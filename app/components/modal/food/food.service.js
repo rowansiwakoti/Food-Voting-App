@@ -3,27 +3,39 @@
     angular.module('FoodOrderingApp')
         .factory('FoodService', FoodService);
 
-    FoodService.$inject = ['$sessionStorage', '$http', 'APP_CONSTANT'];
+    FoodService.$inject = [
+        '$sessionStorage',
+        '$http',
+        'APP_CONSTANT'
+    ];
 
     function FoodService($sessionStorage, $http, APP_CONSTANT) {
 
-        var foodSvc = {};
         var alertMessage = '';
         var foodList = [];
         var appUrl = APP_CONSTANT.FOA_APP;
 
-        // Get Food List
-        foodSvc.getFoodList = function (id) {
+        var foodSvc = {
+            getFoodList: getFoodList,
+            deleteFood: deleteFood,
+            editFood: editFood,
+            getFood: getFood,
+            addFoods: addFoods,
+            setAlertMessage: setAlertMessage,
+            getAlertMessage: getAlertMessage,
+            deleteFromAddFoods: deleteFromAddFoods
+        };
+
+
+        function getFoodList(id) {
             return ($http.get(appUrl + '/restaurants/' + id + '/foods'));
-        };
+        }
 
-        //Delete Food from the list
-        foodSvc.deleteFood = function (food) {
+        function deleteFood(food) {
             return ($http.delete(appUrl + '/foods/' + food.id));
-        };
+        }
 
-        //Edit Food
-        foodSvc.editFood = function (food) {
+        function editFood(food) {
             var req = {
                 method: 'PUT',
                 headers: {
@@ -33,18 +45,16 @@
                 url: appUrl + '/foods/' + food.id
             }
             return ($http(req));
-        };
+        }
 
-        //Get Food
-        foodSvc.getFood = function (id) {
+        function getFood(id) {
             var food = foodList.filter(function (food) {
                 return food.id === id;
             });
             return food[0];
-        };
+        }
 
-        //Add Food to the List
-        foodSvc.addFoods = function (foods) {
+        function addFoods(foods) {
             var foodList = [];
             foods.forEach(function (food) {
                 foodList.push({
@@ -64,17 +74,17 @@
                 data: foodList
             }
             return ($http(req));
-        };
+        }
 
-        // Set and Get Alert Messages
-        foodSvc.setAlertMessage = function (msg) {
+        function setAlertMessage(msg) {
             alertMessage = msg;
-        };
-        foodSvc.getAlertMessage = function () {
-            return alertMessage;
-        };
+        }
 
-        foodSvc.delteFromAddFoods = function (id) {
+        function getAlertMessage() {
+            return alertMessage;
+        }
+
+        function deleteFromAddFoods(id) {
             var addFoods = $sessionStorage.addFoods;
             var tempFoods = [];
             if (addFoods) {
@@ -85,9 +95,8 @@
                 });
             }
             $sessionStorage.addFoods = tempFoods;
-        };
+        }
 
-        // Return food service
         return foodSvc;
     }
 })();

@@ -5,7 +5,10 @@
     angular.module('FoodOrderingApp')
         .config(config);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+    config.$inject = [
+        '$stateProvider',
+        '$urlRouterProvider'
+    ];
 
     function config($stateProvider, $urlRouterProvider) {
 
@@ -31,23 +34,32 @@
             })
             .state('order', {
                 url: '/order',
-                templateUrl: 'components/order/order.html',
-                controller: 'OrderController as orderCtrl'
+                templateUrl: 'components/order-list/order-list.html',
+                controller: 'OrderListController as orderListCtrl'
             })
+            .state('order.id', {
+                url: '/:id',
+                templateUrl: 'components/order/order.html',
+                controller: 'OrderController as OrderCtrl'
+            })
+
             .state('register', {
                 url: '/register',
                 templateUrl: 'components/register/register.html',
                 controller: 'RegisterController as registerCtrl'
             })
-            .state('orderhistory', {
-                url: '/orderhistory',
-                templateUrl: 'components/orderhistory/orderhistory.html',
-                controller: 'OrderHistoryController as orderHistoryCtrl'
+            .state('orderBill', {
+                url: '/orderBill',
+                templateUrl: 'components/order-bill/order-bill.html',
+                controller: 'OrderBillController as orderBillCtrl',
+                params: {
+                    order: null
+                }
             })
-            .state('gotologin', {
-                url: '/gotologin',
-                templateUrl: 'components/goto-login/goto.login.html',
-                controller: 'GotoLoginController as gotoCtrl'
+            .state('registrationSuccess', {
+                url: '/registrationSuccess',
+                templateUrl: 'components/registration-success/registration-success.html',
+                controller: 'RegistrationSuccessController as registrationSuccessCtrl'
             });
     }
 })();

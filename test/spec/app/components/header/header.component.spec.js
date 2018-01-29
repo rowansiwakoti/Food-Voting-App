@@ -2,7 +2,7 @@
 
 describe("component test", function () {
 
-    beforeEach(module("FoodVotingApp"));
+    beforeEach(module("FoodOrderingApp"));
 
     describe("header component", function () {
 

@@ -3,71 +3,86 @@
     angular.module('FoodOrderingApp')
         .controller('RestaurantModalController', RestaurantModalController);
 
-    RestaurantModalController.$inject = ['$uibModalInstance', '$log', 'RestaurantService', 'APP_CONSTANT', 'delRestaurant', 'editRestaurant'];
+    RestaurantModalController.$inject = [
+        '$uibModalInstance',
+        '$log',
+        'RestaurantService',
+        'APP_CONSTANT',
+        'Restaurant'
+    ];
 
-    function RestaurantModalController($uibModalInstance, $log, RestaurantService, APP_CONSTANT, delRestaurant, editRestaurant) {
+    function RestaurantModalController($uibModalInstance, $log, RestaurantService, APP_CONSTANT, Restaurant) {
+
         var vm = this;
 
         vm.restaurant = {};
-        vm.resNameReqMsg = APP_CONSTANT.RES_NAME_REQ_MSG;
-        vm.contactNoMsg = APP_CONSTANT.CONTACT_NO_MSG;
-        vm.numbersOnlyMsg = APP_CONSTANT.NUMBERS_ONLY_MSG;
+
+        vm.numbersOnly = APP_CONSTANT.NUMBERS_ONLY;
+        vm.alphabetsOnly = APP_CONSTANT.ALPHABETS_ONLY;
+        vm.restNameReq = APP_CONSTANT.REST_NAME_REQ;
+        vm.restNameTooLong = APP_CONSTANT.REST_NAME_TOO_LONG;
+        vm.restNameTooShort = APP_CONSTANT.REST_NAME_TOO_SHORT;
+        vm.restAddressReq = APP_CONSTANT.REST_ADDRESS_REQ;
+        vm.restAddressTooLong = APP_CONSTANT.REST_ADDRESS_TOO_LONG;
+        vm.restAddressTooShort = APP_CONSTANT.REST_ADDRESS_TOO_SHORT;
+        vm.contactNoReq = APP_CONSTANT.CONTACT_NO_REQ;
+        vm.contactNoSize = APP_CONSTANT.CONTACT_NO_SIZE;
+
+        vm.addRestaurant = addRestaurant;
+        vm.editRestaurant = editRestaurant;
+        vm.deleteRestaurant = deleteRestaurant;
+        vm.closeModal = closeModal;
 
 
-        init();
-
-        function init() {
-            if (editRestaurant) {
-                vm.restaurant = angular.copy(editRestaurant);
-                vm.copyRestaurant = angular.copy(editRestaurant);
+        vm.$onInit = function () {
+            if (Restaurant) {
+                vm.restaurant = angular.copy(Restaurant);
+                vm.copyRestaurant = angular.copy(Restaurant);
+                vm.restaurantToBeDeleted = Restaurant.name;
             }
+        };
 
-            if (delRestaurant) {
-                vm.restaurantToBeDeleted = delRestaurant.name;
-            }
-        }
-
-        vm.addRestaurant = function (restaurant) {
+        function addRestaurant(restaurant) {
             RestaurantService.addRestaurant(restaurant)
                 .then(
                     function (answer) {
+                        RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.ADD_MSG);
                         $uibModalInstance.close(answer.data);
                     },
                     function (error) {
                         $log.info(error);
                     }
                 );
-            RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.ADD_MSG);
-        };
+        }
 
-        vm.editRestaurant = function (restaurant) {
+        function editRestaurant(restaurant) {
             RestaurantService.editRestaurant(restaurant)
                 .then(
                     function (answer) {
+                        RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.EDIT_MSG);
                         $uibModalInstance.close(answer.data);
                     },
                     function (error) {
                         $log.info(error);
                     }
                 );
-            RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.EDIT_MSG);
-        };
+        }
 
-        vm.deleteRestaurant = function () {
-            RestaurantService.deleteRestaurant(delRestaurant)
+        function deleteRestaurant() {
+            RestaurantService.deleteRestaurant(Restaurant)
                 .then(
                     function (answer) {
+                        RestaurantService.setAlertMessage(Restaurant.name + ' ' + APP_CONSTANT.DELETE_MSG);
                         $uibModalInstance.close(answer.data);
                     },
                     function (error) {
                         $log.info(error);
                     }
                 );
-            RestaurantService.setAlertMessage(delRestaurant.name + ' ' + APP_CONSTANT.DELETE_MSG);
-        };
+        }
 
-        vm.modalCancel = function () {
+        function closeModal() {
             $uibModalInstance.dismiss();
-        };
+        }
     }
 })();

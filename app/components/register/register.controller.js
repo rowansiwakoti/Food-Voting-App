@@ -4,50 +4,71 @@
     angular.module('FoodOrderingApp')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$state', '$log', '$timeout', 'UserService', 'APP_CONSTANT'];
+    RegisterController.$inject = [
+        '$state',
+        '$log',
+        '$timeout',
+        'UserService',
+        'APP_CONSTANT'
+    ];
 
     function RegisterController($state, $log, $timeout, UserService, APP_CONSTANT) {
 
         var vm = this;
 
-        vm.firstNameMsg = APP_CONSTANT.FIRST_NAME_MSG;
-        vm.lastNameMsg = APP_CONSTANT.LAST_NAME_MSG;
-        vm.emailMsg = APP_CONSTANT.EMAIL_MSG;
-        vm.invalidEmailMsg = APP_CONSTANT.INVALID_EMAIL_MSG;
-        vm.contactNumMsg = APP_CONSTANT.CONTACT_NO_MSG;
-        vm.addressMsg = APP_CONSTANT.ADDRESS_MSG;
-        vm.passwordMsg = APP_CONSTANT.PASSWORD_MSG;
-        vm.confirmPasswordMsg = APP_CONSTANT.CONFIRM_PASSWORD_MSG;
+        vm.firstNameReq = APP_CONSTANT.FIRST_NAME_REQ;
+        vm.firstNameTooShort = APP_CONSTANT.FIRST_NAME_TOO_SHORT;
+        vm.firstNameTooLong = APP_CONSTANT.FIRST_NAME_TOO_LONG;
+        vm.middleNameTooShort = APP_CONSTANT.MIDDLE_NAME_TOO_SHORT;
+        vm.middleNameTooLong = APP_CONSTANT.MIDDLE_NAME_TOO_LONG;
+        vm.lastNameReq = APP_CONSTANT.LAST_NAME_REQ;
+        vm.lastNameTooShort = APP_CONSTANT.LAST_NAME_TOO_SHORT;
+        vm.lastNameTooLong = APP_CONSTANT.LAST_NAME_TOO_LONG;
+        vm.invalidEmail = APP_CONSTANT.INVALID_EMAIL;
+        vm.emailAddReq = APP_CONSTANT.EMAIL_ADD_REQ;
+        vm.contactNoReq = APP_CONSTANT.CONTACT_NO_REQ;
+        vm.contactNoSize = APP_CONSTANT.CONTACT_NO_SIZE;
+        vm.addressReq = APP_CONSTANT.ADDRESS_REQ;
+        vm.addressTooLong = APP_CONSTANT.ADDRESS_TOO_LONG;
+        vm.addressTooShort = APP_CONSTANT.ADDRESS_TOO_SHORT;
+        vm.passwordReq = APP_CONSTANT.PASSWORD_REQ;
+        vm.passwordTooLong = APP_CONSTANT.PASSWORD_TOO_LONG;
+        vm.passwordTooShort = APP_CONSTANT.PASSWORD_TOO_SHORT;
+        vm.numbersOnly = APP_CONSTANT.NUMBERS_ONLY;
+        vm.alphabetsOnly = APP_CONSTANT.ALPHABETS_ONLY;
 
         vm.user = {};
         vm.dataLoading = false;
-        vm.errorStatus = false;
 
-        vm.backToLogin = function () {
+        vm.backToLogin = backToLogin;
+        vm.registerUser = registerUser;
+
+        function backToLogin() {
             $state.go('login');
-        };
+        }
 
-        vm.registerUser = function (user) {
+        function registerUser(user) {
             vm.dataLoading = true;
             $timeout(function () {
                 if (user.userPassword === user.confirmPassword) {
                     UserService.setUser(user)
                         .then(
                             function (answer) {
-                                $state.go('gotologin');
-                                $log.info(answer);
+                                $state.go('registrationSuccess');
                             },
                             function (error) {
-                                $state.go('login');
+                                vm.dataLoading = false;
                                 $log.info(error);
                             }
                         );
                 }
                 else {
-                    alert('Password and confirm password did not match!');
+                    vm.dataLoading = false;
+                    vm.passwordNotMatchMsg = APP_CONSTANT.PASSWORD_NOT_MATCH;
+
                 }
             }, 1000);
 
-        };
+        }
     }
 })();

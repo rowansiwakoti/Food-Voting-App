@@ -2,16 +2,30 @@
     'use strict';
     angular.module('FoodOrderingApp')
         .factory('RestaurantService', RestaurantService);
-    RestaurantService.$inject = ['$http', 'FoodService', 'APP_CONSTANT'];
+    RestaurantService.$inject = [
+        '$http',
+        'FoodService',
+        'APP_CONSTANT'
+    ];
 
     function RestaurantService($http, FoodService, APP_CONSTANT) {
 
-        var restaurantSvc = {};
         var alertMessage = '';
         var appUrl = APP_CONSTANT.FOA_APP;
 
-        //Add the restaurant
-        restaurantSvc.addRestaurant = function (restaurant) {
+        var restaurantSvc = {
+            addRestaurant: addRestaurant,
+            deleteRestaurant: deleteRestaurant,
+            editRestaurant: editRestaurant,
+            getRestaurantList: getRestaurantList,
+            setAlertMessage: setAlertMessage,
+            getAlertMessage: getAlertMessage,
+            activateRestaurant: activateRestaurant,
+            deactivateRestaurant: deactivateRestaurant
+
+        };
+
+        function addRestaurant(restaurant) {
             restaurant.active = true;
             var req = {
                 method: 'POST',
@@ -22,17 +36,14 @@
                 data: restaurant
             }
             return ($http(req));
-        };
+        }
 
-        //Delete the restaurant
-        restaurantSvc.deleteRestaurant = function (restaurant) {
-            console.log(restaurant);
-            FoodService.delteFromAddFoods(restaurant.id);
+        function deleteRestaurant(restaurant) {
+            FoodService.deleteFromAddFoods(restaurant.id);
             return ($http.delete(appUrl + '/restaurants/' + restaurant.id));
-        };
+        }
 
-        //Edit the restaurant
-        restaurantSvc.editRestaurant = function (restaurant) {
+        function editRestaurant(restaurant) {
             var req = {
                 method: 'PUT',
                 headers: {
@@ -42,27 +53,30 @@
                 data: restaurant
             }
             return ($http(req));
-        };
+        }
 
-        //Get the list of restaurants
-        restaurantSvc.getRestaurantList = function () {
+        function getRestaurantList() {
             return ($http.get(appUrl + '/restaurants'));
-        };
+        }
 
-        restaurantSvc.setAlertMessage = function (msg) {
+        function setAlertMessage(msg) {
             alertMessage = msg;
-        };
-        restaurantSvc.getAlertMessage = function () {
+        }
+
+        function getAlertMessage() {
             return alertMessage;
-        };
+        }
 
-        restaurantSvc.activateRestaurant = function (id) {
+        function activateRestaurant(id) {
             return $http.get(appUrl + '/restaurants/' + id + '/activate');
-        };
+        }
 
-        restaurantSvc.deactivateRestaurant = function (id) {
+        function deactivateRestaurant(id) {
             return $http.get(appUrl + '/restaurants/' + id + '/deactivate');
-        };
+        }
+
+
+
         return restaurantSvc;
     }
 })();

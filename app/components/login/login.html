@@ -1,14 +1,14 @@
-
-
-
-
+<div id="alertMessage" ng-show="loginCtrl.errorMsg" class="alert alert-danger alert-dismissible fade in"
+     role="alert"><a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <p>{{loginCtrl.errorMsg}}</p>
+</div>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-login">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <a class="active">Login</a>
+                        <a class="active">Log In</a>
                     </div>
                     <div class="col-xs-6">
                         <a ui-sref="register">Register</a>
@@ -34,7 +34,6 @@
                                     <span ng-show="loginCtrl.user.userPassword"
                                           ng-mouseleave="loginCtrl.inputType = 'password'"
                                           ng-mouseover="loginCtrl.inputType = 'text'"
-                                          style="position: absolute; right: 30px; top: 75px;"
                                           class="glyphicon glyphicon-eye-open"></span>
                                 </div>
                             </div>
@@ -46,13 +45,12 @@
                                                class="form-control btn btn-login" value="Log In">
                                     </div>
 
-                                    <div ng-show="loginCtrl.dataLoading" class="col-sm-1" style="margin-top: 10px;">
-                                        <i class="fa fa-spinner fa-spin" style="font-size:24px;"></i>
+                                    <div ng-show="loginCtrl.dataLoading" class="col-sm-1 spinner">
+                                        <span class="glyphicon glyphicon-repeat normal-right-spinner"></span>
                                     </div>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

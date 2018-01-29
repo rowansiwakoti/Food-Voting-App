@@ -5,12 +5,10 @@
     <link rel="icon" type="image/png" href="assets/img/logo.png">
     <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<!--oncontextmenu="return false"-->
-<body style="overflow-y: auto">
+<body>
 <div class="container">
     <fv-header></fv-header>
     <div ui-view>
@@ -41,14 +39,16 @@
 <script src="components/modal/restaurant/restaurant.modal.controller.js"></script>
 <script src="components/modal/food/food.service.js"></script>
 
-<script src="components/modal/add-to-cart/cart.controller.js"></script>
-<script src="components/modal/profile/user.profile.controller.js"></script>
-<script src="components/goto-login/goto.login.controller.js"></script>
-<script src="components/orderhistory/orderhistory.controller.js"></script>
+<script src="components/modal/cart/cart.controller.js"></script>
+<script src="components/order-list/order-list.controller.js"></script>
+<script src="components/modal/notification/notification.controller.js"></script>
+<script src="components/modal/profile/user-profile.controller.js"></script>
+<script src="components/registration-success/registration-success.controller.js"></script>
+<script src="components/order-bill/order-bill.controller.js"></script>
 <script src="components/modal/order/order.modal.controller.js"></script>
 <script src="components/modal/food/food.controller.js"></script>
 <script src="services/user.service.js"></script>
-<script src="constants/foa.constants.js"></script>
+<script src="constants/foa.constant.js"></script>
 <script src="components/restaurant/restaurant.controller.js"></script>
 <script src="components/register/register.controller.js"></script>
 <script src="services/order.service.js"></script>

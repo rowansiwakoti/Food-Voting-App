@@ -1,21 +1,18 @@
 body {
-    background-color: #FFFAFA
-}
-
-.page-header {
+    background-color: #fffafa;
 }
 
 .logo {
     height: 75px;
-    width: 75px;
+    width: 70px;
 }
 
 .header-left {
-    float: left
+    float: left;
 }
 
 .header-left-l {
-    float: left
+    float: left;
 }
 
 .header-left-r {
@@ -24,42 +21,74 @@ body {
 }
 
 .header-left-r h1 {
-    font-size: 50px
+    display: inline;
+    font-family: cursive;
+    font-size: 48px;
 }
 
 .header-right {
     float: right;
-    padding-top: 29px
+    padding-top: 29px;
+    cursor: pointer;
 }
 
 .header-right-l {
     float: left;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .header-right-l img {
     height: 36px;
-    width: 36px
+    width: 36px;
+    margin-top: 3px;
 }
 
 .header-right-r {
     float: right;
     position: relative;
     font-size: 36px;
-    margin-left: 5px
+    margin-left: 5px;
+}
+
+.header-right-r img {
+    height: 36px;
+    width: 36px;
+    margin-top: -11px;
+}
+
+.glyphicon-eye-open {
+    position: absolute;
+    right: 30px;
+    top: 75px;
+}
+
+.spinner {
+    margin: 27px 0 0 -20px;
+}
+
+.registration-spinner {
+    margin: 27px 0px 0 -25px;
+}
+
+.bill-amount {
+    text-align: center;
+    color: darkgreen;
+}
+
+.normal-right-spinner {
+    font-size: 24px;
 }
 
 table th {
-    text-align: center
+    text-align: center;
 }
 
-/*.form-group{display: inline}*/
 .form-control:before {
     content: ".";
 }
 
 .form-control {
-    display: inline
+    display: inline;
 }
 
 div.row {
@@ -67,38 +96,80 @@ div.row {
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-    background: #029f5b
+    background: #029f5b;
 }
 
 * {
     border-radius: 0;
 }
+.registration-redirect{
+    cursor: pointer;
+}
+
+/*order confirm modal */
+body > div.modal.fade.ng-scope.ng-isolate-scope.in > div > div {
+    width: 49%;
+    margin-left: 25%;
+}
 
 /*Register Page*/
 .register h4 {
-    font-size: 17px
+    font-size: 17px;
+    font-family: cursive;
+}
+
+/*User Order Modal*/
+.order-modal-header {
+    padding: 2px 7px 0px 12px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#modal-body > table > tbody > tr.ng-scope {
+    text-align: center;
+}
+
+.table-striped>tbody>tr {
+    text-align: center;
+}
+
+.order-modal-body {
+    position: relative;
+    padding: 11px 11px 0px 11px;
+}
+
+.order-modal-footer {
+    padding: 7px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+
+.order-list {
+    margin-bottom: 13px;
+    text-align: center;
 }
 
 /*User Model*/
 .modal-title-left {
     float: left;
     text-align: center;
-    width: 285px
+    width: 285px;
+    margin-left: 6px;
+
 }
 
 .modal-title-right {
     float: right;
-    margin: 10px 10px 0 0;
+    margin: -12px 9px 0 0;
 }
 
 .fav-icon {
-    color: red;
+    color: #ff0000;
     cursor: pointer;
 }
 
 .modal-title img {
     height: 100px;
-    width: 100px
+    width: 100px;
 }
 
 .modal-body-img {
@@ -111,32 +182,60 @@ div.row {
 }
 
 .user-modal-body a {
-    display: block
+    display: block;
 }
 
 .user-modal-body li:last-child {
     cursor: pointer;
 }
 
+.pointer-cursor{
+    cursor: pointer;
+}
+
 /*Cart Model*/
 .cart-left {
-    float: left
+    float: left;
 }
 
 .cart-right {
-    float: right
+    float: right;
+}
+
+.order-cart-modal-body {
+    position: relative;
+    padding: 0px 15px 0px 15px;
 }
 
 /**/
-#intro h3,
-#intro a {
-    display: inline;
+.intro {
     text-align: right;
+}
+
+.intro h3, a {
+    display: inline;
+}
+
+.restaurant-dashboard {
+    margin-bottom: 50px;
+}
+
+.restaurant {
+    margin-bottom: 20px;
+}
+
+.rest {
+    text-decoration: underline;
+}
+
+.bill-receipt {
+    text-align: center;
+    margin-left: 41%;
+    position: absolute;
 }
 
 .restaurant-name {
     display: inline;
-    /*float: right;*/
     text-align: center;
 }
 
@@ -148,15 +247,20 @@ h3.page {
     text-align: center;
 }
 
+.info-message {
+    text-align: center;
+    color: #ff0000;
+}
+
 footer {
-    background-color: silver;
+    background-color: #c0c0c0;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     height: 60px;
     text-align: center;
-    color: #CCC;
+    color: #ccc;
 }
 
 footer p {
@@ -166,23 +270,36 @@ footer p {
     color: #000;
 }
 
-.alert {
+.alert-msg {
     display: inline-block;
 }
 
-/*.image{height: 200px; border: 1px solid}*/
+.order-info {
+    z-index: 1;
+    position: absolute;
+    margin: -0.7% 0 0 -1%;
+}
+
 .number {
-    width: 40px
+    width: 40px;
 }
 
 .num-control {
-    width: 30px
+    width: 30px;
 }
 
-.image {
+.restaurant-card {
     height: 200px;
     border: 1px solid;
     padding: 60px;
+    border-radius: 15px;
+    color: #696969;
+    background-color: #ffffff;
+    /*background-image: url("../img/trisara.jpg");*/
+}
+
+.restaurant-card:hover {
+    box-shadow: 6px 9px 15px #888888;
 }
 
 .cmn-toggle {
@@ -259,20 +376,19 @@ input.cmn-toggle-round-flat + label:after {
 }
 
 input.cmn-toggle-round-flat:checked + label {
-    background-color: green;
+    background-color: #008000;
 }
 
 input.cmn-toggle-round-flat:checked + label:after {
     margin-left: 45px;
-    background-color: green;
+    background-color: #008000;
 }
 
 .badge-notify {
-    background: red;
+    background: #ff0000;
     position: absolute;
-    top: 5px;
-    /*left: -54px;*/
-
+    top: 2px;
+    left: -3px;
 }
 
 #shopping-cart {
@@ -285,7 +401,6 @@ input.cmn-toggle-round-flat:checked + label:after {
     right: 100px;
 }
 
-/*sankfs*/
 .panel-login {
     border-color: #ccc;
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
@@ -346,7 +461,7 @@ input.cmn-toggle-round-flat:checked + label:after {
 }
 
 .btn-login {
-    background-color: #59B2E0;
+    background-color: #59b2e0;
     outline: none;
     color: #fff;
     font-size: 14px;
@@ -354,14 +469,22 @@ input.cmn-toggle-round-flat:checked + label:after {
     font-weight: normal;
     padding: 14px 0;
     text-transform: uppercase;
-    border-color: #59B2E6;
+    border-color: #59b2e6;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+    padding: 5px 10px;
+    margin-top: 0px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
 }
 
 .btn-login:hover,
 .btn-login:focus {
     color: #fff;
-    background-color: #53A3CD;
-    border-color: #53A3CD;
+    background-color: #53a3cd;
+    border-color: #53a3cd;
 }
 
 .forgot-password {
@@ -376,7 +499,7 @@ input.cmn-toggle-round-flat:checked + label:after {
 }
 
 .btn-register {
-    background-color: #1CB94E;
+    background-color: #1cb94e;
     outline: none;
     color: #fff;
     font-size: 14px;
@@ -384,12 +507,120 @@ input.cmn-toggle-round-flat:checked + label:after {
     font-weight: normal;
     padding: 14px 0;
     text-transform: uppercase;
-    border-color: #1CB94A;
+    border-color: #1cb94a;
 }
 
 .btn-register:hover,
 .btn-register:focus {
     color: #fff;
-    background-color: #1CA347;
-    border-color: #1CA347;
+    background-color: #1ca347;
+    border-color: #1ca347;
 }
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 0;
+}
+
+.col-xs-6 {
+    width: 50%;
+    margin-top: 6px;
+}
+
+.panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    border-radius: 0;
+}
+
+.help-block {
+    display: block;
+    margin-top: 1px;
+    margin-bottom: -3px;
+    color: #ff0000;
+    font-variant: all-petite-caps;
+}
+
+.logout-modal-footer {
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    padding: 0px 0px 14px 14px;
+}
+
+.logout-modal-header {
+    padding: 7px 7px 8px 17px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logout-modal-body {
+    position: relative;
+    padding: 6px 9px 0px 21px;
+    font-size: 25px;
+    font-family: cursive;
+}
+
+.logout-modal-title {
+    line-height: 1.42857143;
+    font-size: 22px;
+    font-family: cursive;
+}
+
+.cart-modal-footer {
+    border: none;
+}
+
+.cart-modal-footer label {
+    padding: 4px 10px;
+    margin-bottom: 0;
+}
+
+.cart-modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.add-cart-button {
+    width: 200px;
+    margin-top: -3px;
+}
+
+.add-cart-button span {
+    margin-right: 0px;
+}
+
+.glyphicon.normal-right-spinner {
+    -webkit-animation: glyphicon-spin-r 2s infinite linear;
+    animation: glyphicon-spin-r 2s infinite linear;
+}
+
+@-webkit-keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+

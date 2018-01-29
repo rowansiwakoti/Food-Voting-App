@@ -3,38 +3,51 @@
     angular.module('FoodOrderingApp')
         .controller('FoodController', FoodController);
 
-    FoodController.$inject = ['$uibModalInstance', '$log', 'FoodService', 'APP_CONSTANT', 'editFood', 'deleteFood', 'foods'];
+    FoodController.$inject = [
+        '$uibModalInstance',
+        '$log',
+        'FoodService',
+        'APP_CONSTANT',
+        'food',
+        'foods'
+    ];
 
-    function FoodController($uibModalInstance, $log, FoodService, APP_CONSTANT, editFood, deleteFood, foods) {
+    function FoodController($uibModalInstance, $log, FoodService, APP_CONSTANT, food, foods) {
 
         var vm = this;
 
-        vm.foodNameReqMsg = APP_CONSTANT.FOOD_NAME_REQ_MSG;
-        vm.foodPriceReqMsg = APP_CONSTANT.FOOD_PRICE_REQ_MSG;
-        vm.resNameReqMsg = APP_CONSTANT.RES_NAME_REQ_MSG;
-        vm.numbersOnlyMsg = APP_CONSTANT.NUMBERS_ONLY_MSG;
+        vm.foodNameReq = APP_CONSTANT.FOOD_NAME_REQ;
+        vm.foodNameTooLong = APP_CONSTANT.FOOD_NAME_TOO_LONG;
+        vm.foodNameTooShort = APP_CONSTANT.FOOD_NAME_TOO_SHORT;
+        vm.foodPriceReq = APP_CONSTANT.FOOD_PRICE_REQ;
+        vm.foodPriceLow = APP_CONSTANT.FOOD_PRICE_LOW;
+        vm.foodPriceHigh = APP_CONSTANT.FOOD_PRICE_HIGH;
+        vm.numbersOnly = APP_CONSTANT.NUMBERS_ONLY;
+        vm.alphabetsOnly = APP_CONSTANT.ALPHABETS_ONLY;
+
         vm.food = {};
 
-        init();
+        vm.addFood = addFood;
+        vm.addFoodConfirm = addFoodConfirm;
+        vm.closeModal = closeModal;
+        vm.editFood = editFood;
+        vm.deleteFood = deleteFood;
 
-        function init() {
-            if (editFood) {
-                vm.food = angular.copy(editFood);
-                vm.copyFood = angular.copy(editFood);
-            }
 
-            if (deleteFood) {
-                vm.foodToBeDeleted = deleteFood.name;
+        vm.$onInit = function () {
+            if (food) {
+                vm.food = angular.copy(food);
+                vm.copyFood = angular.copy(food);
+                vm.foodToBeDeleted = food.name;
             }
         }
 
-
-        vm.addFood = function (food) {
+        function addFood(food) {
             $uibModalInstance.close(food);
-        };
+        }
 
 
-        vm.addFoodConfirm = function () {
+        function addFoodConfirm() {
             var foodList = foods;
             FoodService.addFoods(foodList).then(
                 function (answer) {
@@ -44,34 +57,22 @@
                     $log.info(error);
                 }
             );
-        };
-        vm.modalCancel = function () {
+        }
+
+        function closeModal() {
             $uibModalInstance.dismiss();
-        };
+        }
 
-        vm.editFood = function (food) {
+        function editFood(food) {
             FoodService.editFood(food)
-                .then(
-                    function (answer) {
-
-                    },
-                    function (error) {
-                        $log.info(error);
-                    }
-                )
+                .then(angular.noop, angular.noop);
             $uibModalInstance.close(food);
-        };
+        }
 
-        vm.deleteFood = function () {
-            FoodService.deleteFood(deleteFood)
-                .then(
-                    function (answer) {
-                    },
-                    function (error) {
-                        $log.info(error);
-                    }
-                )
-            $uibModalInstance.close(deleteFood);
-        };
+        function deleteFood() {
+            FoodService.deleteFood(food)
+                .then(angular.noop, angular.noop);
+            $uibModalInstance.close(food);
+        }
     }
 })();

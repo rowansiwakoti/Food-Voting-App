@@ -22,23 +22,12 @@ module.exports = function (config) {
             '../app/app.module.js',
             '../app/app.config.js',
             '../app/components/**/*.js',
-            '../app/constants/foa.constants.js',
+            '../app/constants/foa.constant.js',
             '../app/services/user.service.js',
+            '../app/services/order.service.js',
 
             // spec files
-            '../test/spec/app/components/login/login.controller.spec.js',
-            '../test/spec/app/components/dashboard/dashboard.controller.spec.js',
-            '../test/spec/app/components/modal/user-logout/logout.controller.spec.js',
-            '../test/spec/app/components/modal/restaurant/restaurant.controller.spec.js',
-            '../test/spec/app/components/modal/restaurant/restaurant.service.spec.js',
-            '../test/spec/app/components/modal/food/food.controller.spec.js',
-            '../test/spec/app/components/modal/food/edit.food.controller.spec.js',
-            '../test/spec/app/components/modal/food/delete.food.controller.spec.js',
-            '../test/spec/app/components/modal/food/food.service.spec.js',
-            '../test/spec/app/components/footer/footer.controller.spec.js',
-            '../test/spec/app/components/header/header.controller.spec.js',
-            '../test/spec/app/components/header/header.component.spec.js',
-            '../test/spec/app/components/footer/footer.component.spec.js'
+            '../test/spec/app/components/login/login.controller.spec.js'
         ],
 
         exclude: ['test/e2e/**'],

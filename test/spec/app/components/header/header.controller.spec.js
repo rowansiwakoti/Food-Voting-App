@@ -2,7 +2,7 @@
 
 describe("controller test", function () {
 
-    beforeEach(module("FoodVotingApp"));
+    beforeEach(module("FoodOrderingApp"));
 
     describe("header controller", function () {
 
