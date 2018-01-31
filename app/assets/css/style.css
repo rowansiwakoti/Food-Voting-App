@@ -207,7 +207,7 @@ body > div.modal.fade.ng-scope.ng-isolate-scope.in > div > div {
     padding: 0px 15px 0px 15px;
 }
 
-/**/
+/*Dashboard*/
 .intro {
     text-align: right;
 }
@@ -223,6 +223,7 @@ body > div.modal.fade.ng-scope.ng-isolate-scope.in > div > div {
 .restaurant {
     margin-bottom: 20px;
 }
+.page-number{text-align: center}
 
 .rest {
     text-decoration: underline;

@@ -55,8 +55,8 @@
             return ($http(req));
         }
 
-        function getRestaurantList() {
-            return ($http.get(appUrl + '/restaurants'));
+        function getRestaurantList(id) {
+            return ($http.get(appUrl + '/restaurants/page/'+id+'/6'));
         }
 
         function setAlertMessage(msg) {
