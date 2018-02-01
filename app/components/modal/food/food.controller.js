@@ -49,7 +49,6 @@
 
         function addFoodConfirm() {
             var foodList = foods;
-            // console.log(foods);
             FoodService.addFoods(foodList).then(
                 function (answer) {
                     $uibModalInstance.close(answer.data);
