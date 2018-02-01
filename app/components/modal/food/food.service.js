@@ -64,6 +64,8 @@
                 });
             });
 
+            console.log(foodList);
+
             var url = appUrl + '/foods';
             var req = {
                 method: 'POST',

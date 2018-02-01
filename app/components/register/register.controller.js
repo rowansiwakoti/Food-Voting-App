@@ -26,11 +26,14 @@
         vm.lastNameTooLong = APP_CONSTANT.LAST_NAME_TOO_LONG;
         vm.invalidEmail = APP_CONSTANT.INVALID_EMAIL;
         vm.emailAddReq = APP_CONSTANT.EMAIL_ADD_REQ;
+        vm.emailAddTooLong = APP_CONSTANT.EMAIL_ADD_TOO_LONG;
+        vm.emailAddTooShort = APP_CONSTANT.EMAIL_ADD_TOO_SHORT;
         vm.contactNoReq = APP_CONSTANT.CONTACT_NO_REQ;
         vm.contactNoSize = APP_CONSTANT.CONTACT_NO_SIZE;
         vm.addressReq = APP_CONSTANT.ADDRESS_REQ;
         vm.addressTooLong = APP_CONSTANT.ADDRESS_TOO_LONG;
         vm.addressTooShort = APP_CONSTANT.ADDRESS_TOO_SHORT;
+        vm.invalidAddress = APP_CONSTANT.INVALID_ADDRESS;
         vm.passwordReq = APP_CONSTANT.PASSWORD_REQ;
         vm.passwordTooLong = APP_CONSTANT.PASSWORD_TOO_LONG;
         vm.passwordTooShort = APP_CONSTANT.PASSWORD_TOO_SHORT;
@@ -55,16 +58,17 @@
                         .then(
                             function (answer) {
                                 $state.go('registrationSuccess');
+                                console.log(answer);
                             },
                             function (error) {
                                 vm.dataLoading = false;
-                                $log.info(error);
+                                vm.registerError = APP_CONSTANT.USER_ALREADY_EXIST;
                             }
                         );
                 }
                 else {
                     vm.dataLoading = false;
-                    vm.passwordNotMatchMsg = APP_CONSTANT.PASSWORD_NOT_MATCH;
+                    vm.registerError = APP_CONSTANT.PASSWORD_NOT_MATCH;
 
                 }
             }, 1000);

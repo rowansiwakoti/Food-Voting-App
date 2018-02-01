@@ -48,54 +48,55 @@
             }
 
 
-            // if (vm.orderList) {
-            //     var users;
-            //     UserService.getUsers().then(function (response) {
-            //         users = response.data;
-            //         angular.forEach(vm.orderList, function (order) {
-            //
-            //             angular.forEach(users, function (user) {
-            //                 if (order.userId === user.userId) {
-            //                     var middleName = user.middleName || '';
-            //                     vm.fullName = user.firstName + ' ' + middleName + ' ' + user.lastName;
-            //                 }
-            //             });
-            //
-            //         });
-            //     }, function (error) {
-            //
-            //     });
-            // }
+            if (vm.orderList) {
+                var users;
+                UserService.getUsers().then(function (response) {
+                    users = response.data;
+                    angular.forEach(vm.orderList, function (order) {
+
+                        angular.forEach(users, function (user) {
+                            if (order.userId === user.userId) {
+                                var middleName = user.middleName || '';
+                                vm.fullName = user.firstName + ' ' + middleName + ' ' + user.lastName;
+                            }
+                        });
+
+                    });
+                }, function (error) {
+
+                });
+            }
 
             $rootScope.$on('getOrderList', function (event, data) {
                 vm.orderList = data;
-                $sessionStorage.orders = vm.orderList;
+                vm.receiveOrder = function (id) {
+                    // console.log(id);
+                    var test = OrderService.receiveOrder(id);
+                    test.then(
+                        function (answer) {
+                            vm.updateList(id);
+                        },
+                        function (error) {
+
+                        }
+                    );
+                }
+                console.log(vm.orderList);
+
+                vm.updateList = function (id) {
+                    var pos = 0;
+                    vm.orderList.forEach(function (order, index) {
+                        if (order.orderId === id) {
+                            pos = index;
+                        }
+                    });
+                    vm.orderList.splice(pos, 1);
+                    $sessionStorage.orders = vm.orders;
+                    $rootScope.$broadcast('updateOrder', vm.orderList);
+                };                $sessionStorage.orders = vm.orderList;
             });
 
-            vm.receiveOrder = function (id) {
-                // console.log(id);
-                var test = OrderService.receiveOrder(id);
-                test.then(
-                    function (answer) {
-                        vm.updateList(id);
-                    },
-                    function (error) {
 
-                    }
-                );
-            }
-
-            vm.updateList = function (id) {
-                var pos = 0;
-                vm.orderList.forEach(function (order, index) {
-                    if (order.orderId === id) {
-                        pos = index;
-                    }
-                });
-                vm.orderList.splice(pos, 1);
-                $sessionStorage.orders = vm.orders;
-                $rootScope.$broadcast('updateOrder', vm.orderList);
-            };
 
         }
     }

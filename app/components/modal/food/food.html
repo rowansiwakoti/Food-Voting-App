@@ -8,7 +8,7 @@
         <div class="form-group">
             <label class="food-name">Food Name</label>
             <input type="text" name="foodName" placeholder="Food Name" ng-model="foodCtrl.food.name"
-                   class="form-control" ng-maxlength="40" ng-minlength="4" ng-pattern="/^[A-Za-z ]+$/"
+                   class="form-control" ng-maxlength="30" ng-minlength="3" ng-pattern="/^[A-Za-z\s]+$/"
                    required>
 
             <div ng-messages="foodForm.foodName.$error"
@@ -25,7 +25,7 @@
         <div class="form-group">
             <label>Food Price</label>
             <input type="text" name="foodPrice" placeholder="Food Price" ng-model="foodCtrl.food.price"
-                   class="form-control" ng-minlength="2" ng-maxlength="4"
+                   class="form-control" ng-minlength="2" ng-maxlength="5"
                    ng-pattern="/^\d+$/" required>
 
             <div ng-messages="foodForm.foodPrice.$error"

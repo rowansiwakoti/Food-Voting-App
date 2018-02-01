@@ -20,9 +20,9 @@
         </tr>
         </thead>
         <tbody>
-        <h2 ng-hide="orderModalCtrl.order.length" colspan="7" class="info-message">You have no orders.
+        <h2 ng-hide="orderModalCtrl.order.length" colspan="7" class="info-message center">You have no orders.
         </h2>
-        <tr ng-repeat="food in orderModalCtrl.order">
+        <tr ng-repeat="food in orderModalCtrl.order" class="center">
             <td>{{$index + 1}}</td>
             <td>{{food.restaurantName}}</td>
             <td>{{food.name}}</td>
@@ -46,8 +46,8 @@
             </td>
         </tr>
         <tr ng-show="orderModalCtrl.order.length">
-            <td colspan="5" class="bill-amount"><strong>Total Amount</strong></td>
-            <td colspan="2" class="bill-amount"><strong>{{orderModalCtrl.getTotal() | currency:"Rs. "}}</strong>
+            <td colspan="5" class="bill-amount center"><strong>Total Amount</strong></td>
+            <td colspan="2" class="bill-amount center"><strong>{{orderModalCtrl.getTotal() | currency:"Rs. "}}</strong>
             </td>
         </tr>
         </tbody>
@@ -57,6 +57,7 @@
     <button ng-click="orderModalCtrl.orderFood()" class="btn btn-sm btn-success pull-left"
             ng-show="orderModalCtrl.order.length">Place Order
     </button>
-    <button ng-click="orderModalCtrl.continueOrder()" class="btn btn-sm btn-primary pull-right" type="button">Continue Shopping
+    <button ng-click="orderModalCtrl.continueOrder()" class="btn btn-sm btn-primary pull-right" type="button">Continue
+        Shopping
     </button>
 </div>

@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div ng-hide="orderCtrl.foodList.length>=1" class="center"><br/>
+    <h2>{{orderCtrl.fullName}}'s orders has been completed.</h2>
+    <h3>Click <a ui-sref="dashboard">here</a> to go back to the dashboard page</h3>
+</div>
+<div ng-show="orderCtrl.foodList.length>=1">
+<h3 class="order-user center">{{orderCtrl.fullName | uppercase}}'s Order Details</h3>
+<button class="btn btn-sm btn-success btn-accept" ng-click="orderCtrl.receiveOrder(orderCtrl.userOrder.orderId)">Accept
+</button>
+<table class="table table condensed table-bordered user-order-table">
+    <thead>
+    <tr>
+        <th>Restaurant</th>
+        <th>Food</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Sub Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="center" ng-repeat="order in orderCtrl.foodList">
+        <td>{{order.restaurantName}}</td>
+        <td>{{order.foodName}}</td>
+        <td>{{order.foodPrice | currency:"Rs. "}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.foodPrice * order.quantity | currency:"Rs. "}}</td>
+    </tr>
+    </tbody>
+</table>
+</div>

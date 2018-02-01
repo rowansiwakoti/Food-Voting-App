@@ -2,10 +2,10 @@
     <div class="modal-title-right">
         <button class="close" ng-click="userProfileCtrl.closeModal()">&times;</button>
     </div>
-    <div class="modal-title-left">
+    <div class="modal-title-left center">
 
         <img ng-src="assets/img/user.png" alt="User Profile">
-        <h1>{{userProfileCtrl.user | uppercase}} </h1>
+        <h1>{{userProfileCtrl.name | uppercase}} </h1>
 
     </div>
 
@@ -15,7 +15,7 @@
 
     <ul class="list-group">
 
-        <li class="list-group-item">
+        <li ng-hide="userProfileCtrl.user === 'admin'" class="list-group-item">
             <img ng-src="assets/img/wallet.png" alt="User Balance">
             <label>&nbsp;Current Balance: Rs. {{userProfileCtrl.balance}}</label>
         </li>

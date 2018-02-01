@@ -7,10 +7,10 @@
 <div class="modal-body" id="modal-body">
     <form name="restaurantForm">
         <div class="form-group">
-            <label class="restaurant-name">Restaurant Name</label>
+            <label class="restaurant-name center">Restaurant Name</label>
             <input type="text" name="name" placeholder="Restaurant Name" ng-model="restaurantModalCtrl.restaurant.name"
                    ng-minlength="3"
-                   ng-maxlength="40" ng-pattern="/^[A-Za-z ]+$/" class="form-control"
+                   ng-maxlength="25" ng-pattern="/^[A-Za-z0-9\s]+$/" class="form-control"
                    required>
 
             <div ng-messages="restaurantForm.name.$error"
@@ -24,14 +24,14 @@
 
         </div>
         <div class="form-group">
-            <label class="restaurant-name">Restaurant address</label>
+            <label class="restaurant-name center">Restaurant address</label>
             <input type="text" name="address" placeholder="Restaurant Address"
                    ng-model="restaurantModalCtrl.restaurant.address"
-                   class="form-control" ng-minlength="4" ng-maxlength="40" ng-pattern="/^[A-Za-z ]+$/"
+                   class="form-control" ng-minlength="3" ng-maxlength="25"  ng-pattern="/^[a-zA-Z0-9\s,.'-]*$/"
                    required>
             <div ng-messages="restaurantForm.address.$error"
                  ng-if="restaurantForm.address.$touched">
-                <p class="help-block" ng-message="pattern">{{restaurantModalCtrl.alphabetsOnly}}</p>
+                <p class="help-block" ng-message="pattern">{{restaurantModalCtrl.invalidAddress}}</p>
                 <p class="help-block" ng-message="required">{{restaurantModalCtrl.restAddressReq}}</p>
                 <p class="help-block" ng-message="maxlength">{{restaurantModalCtrl.restAddressTooLong}}</p>
                 <p class="help-block" ng-message="minlength">{{restaurantModalCtrl.restAddressTooShort}}</p>
@@ -42,13 +42,14 @@
             <label class="restaurant-contact">Restaurant Contact No.</label>
             <input type="text" name="contact" ng-model="restaurantModalCtrl.restaurant.contact"
                    placeholder="Restaurant Contact No."
-                   class="form-control" ng-maxlength="10" ng-pattern="/^\d+$/" required>
+                   class="form-control" ng-minlength="7" ng-maxlength="10" ng-pattern="/^\d+$/" required>
 
             <div ng-messages="restaurantForm.contact.$error"
                  ng-if="restaurantForm.contact.$touched">
                 <p class="help-block" ng-message="pattern">{{restaurantModalCtrl.numbersOnly}}</p>
                 <p class="help-block" ng-message="required">{{restaurantModalCtrl.contactNoReq}}</p>
                 <p class="help-block" ng-message="maxlength"> {{restaurantModalCtrl.contactNoSize}}</p>
+                <p class="help-block" ng-message="minlength"> {{restaurantModalCtrl.contactNoSize}}</p>
             </div>
 
         </div>

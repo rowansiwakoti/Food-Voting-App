@@ -65,7 +65,7 @@
                 templateUrl: 'components/modal/order/order-confirm-modal.html',
                 controller: 'OrderModalController',
                 controllerAs: 'orderModalCtrl',
-                size: 'lg'
+                size: 'sm'
             });
             modalInstance.result.then(
                 function () {

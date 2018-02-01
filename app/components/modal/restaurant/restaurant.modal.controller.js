@@ -19,6 +19,7 @@
 
         vm.numbersOnly = APP_CONSTANT.NUMBERS_ONLY;
         vm.alphabetsOnly = APP_CONSTANT.ALPHABETS_ONLY;
+        vm.invalidAddress = APP_CONSTANT.INVALID_ADDRESS;
         vm.restNameReq = APP_CONSTANT.REST_NAME_REQ;
         vm.restNameTooLong = APP_CONSTANT.REST_NAME_TOO_LONG;
         vm.restNameTooShort = APP_CONSTANT.REST_NAME_TOO_SHORT;
@@ -45,11 +46,12 @@
         function addRestaurant(restaurant) {
             RestaurantService.addRestaurant(restaurant)
                 .then(
-                    function (answer) {
+                    function (answer) {console.log(answer)
+
                         RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.ADD_MSG);
                         $uibModalInstance.close(answer.data);
                     },
-                    function (error) {
+                    function (error) {console.log(error)
                         $log.info(error);
                     }
                 );

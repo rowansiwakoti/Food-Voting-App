@@ -16,7 +16,8 @@
 
         function UserProfileController($sessionStorage, balance, $uibModalInstance, $uibModal, RestaurantService, OrderService, $log) {
             var vm = this;
-            vm.user = $sessionStorage.firstName;
+            vm.name = $sessionStorage.firstName;
+            vm.user = $sessionStorage.role;
             vm.balance = balance;
 
             vm.closeModal = closeModal;

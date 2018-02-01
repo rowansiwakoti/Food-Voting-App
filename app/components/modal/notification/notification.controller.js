@@ -6,6 +6,7 @@
     NotificationController.$inject = ['$state', '$sessionStorage', '$uibModalInstance', 'orderList', 'UserService'];
 
     function NotificationController($state, $sessionStorage, $uibModalInstance, orderList, UserService) {
+
         var vm = this;
         vm.orderList = orderList;
         vm.userRole = $sessionStorage.role
@@ -13,6 +14,7 @@
         vm.name = [];
 
         var users;
+
         UserService.getUsers().then(function (response) {
             users = response.data;
 
@@ -21,7 +23,6 @@
                 angular.forEach(users, function (user) {
 
                     if (order.userId === user.userId) {
-
                         vm.name.push({firstName: user.firstName, lastName: user.lastName});
                     }
 
@@ -32,7 +33,6 @@
         }, function (response) {
 
         });
-
 
         vm.closeModal = function () {
             $uibModalInstance.close();
@@ -45,6 +45,11 @@
 
         vm.orderBill = function (order) {
             $state.go('orderBill', {order: order});
+            $uibModalInstance.close();
+        };
+
+        vm.individualOrder = function (order) {
+            $sessionStorage.individualOrder = order;
             $uibModalInstance.close();
         };
     }

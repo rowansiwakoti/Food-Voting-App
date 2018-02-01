@@ -102,20 +102,33 @@ div.row {
 * {
     border-radius: 0;
 }
-.registration-redirect{
-    cursor: pointer;
-}
 
-/*order confirm modal */
-body > div.modal.fade.ng-scope.ng-isolate-scope.in > div > div {
-    width: 49%;
-    margin-left: 25%;
+.registration-redirect {
+    cursor: pointer;
 }
 
 /*Register Page*/
 .register h4 {
     font-size: 17px;
     font-family: cursive;
+}
+
+.order-user {
+    text-align: center;
+    text-decoration: underline;
+    padding-left: 10%;
+    display: inline-block;
+}
+
+.btn-accept{
+    display: inline;
+    border: 1px solid;
+    margin-left: 39%;
+    width: 120px;
+}
+
+.center{
+    text-align: center;
 }
 
 /*User Order Modal*/
@@ -128,7 +141,11 @@ body > div.modal.fade.ng-scope.ng-isolate-scope.in > div > div {
     text-align: center;
 }
 
-.table-striped>tbody>tr {
+body > div > div > table > tbody > tr {
+    text-align: center;
+}
+
+.table-striped > tbody > tr {
     text-align: center;
 }
 
@@ -189,7 +206,11 @@ body > div.modal.fade.ng-scope.ng-isolate-scope.in > div > div {
     cursor: pointer;
 }
 
-.pointer-cursor{
+.user-order-table{
+    margin-top: 12px;
+}
+
+.pointer-cursor {
     cursor: pointer;
 }
 
@@ -291,7 +312,7 @@ footer p {
 .restaurant-card {
     height: 200px;
     border: 1px solid;
-    padding: 60px;
+    padding: 60px 0;
     border-radius: 15px;
     color: #696969;
     background-color: #ffffff;
@@ -561,7 +582,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 .logout-modal-body {
     position: relative;
     padding: 6px 9px 0px 21px;
-    font-size: 25px;
+    font-size: 20px;
     font-family: cursive;
 }
 
@@ -586,7 +607,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 .add-cart-button {
-    width: 200px;
+    width: 220px;
     margin-top: -3px;
 }
 

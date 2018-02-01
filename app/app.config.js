@@ -37,10 +37,11 @@
                 templateUrl: 'components/order-list/order-list.html',
                 controller: 'OrderListController as orderListCtrl'
             })
-            .state('order.id', {
-                url: '/:id',
+
+            .state('userOrder', {
+                url: '/order/:id',
                 templateUrl: 'components/order/order.html',
-                controller: 'OrderController as OrderCtrl'
+                controller: 'OrderController as orderCtrl',
             })
 
             .state('register', {

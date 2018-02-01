@@ -4,14 +4,14 @@
 </button>
 
 <div ng-show="orderBillCtrl.items === '' || orderBillCtrl.items.length === 0">
-    <h1 class="info-message">No Orders made yet.
+    <h1 class="info-message center">No Orders made yet.
     </h1>
 </div>
 
 <div id="printSectionId" ng-hide="orderBillCtrl.items === '' ||orderBillCtrl.items.length === 0">
     <table class="table table-condensed table-hover table-striped table-bordered">
         <caption>
-            <div class="bill-receipt"><h3><u>Bill Receipt</u></h3></div>
+            <div class="bill-receipt center"><h3><u>Bill Receipt</u></h3></div>
             <b><p>Customer: {{orderBillCtrl.fullName | uppercase}}</p>
                 <p class="pull-right">Date: {{orderBillCtrl.todayDate | date}} </p>
                 <p>Address: {{orderBillCtrl.address | uppercase}}</p>
@@ -39,8 +39,8 @@
             <td>{{item.foodPrice * item.quantity}}</td>
         </tr>
         <tr>
-            <td colspan="5" class="bill-amount"><strong>Total Amount</strong></td>
-            <td class="bill-amount"><strong>{{orderBillCtrl.total}}</strong></td>
+            <td colspan="5" class="bill-amount center"><strong>Total Amount</strong></td>
+            <td class="bill-amount center"><strong>{{orderBillCtrl.total}}</strong></td>
         </tr>
         </tbody>
     </table>

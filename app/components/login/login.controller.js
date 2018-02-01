@@ -41,7 +41,7 @@
                             }
                         },
                         function (error) {
-                            $log.info(error);
+                            vm.errorMsg = APP_CONSTANT.USERNAME_NOT_EXIST;
                             vm.dataLoading = false;
                         }
                     );

@@ -23,31 +23,37 @@
         vm.message = '';
         vm.firstName = $sessionStorage.firstName;
         vm.role = $sessionStorage.role;
+        vm.currentPage = 1;
 
         vm.userLogout = userLogout;
+        vm.totalRestaurants = 0;
         vm.addRestaurant = addRestaurant;
         vm.deleteRestaurant = deleteRestaurant;
         vm.editRestaurant = editRestaurant;
         vm.placeOrder = placeOrder;
+        vm.selectPage = selectPage;
 
 
         init();
 
         function init() {
-
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
-            RestaurantService.getRestaurantList().then(
+            selectPage();
+        }
+
+        function selectPage() {
+            RestaurantService.getRestaurantList(vm.currentPage - 1).then(
                 function (answer) {
-                    vm.restaurants = answer.data;
+                    vm.restaurants = answer.data.responseData;
+                    vm.totalRestaurants = answer.data.pageModel.count;
                 },
                 function (error) {
                     $log.info(error);
                 }
             );
         }
-
 
         function userLogout() {
             vm.message = '';

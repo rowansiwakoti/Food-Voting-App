@@ -23,13 +23,11 @@
             <!--<td>{{$index+1}}</td>-->
             <!--<td>{{order.userId}}</td>-->
 
-
             <!--<td>MoMo</td>-->
             <!--<td>Bota MoMo</td>-->
             <!--<td>220</td>-->
             <!--<td>2</td>-->
             <!--<td>2017/02/10</td>-->
-
 
             <!--<td>-->
                 <!--<button class="btn btn-default btn-sm">Receive</button>-->
@@ -47,7 +45,7 @@
     </div>
     <table ng-show="orderListCtrl.orderList.length>=1" class="table table-condensed table-striped table-bordered ">
         <caption ng-hide="restaurantCtrl.role == 'admin'">
-            <h3>Order</h3>
+            <h3 class="center">All Order</h3>
         </caption>
         <thead>
         <tr>
@@ -60,10 +58,10 @@
         <tbody>
         <tr ng-repeat="order in orderListCtrl.orderList">
             <td>{{$index+1}}</td>
-            <td>{{order.userId}}</td>
+            <td>{{orderListCtrl.fullName}}</td>
             <td>
-                <span class="order-list">
-                    <table class="table ">
+                <span class="order-list center">
+                    <table class="table table-condensed">
                     <thead>
                         <tr>
                             <th>Food</th>
@@ -75,7 +73,7 @@
                     <tr ng-repeat="food in order.foodResList">
                      <td>{{food.foodName}}</td>
                      <td>{{food.restaurantName}}</td>
-                     <td>{{food.foodPrice}}</td>
+                     <td>{{food.foodPrice | currency:"Rs. "}}</td>
                      <td>{{food.quantity}}</td>
                     </tr>
                 </table>
@@ -88,4 +86,5 @@
         </tr>
         </tbody>
     </table>
+    <div ui-view=""></div>
 </div>
