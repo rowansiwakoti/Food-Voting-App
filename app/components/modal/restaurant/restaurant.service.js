@@ -5,10 +5,11 @@
     RestaurantService.$inject = [
         '$http',
         'FoodService',
-        'APP_CONSTANT'
+        'APP_CONSTANT',
+        '$sessionStorage'
     ];
 
-    function RestaurantService($http, FoodService, APP_CONSTANT) {
+    function RestaurantService($http, FoodService, APP_CONSTANT, $sessionStorage) {
 
         var alertMessage = '';
         var appUrl = APP_CONSTANT.FOA_APP;
@@ -56,7 +57,12 @@
         }
 
         function getRestaurantList(id) {
-            return ($http.get(appUrl + '/restaurants/page/' + id + '/6'));
+            if ($sessionStorage.role === 'user') {
+                return ($http.get(appUrl + '/restaurants/page/' + id + '/6'));
+            }
+            else if ($sessionStorage.role === 'admin') {
+                return ($http.get(appUrl + '/restaurants/admin/page/' + id + '/6'));
+            }
         }
 
         function setAlertMessage(msg) {
@@ -74,8 +80,6 @@
         function deactivateRestaurant(id) {
             return $http.get(appUrl + '/restaurants/' + id + '/deactivate');
         }
-
-
         return restaurantSvc;
     }
 })();

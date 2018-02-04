@@ -45,7 +45,7 @@
 
         function selectPage() {
             RestaurantService.getRestaurantList(vm.currentPage - 1).then(
-                function (answer) {
+                function (answer) {console.log(answer.data);
                     vm.restaurants = answer.data.responseData;
                     vm.totalRestaurants = answer.data.pageModel.count;
                 },
