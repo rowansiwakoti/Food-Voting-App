@@ -3,7 +3,10 @@
      role="alert"><a class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>{{restaurantCtrl.infoMsg}}</strong>
 </div>
-<div><h3 class="page"><u>{{restaurantCtrl.restaurant.name}}</u></h3></div><br/>
+<div>
+    <a ui-sref="dashboard">Go Back</a>
+    <h3 class="page"><u>{{restaurantCtrl.restaurant.name}}</u></h3>
+</div><br/>
 <div ng-show="restaurantCtrl.role ==='admin'">
     <a class="btn btn-default btn-sm button-name" ng-click="restaurantCtrl.addFood()"
        ng-show="restaurantCtrl.role === 'admin'">Add Food</a>
@@ -109,5 +112,8 @@
         </tbody>
     </table>
 </div>
-
-<a ui-sref="dashboard">Go Back</a>
+<ul ng-show="restaurantCtrl.totalFoods" uib-pagination total-items="restaurantCtrl.totalFoods"
+    ng-model="restaurantCtrl.currentPage"
+    max-size="5"
+    class="pagination-sm" boundary-links="true" force-ellipses="true" items-per-page="10"
+    ng-change="restaurantCtrl.getFoods()"></ul>

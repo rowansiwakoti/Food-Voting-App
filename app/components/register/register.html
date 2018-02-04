@@ -31,7 +31,7 @@
                                         <input name="firstName" type="text" tabindex="1" class="form-control"
                                                placeholder="First Name"
                                                ng-model="registerCtrl.user.firstName" ng-pattern="/^[A-Za-z\s]+$/"
-                                               ng-minlength="3" ng-maxlength="25"
+                                               ng-minlength="2" ng-maxlength="25"
                                                required>
 
                                         <div ng-messages="registerForm.firstName.$error"
@@ -50,7 +50,7 @@
                                     <div class="form-group col-md-3">
                                         <input type="text" name="middleName" tabindex="1" class="form-control"
                                                placeholder="Middle Name"
-                                               ng-pattern="/^[A-Za-z\s]+$/" ng-minlength="2" ng-maxlength="25"
+                                               ng-pattern="/^[A-Za-z\s]+$/" ng-minlength="1" ng-maxlength="25"
                                                ng-model="registerCtrl.user.middleName">
                                         <div ng-messages="registerForm.middleName.$error"
                                              ng-if="registerForm.middleName.$touched">
@@ -66,7 +66,7 @@
                                         <input name="lastName" type="text" tabindex="1" class="form-control"
                                                placeholder="Last Name"
                                                ng-model="registerCtrl.user.lastName" ng-pattern="/^[A-Za-z\s]+$/"
-                                               ng-minlength="3" ng-maxlength="25"
+                                               ng-minlength="2" ng-maxlength="25"
                                                required>
 
                                         <div ng-messages="registerForm.lastName.$error"

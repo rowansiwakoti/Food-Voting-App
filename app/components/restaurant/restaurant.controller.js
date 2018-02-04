@@ -37,6 +37,7 @@
         vm.restaurantStatus = restaurantStatus;
         vm.deleteFoodToAdd = deleteFoodToAdd;
         vm.confirmAdd = confirmAdd;
+        vm.getFoods = getFoods;
 
         init();
 
@@ -66,14 +67,18 @@
         }
 
         //Getting Foods for the current Restaurant
-        getFood();
+        vm.currentPage = 0;
+        vm.totalFoods = 0;
 
-        function getFood() {
+        getFoods();
+
+        function getFoods() {
             if (vm.restaurant) {
-                FoodService.getFoodList(vm.restaurant.id)
+                FoodService.getFoodList(vm.restaurant.id, vm.currentPage - 1)
                     .then(
                         function (answer) {
-                            vm.foods = answer.data;
+                            vm.foods = answer.data.responseData;
+                            vm.totalFoods = answer.data.pageModel.count;
                         },
                         function (error) {
                             $log.info(error);
@@ -116,9 +121,6 @@
             });
         }
 
-        // vm.add = function (food) {
-        //     vm.foods.push(food);
-        // };
 
         function editFood(food) {
             vm.message = '';
@@ -287,7 +289,9 @@
                 function (foods) {
                     angular.forEach(foods, function (food) {
                         if (vm.restaurant.id === food.restaurantId) {
-                            vm.foods.push(food);
+                            if (vm.foods.length < 10) {
+                                vm.foods.push(food);
+                            }
                         }
                     });
                     vm.addFoods = [];

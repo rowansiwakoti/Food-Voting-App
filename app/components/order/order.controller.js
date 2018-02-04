@@ -3,7 +3,13 @@
 
     angular.module("FoodOrderingApp").controller("OrderController", OrderController);
 
-    OrderController.$inject = ['$stateParams', '$sessionStorage', '$rootScope', 'UserService', 'OrderService'];
+    OrderController.$inject = [
+        '$stateParams',
+        '$sessionStorage',
+        '$rootScope',
+        'UserService',
+        'OrderService'
+    ];
 
     function OrderController($stateParams, $sessionStorage, $rootScope, UserService, OrderService) {
 

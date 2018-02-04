@@ -18,7 +18,7 @@
         vm.restaurant = {};
 
         vm.numbersOnly = APP_CONSTANT.NUMBERS_ONLY;
-        vm.alphabetsOnly = APP_CONSTANT.ALPHABETS_ONLY;
+        vm.alphabetsAndNumbersOnly = APP_CONSTANT.ALPHABETS_AND_NUMBERS_ONLY;
         vm.invalidAddress = APP_CONSTANT.INVALID_ADDRESS;
         vm.restNameReq = APP_CONSTANT.REST_NAME_REQ;
         vm.restNameTooLong = APP_CONSTANT.REST_NAME_TOO_LONG;
@@ -46,13 +46,11 @@
         function addRestaurant(restaurant) {
             RestaurantService.addRestaurant(restaurant)
                 .then(
-                    function (answer) {console.log(answer)
-
+                    function (answer) {
                         RestaurantService.setAlertMessage(restaurant.name + ' ' + APP_CONSTANT.ADD_MSG);
                         $uibModalInstance.close(answer.data);
                     },
-                    function (error) {console.log(error)
-                        $log.info(error);
+                    function (error) {
                     }
                 );
         }

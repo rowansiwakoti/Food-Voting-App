@@ -55,6 +55,7 @@
         FOOD_PRICE_LOW: 'Food price is very low.',
         FOOD_PRICE_HIGH: 'Food price is very high.',
 
+        ALPHABETS_AND_NUMBERS_ONLY: 'Accepts alphabets and numbers only.',
         ALPHABETS_ONLY: 'Accepts alphabets only.',
         NUMBERS_ONLY: 'Accepts numbers only.',
     };

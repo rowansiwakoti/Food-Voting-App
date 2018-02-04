@@ -5,14 +5,13 @@
 
     FoodController.$inject = [
         '$uibModalInstance',
-        '$log',
         'FoodService',
         'APP_CONSTANT',
         'food',
         'foods'
     ];
 
-    function FoodController($uibModalInstance, $log, FoodService, APP_CONSTANT, food, foods) {
+    function FoodController($uibModalInstance, FoodService, APP_CONSTANT, food, foods) {
 
         var vm = this;
 
@@ -54,7 +53,6 @@
                     $uibModalInstance.close(answer.data);
                 },
                 function (error) {
-                    console.log('error callback',error);
                 }
             );
         }

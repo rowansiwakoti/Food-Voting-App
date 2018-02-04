@@ -26,9 +26,8 @@
             deleteFromAddFoods: deleteFromAddFoods
         };
 
-
-        function getFoodList(id) {
-            return ($http.get(appUrl + '/restaurants/' + id + '/foods'));
+        function getFoodList(id, pageNum) {
+            return ($http.get(appUrl + '/restaurants/' + id + '/foods/' + pageNum + '/10'));
         }
 
         function deleteFood(food) {
@@ -63,8 +62,6 @@
                     restaurantId: food.restaurantId
                 });
             });
-
-            console.log(foodList);
 
             var url = appUrl + '/foods';
             var req = {

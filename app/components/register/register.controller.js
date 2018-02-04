@@ -58,7 +58,6 @@
                         .then(
                             function (answer) {
                                 $state.go('registrationSuccess');
-                                console.log(answer);
                             },
                             function (error) {
                                 vm.dataLoading = false;

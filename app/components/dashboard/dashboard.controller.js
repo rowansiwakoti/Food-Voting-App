@@ -24,9 +24,9 @@
         vm.firstName = $sessionStorage.firstName;
         vm.role = $sessionStorage.role;
         vm.currentPage = 1;
+        vm.totalRestaurants = 0;
 
         vm.userLogout = userLogout;
-        vm.totalRestaurants = 0;
         vm.addRestaurant = addRestaurant;
         vm.deleteRestaurant = deleteRestaurant;
         vm.editRestaurant = editRestaurant;
@@ -99,7 +99,9 @@
         }
 
         function add(restaurant) {
-            vm.restaurants.push(restaurant);
+            if(vm.restaurants.length <6){
+                vm.restaurants.push(restaurant);
+            }
         }
 
         function deleteRestaurant(restaurant) {

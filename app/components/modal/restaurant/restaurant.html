@@ -15,7 +15,7 @@
 
             <div ng-messages="restaurantForm.name.$error"
                  ng-if="restaurantForm.name.$touched">
-                <p class="help-block" ng-message="pattern">{{restaurantModalCtrl.alphabetsOnly}}</p>
+                <p class="help-block" ng-message="pattern">{{restaurantModalCtrl.alphabetsAndNumbersOnly}}</p>
                 <p class="help-block" ng-message="required">{{restaurantModalCtrl.restNameReq}}</p>
                 <p class="help-block" ng-message="maxlength">{{restaurantModalCtrl.restNameTooLong}}</p>
                 <p class="help-block" ng-message="minlength">{{restaurantModalCtrl.restNameTooShort}}</p>
@@ -69,3 +69,6 @@
     </button>
     <button class="btn btn-warning pull-left" type="button" ng-click="restaurantModalCtrl.closeModal()">Cancel</button>
 </div>
+
+
+

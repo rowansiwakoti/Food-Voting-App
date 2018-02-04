@@ -26,7 +26,6 @@
         };
 
         function addRestaurant(restaurant) {
-            console.log(restaurant)
             restaurant.active = false;
             var req = {
                 method: 'POST',

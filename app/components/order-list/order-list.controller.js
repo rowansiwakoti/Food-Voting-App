@@ -4,7 +4,13 @@
     angular.module('FoodOrderingApp')
         .controller('OrderListController', OrderListController);
 
-    OrderListController.$inject = ['$sessionStorage', 'OrderService', '$rootScope', '$state', 'UserService'];
+    OrderListController.$inject = [
+        '$sessionStorage',
+        'OrderService',
+        '$rootScope',
+        '$state',
+        'UserService'
+    ];
 
     function OrderListController($sessionStorage, OrderService, $rootScope, $state, UserService) {
 
@@ -27,10 +33,8 @@
 
             if (vm.orderList) {
                 angular.forEach(vm.orderList, function (order) {
-                    // var userOrders
                     userFoods.push({orderId: order.orderId, orderList: order.foodResList});
                 });
-                // console.log(userFoods);
             }
 
             vm.userOrderList = [];

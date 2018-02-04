@@ -128,7 +128,8 @@
 
         var date = new Date();
         date = date.toISOString().slice(0, 10);
-        vm.initOrderList = function () {
+
+        function initOrderList() {
             if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
                 OrderService.getOrderList().then(
                     function (answer) {
@@ -153,7 +154,9 @@
                     }
                 );
             }
-        }();
+        }
+
+        initOrderList();
 
         $interval(function () {
             if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {

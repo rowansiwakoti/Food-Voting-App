@@ -114,7 +114,6 @@
         }
 
         function receiveOrder(id) {
-            console.log('update this order', id)
             return ($http.put(appUrl + '/order/' + id));
         }
 

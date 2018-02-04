@@ -14,12 +14,10 @@
         'UserService'
     ];
 
-    function LoginController($rootScope, $state, $sessionStorage, $timeout, $log, APP_CONSTANT, UserService) {
+    function LoginController($rootScope, $state, $sessionStorage, $timeout, APP_CONSTANT, UserService) {
 
         var vm = this;
 
-        vm.userInputLength = APP_CONSTANT.USER_INPUT_LENGTH;
-        vm.userInputFormat = APP_CONSTANT.USER_INPUT_FORMAT;
         vm.user = {};
         vm.inputType = 'password';
         vm.dataLoading = false;

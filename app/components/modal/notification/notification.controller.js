@@ -3,7 +3,13 @@
     angular.module('FoodOrderingApp')
         .controller('NotificationController', NotificationController);
 
-    NotificationController.$inject = ['$state', '$sessionStorage', '$uibModalInstance', 'orderList', 'UserService'];
+    NotificationController.$inject = [
+        '$state',
+        '$sessionStorage',
+        '$uibModalInstance',
+        'orderList',
+        'UserService'
+    ];
 
     function NotificationController($state, $sessionStorage, $uibModalInstance, orderList, UserService) {
 
