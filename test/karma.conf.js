@@ -1,13 +1,14 @@
-//jshint strict: false
+// jshint strict: false
 module.exports = function (config) {
+
     config.set({
 
         basePath: './',
 
         files: [
 
-            '../app/assets/libs/bootstrap/bootstrap.min.css',
             '../app/assets/libs/angular/angular.min.js',
+            '../app/assets/libs/angular/angular-messages.min.js',
             '../app/assets/libs/angular/angular-ui-router.min.js',
             '../app/assets/libs/angular/ngStorage.min.js',
             '../app/assets/libs/angular/angular-animate.min.js',
@@ -27,12 +28,17 @@ module.exports = function (config) {
             '../app/services/order.service.js',
 
             // spec files
-            '../test/spec/app/components/login/login.controller.spec.js'
+            './spec/app/components/footer/footer.controller.spec.js',
+            './spec/app/components/restaurant/restaurant.controller.spec.js',
+            './spec/app/components/register/register.controller.spec.js',
+            './spec/app/components/registration-success/registration-success.controller.spec.js',
+            './spec/app/components/order-list/order-list.controller.spec.js',
+            './spec/app/components/order-bill/order-bill.controller.spec.js'
         ],
 
         exclude: ['test/e2e/**'],
 
-        autoWatch: false,
+        autoWatch: true,
 
         singleRun: true,
 

@@ -19,24 +19,24 @@
         vm.address = $sessionStorage.address;
         vm.contact = $sessionStorage.contact;
         vm.todayDate = new Date();
-        vm.items = $sessionStorage.userOrders;
         vm.total = 0;
 
         vm.printBillReceipt = printBillReceipt;
-
 
         vm.$onInit = function () {
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
-
             if (vm.items) {
                 vm.items.forEach(function (item) {
                     vm.total += item.foodPrice * item.quantity;
                 });
             }
-            if($stateParams.order){
+            if ($stateParams.order) {
                 $sessionStorage.userOrders = $stateParams.order.foodResList;
+            }
+            if (angular.isDefined($sessionStorage.userOrders)) {
+                vm.items = $sessionStorage.userOrders;
             }
         }();
 

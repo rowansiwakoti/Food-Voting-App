@@ -87,7 +87,6 @@
             }
         }
 
-
         function addFood() {
             vm.message = '';
             var modalInstance = $uibModal.open({
@@ -253,7 +252,9 @@
                     $log.info(error);
                 });
             }
-            $sessionStorage.restaurant.active = status;
+            if(angular.isDefined($sessionStorage.restaurant)) {
+                $sessionStorage.restaurant.active = status;
+            }
         }
 
         function deleteFoodToAdd(food) {
@@ -262,7 +263,7 @@
                 if (item.name === food.name && item.restaurantId === food.restaurantId) {
                     pos = index;
                 }
-            })
+            });
             vm.addFoods.splice(pos, 1);
             $sessionStorage.addFoods = vm.addFoods;
         }

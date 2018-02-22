@@ -9,7 +9,6 @@
         '$state',
         '$sessionStorage',
         '$timeout',
-        '$log',
         'APP_CONSTANT',
         'UserService'
     ];

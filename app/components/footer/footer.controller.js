@@ -7,13 +7,8 @@
     ];
 
     function FooterController(APP_CONSTANT) {
-
         var vm = this;
-
-        vm.appName = appName;
-
-        function appName() {
-            return APP_CONSTANT.APP_NAME;
-        }
+        vm.appName = APP_CONSTANT.APP_NAME;
     }
+
 })();

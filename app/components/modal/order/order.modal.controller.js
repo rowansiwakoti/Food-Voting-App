@@ -99,7 +99,6 @@
                     quantity: order.quantity
                 });
             });
-
             OrderService.confirmOrder({userId: $sessionStorage.userId, foodList: orderedItems});
             var balance = $sessionStorage.balance;
             balance -= totalAmount;

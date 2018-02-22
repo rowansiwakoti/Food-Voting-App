@@ -52,7 +52,7 @@
 
         function registerUser(user) {
             vm.dataLoading = true;
-            $timeout(function () {
+            // $timeout(function () {
                 if (user.userPassword === user.confirmPassword) {
                     UserService.setUser(user)
                         .then(
@@ -70,7 +70,7 @@
                     vm.registerError = APP_CONSTANT.PASSWORD_NOT_MATCH;
 
                 }
-            }, 1000);
+            // }, 1000);
 
         }
     }

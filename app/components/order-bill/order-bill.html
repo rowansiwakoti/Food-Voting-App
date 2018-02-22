@@ -36,11 +36,11 @@
             <td>{{item.foodName}}</td>
             <td>{{item.foodPrice | currency:"Rs. "}}</td>
             <td>{{item.quantity}}</td>
-            <td>{{item.foodPrice * item.quantity}}</td>
+            <td>{{item.foodPrice * item.quantity | currency:"Rs. "}}</td>
         </tr>
         <tr>
             <td colspan="5" class="bill-amount center"><strong>Total Amount</strong></td>
-            <td class="bill-amount center"><strong>{{orderBillCtrl.total}}</strong></td>
+            <td class="bill-amount center"><strong>{{orderBillCtrl.total | currency:"Rs. "}}</strong></td>
         </tr>
         </tbody>
     </table>

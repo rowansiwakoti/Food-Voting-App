@@ -238,7 +238,7 @@ body > div > div > table > tbody > tr {
 }
 
 .restaurant-dashboard {
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
 .restaurant {
@@ -266,6 +266,8 @@ body > div > div > table > tbody > tr {
 
 h3.page {
     text-align: center;
+    display: inline;
+    margin-left: 34%;
 }
 
 .info-message {
