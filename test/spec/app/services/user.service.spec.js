@@ -1,22 +1,31 @@
-"use strict";
+(function () {
+    "use strict";
 
-describe("service test", function () {
+    beforeEach(module("FoodOrderingApp"));
 
-    beforeEach(module("FoodVotingApp"));
+    describe('Testing User Service',function () {
+        var _UserService, _$httpBackend, user, _$http, _$scope;
 
-    describe("user service", function () {
-
-        var _userService;
-
-        beforeEach(inject(function (UserService) {
-            _userService = UserService;
+        beforeEach(inject(function (UserService, $httpBackend, $http, $rootScope) {
+            _$httpBackend = $httpBackend;
+            _$scope = $rootScope;
+            _$http = $http;
+            user = {};
+            _UserService = function () {
+                return UserService;
+            };
         }));
 
-        it("should test on user service", function () {
-
-            expect(_userService).not.toEqual(null);
-
+        describe('User Service elements', function () {
+            //Check setUser function
+            it('setUser function', function () {
+                spyOn(_$http,'post').and.callThrough();
+                var vm = _UserService();
+                vm.setUser(user);
+                _$scope.apply();
+                expect(_$http.post).toHaveBeenCalled();
+            });
         });
-
     });
-});
+
+})();

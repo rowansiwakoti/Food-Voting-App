@@ -6,23 +6,26 @@ describe("controller test", function () {
 
     describe("footer controller", function () {
 
-        var $scope;
+        var _$scope, _$controller, _APP_CONSTANT;
 
-        beforeEach(inject(function (_$rootScope_, $controller) {
-            $scope = _$rootScope_.$new();
+        beforeEach(inject(function (APP_CONSTANT, $rootScope, $controller) {
+            _$scope = $rootScope.$new();
+            _APP_CONSTANT = APP_CONSTANT;
 
-            $controller("FooterController as footerCtrl", {
-                $scope: $scope
-            });
+            _$controller = function () {
+                return $controller("FooterController as footerCtrl", {
+                    $scope: _$scope
+                });
+            };
         }));
 
-        it("should test getAppName function", function () {
-
-            spyOn($scope.footerCtrl, "getAppName").and.returnValue("Food Voting App");
-            $scope.footerCtrl.getAppName();
-            expect($scope.footerCtrl.getAppName).toHaveBeenCalled();
-            expect($scope.footerCtrl.getAppName()).toEqual("Food Voting App");
-
+        describe('Testing Controller Components',function () {
+            //Test appName
+            it('testing appName', function () {
+                var vm = _$controller();
+                var name = vm.appName();
+                expect(name).toBe('Food Ordering App');
+            });
         });
 
     });

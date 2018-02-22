@@ -14,14 +14,15 @@
 
     function OrderListController($sessionStorage, OrderService, $rootScope, $state, UserService) {
 
-        init();
+        /*init();
 
         function init() {
 
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
-        }
+        }*/
+
 
         if ($sessionStorage.role === 'admin') {
             var vm = this;
@@ -30,6 +31,12 @@
             vm.orderFoods = [];
 
             var userFoods = [];
+
+            vm.$onInit =function(){
+                if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
+                    $state.go('login');
+                }
+            }
 
             if (vm.orderList) {
                 angular.forEach(vm.orderList, function (order) {

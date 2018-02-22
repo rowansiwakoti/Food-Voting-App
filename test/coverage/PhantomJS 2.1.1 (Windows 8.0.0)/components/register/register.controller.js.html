@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components\register\register.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">components/register/</a> register.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.64% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.29% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.64% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/44</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {
+    'use strict';
+&nbsp;
+    angular.module('FoodOrderingApp')
+        .controller('RegisterController', RegisterController);
+&nbsp;
+    RegisterController.$inject = [
+        '$state',
+        '$log',
+        '$timeout',
+        'UserService',
+        'APP_CONSTANT'
+    ];
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function RegisterController($state, $log, $timeout, UserService, APP_CONSTANT) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.firstNameReq = APP_CONSTANT.FIRST_NAME_REQ;</span>
+<span class="cstat-no" title="statement not covered" >        vm.firstNameTooShort = APP_CONSTANT.FIRST_NAME_TOO_SHORT;</span>
+<span class="cstat-no" title="statement not covered" >        vm.firstNameTooLong = APP_CONSTANT.FIRST_NAME_TOO_LONG;</span>
+<span class="cstat-no" title="statement not covered" >        vm.middleNameTooShort = APP_CONSTANT.MIDDLE_NAME_TOO_SHORT;</span>
+<span class="cstat-no" title="statement not covered" >        vm.middleNameTooLong = APP_CONSTANT.MIDDLE_NAME_TOO_LONG;</span>
+<span class="cstat-no" title="statement not covered" >        vm.lastNameReq = APP_CONSTANT.LAST_NAME_REQ;</span>
+<span class="cstat-no" title="statement not covered" >        vm.lastNameTooShort = APP_CONSTANT.LAST_NAME_TOO_SHORT;</span>
+<span class="cstat-no" title="statement not covered" >        vm.lastNameTooLong = APP_CONSTANT.LAST_NAME_TOO_LONG;</span>
+<span class="cstat-no" title="statement not covered" >        vm.invalidEmail = APP_CONSTANT.INVALID_EMAIL;</span>
+<span class="cstat-no" title="statement not covered" >        vm.emailAddReq = APP_CONSTANT.EMAIL_ADD_REQ;</span>
+<span class="cstat-no" title="statement not covered" >        vm.emailAddTooLong = APP_CONSTANT.EMAIL_ADD_TOO_LONG;</span>
+<span class="cstat-no" title="statement not covered" >        vm.emailAddTooShort = APP_CONSTANT.EMAIL_ADD_TOO_SHORT;</span>
+<span class="cstat-no" title="statement not covered" >        vm.contactNoReq = APP_CONSTANT.CONTACT_NO_REQ;</span>
+<span class="cstat-no" title="statement not covered" >        vm.contactNoSize = APP_CONSTANT.CONTACT_NO_SIZE;</span>
+<span class="cstat-no" title="statement not covered" >        vm.addressReq = APP_CONSTANT.ADDRESS_REQ;</span>
+<span class="cstat-no" title="statement not covered" >        vm.addressTooLong = APP_CONSTANT.ADDRESS_TOO_LONG;</span>
+<span class="cstat-no" title="statement not covered" >        vm.addressTooShort = APP_CONSTANT.ADDRESS_TOO_SHORT;</span>
+<span class="cstat-no" title="statement not covered" >        vm.invalidAddress = APP_CONSTANT.INVALID_ADDRESS;</span>
+<span class="cstat-no" title="statement not covered" >        vm.passwordReq = APP_CONSTANT.PASSWORD_REQ;</span>
+<span class="cstat-no" title="statement not covered" >        vm.passwordTooLong = APP_CONSTANT.PASSWORD_TOO_LONG;</span>
+<span class="cstat-no" title="statement not covered" >        vm.passwordTooShort = APP_CONSTANT.PASSWORD_TOO_SHORT;</span>
+<span class="cstat-no" title="statement not covered" >        vm.numbersOnly = APP_CONSTANT.NUMBERS_ONLY;</span>
+<span class="cstat-no" title="statement not covered" >        vm.alphabetsOnly = APP_CONSTANT.ALPHABETS_ONLY;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.user = {};</span>
+<span class="cstat-no" title="statement not covered" >        vm.dataLoading = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.backToLogin = backToLogin;</span>
+<span class="cstat-no" title="statement not covered" >        vm.registerUser = registerUser;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function backToLogin() {</span>
+<span class="cstat-no" title="statement not covered" >            $state.go('login');</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function registerUser(user) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.dataLoading = true;</span>
+<span class="cstat-no" title="statement not covered" >            $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (user.userPassword === user.confirmPassword) {</span>
+<span class="cstat-no" title="statement not covered" >                    UserService.setUser(user)</span>
+                        .then(
+<span class="fstat-no" title="function not covered" >                            function (answer) {</span>
+<span class="cstat-no" title="statement not covered" >                                $state.go('registrationSuccess');</span>
+                            },
+<span class="fstat-no" title="function not covered" >                            function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                                vm.dataLoading = false;</span>
+<span class="cstat-no" title="statement not covered" >                                vm.registerError = APP_CONSTANT.USER_ALREADY_EXIST;</span>
+                            }
+                        );
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    vm.dataLoading = false;</span>
+<span class="cstat-no" title="statement not covered" >                    vm.registerError = APP_CONSTANT.PASSWORD_NOT_MATCH;</span>
+&nbsp;
+                }
+            }, 1000);
+&nbsp;
+        }
+    }
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Feb 22 2018 10:15:38 GMT+0545 (Nepal Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

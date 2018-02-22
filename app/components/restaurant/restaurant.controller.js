@@ -39,9 +39,13 @@
         vm.confirmAdd = confirmAdd;
         vm.getFoods = getFoods;
 
-        init();
+        /*init();
 
         function init() {
+
+        }*/
+
+        vm.$onInit = function(){
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
@@ -70,7 +74,7 @@
         vm.currentPage = 0;
         vm.totalFoods = 0;
 
-        getFoods();
+        vm.getFoods();
 
         function getFoods() {
             if (vm.restaurant) {

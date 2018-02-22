@@ -32,20 +32,20 @@
         vm.editRestaurant = editRestaurant;
         vm.placeOrder = placeOrder;
         vm.selectPage = selectPage;
+        /*vm.init = init;
 
-
-        init();
-
-        function init() {
-            if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
-                $state.go('login');
-            }
-            selectPage();
+        vm.init();
+        */
+        vm.$onInit = function()
+        {
+            vm.selectPage();
         }
+
 
         function selectPage() {
             RestaurantService.getRestaurantList(vm.currentPage - 1).then(
-                function (answer) {console.log(answer.data);
+                function (answer) {
+                    // console.log(answer.data);
                     vm.restaurants = answer.data.responseData;
                     vm.totalRestaurants = answer.data.pageModel.count;
                 },
@@ -99,7 +99,7 @@
         }
 
         function add(restaurant) {
-            if(vm.restaurants.length <6){
+            if (vm.restaurants.length < 6) {
                 vm.restaurants.push(restaurant);
             }
         }

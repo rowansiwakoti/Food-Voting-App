@@ -1,4 +1,4 @@
-(function () {
+( function () {
 
     'use strict';
     angular.module('FoodOrderingApp')
@@ -9,12 +9,11 @@
         '$state',
         '$sessionStorage',
         '$timeout',
-        '$log',
-        'APP_CONSTANT',
-        'UserService'
+        'UserService',
+        'APP_CONSTANT'
     ];
 
-    function LoginController($rootScope, $state, $sessionStorage, $timeout, APP_CONSTANT, UserService) {
+    function LoginController($rootScope, $state, $sessionStorage, $timeout, UserService, APP_CONSTANT) {
 
         var vm = this;
 
@@ -26,7 +25,7 @@
 
         function validateUser(user) {
             vm.dataLoading = true;
-            $timeout(function () {
+            // $timeout(function () {
                 UserService.validateUser(user)
                     .then(
                         function (message) {
@@ -43,7 +42,7 @@
                             vm.dataLoading = false;
                         }
                     );
-            }, 2000);
+            // }, 2000);
 
         }
 

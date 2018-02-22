@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app\constants\foa.constant.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/constants/</a> foa.constant.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/3</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {
+    'use strict';
+&nbsp;
+    var VALUES = {
+        APP_NAME: 'Food Ordering App',
+        PAGE_NAME: 'User Login',
+        INCORRECT_USER_PASSWORD: 'Incorrect Username Or Password.',
+        ADD_MSG: 'has been added.',
+        EDIT_MSG: 'has been edited.',
+        DELETE_MSG: 'has been deleted.',
+        LOGOUT_MSG: 'Are you sure you want to log out?',
+        DELETE_FOOD_MSG: 'Are you sure you want to delete the food?',
+        NO_FOOD_MSG: 'No Food Added.',
+        MAX_ORDERS: 5,
+        MIN_ORDERS: 1,
+        FOA_APP: 'http://localhost:8080',
+        ORDER_INFO_MSG: 'You have successfully placed an order!',
+&nbsp;
+        FIRST_NAME_REQ: 'First name is required.',
+        FIRST_NAME_TOO_SHORT: 'First name is too short.',
+        FIRST_NAME_TOO_LONG: 'First name is too long.',
+        MIDDLE_NAME_TOO_SHORT: 'Middle name is too short.',
+        MIDDLE_NAME_TOO_LONG: 'Middle name is too long.',
+        LAST_NAME_REQ: 'Last name is required.',
+        LAST_NAME_TOO_SHORT: 'Last name is too short.',
+        LAST_NAME_TOO_LONG: 'Last name is too long.',
+        INVALID_EMAIL: 'Invalid email address.',
+        EMAIL_ADD_REQ: 'Email address is required.',
+        EMAIL_ADD_TOO_LONG: 'Email address is too long.',
+        EMAIL_ADD_TOO_SHORT: 'Email address is too short',
+        CONTACT_NO_REQ: 'Contact number is required.',
+        CONTACT_NO_SIZE: 'Size should be 7 to 10 numbers only.',
+        ADDRESS_REQ: 'Address is required',
+        ADDRESS_TOO_SHORT: 'Address is too short',
+        ADDRESS_TOO_LONG: 'Address is too long',
+        INVALID_ADDRESS: 'Invalid address.',
+        PASSWORD_REQ: 'Password is required.',
+        PASSWORD_TOO_SHORT: 'Password is too short',
+        PASSWORD_TOO_LONG: 'Password is too long',
+        PASSWORD_NOT_MATCH: 'Password and Confirm Password did not match! Try Again.',
+        USERNAME_NOT_EXIST: 'Username or password does not exist.',
+        USER_ALREADY_EXIST: 'User email Id already exists.',
+&nbsp;
+        REST_NAME_REQ: 'Restaurant name is required',
+        REST_NAME_TOO_SHORT: 'Restaurant name is too short',
+        REST_NAME_TOO_LONG: 'Restaurant name is too long',
+        REST_ADDRESS_REQ: 'Restaurant address is required',
+        REST_ADDRESS_TOO_SHORT: 'Restaurant address is too short',
+        REST_ADDRESS_TOO_LONG: 'Restaurant address is too long',
+&nbsp;
+        FOOD_NAME_REQ: 'Food name is required.',
+        FOOD_NAME_TOO_LONG: 'Food name is too long.',
+        FOOD_NAME_TOO_SHORT: 'Food name is too short.',
+        FOOD_PRICE_REQ: 'Food price is required.',
+        FOOD_PRICE_LOW: 'Food price is very low.',
+        FOOD_PRICE_HIGH: 'Food price is very high.',
+&nbsp;
+        ALPHABETS_AND_NUMBERS_ONLY: 'Accepts alphabets and numbers only.',
+        ALPHABETS_ONLY: 'Accepts alphabets only.',
+        NUMBERS_ONLY: 'Accepts numbers only.',
+    };
+    angular.module('FoodOrderingApp')
+        .constant('APP_CONSTANT', VALUES);
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Feb 18 2018 17:34:58 GMT+0545 (Nepal Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
