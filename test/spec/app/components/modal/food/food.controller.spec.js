@@ -18,13 +18,6 @@ describe("controller", function () {
             });
         }));
 
-        it("should define the page constants", function () {
-            expect($scope.foodCtrl.foodNameReqMsg).toBeDefined();
-            expect($scope.foodCtrl.foodPriceReqMsg).toBeDefined();
-            expect($scope.foodCtrl.resNameReqMsg).toBeDefined();
-            expect($scope.foodCtrl.numbersOnlyMsg).toBeDefined();
-        });
-
         it("should let user dismiss the modal", function () {
             expect($scope.foodCtrl.cancel).toBeDefined();
             $scope.foodCtrl.cancel();

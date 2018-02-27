@@ -79,7 +79,6 @@
         }
 
         function orderOk() {
-
             $sessionStorage.userOrders = $sessionStorage.orderList;
             $sessionStorage.orderList=[];
             confirmOrder();
@@ -104,7 +103,7 @@
             balance -= totalAmount;
             $sessionStorage.balance = balance;
             $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
-            $rootScope.$broadcast('updateOrdersAfterConfirm', vm.order);
+            $rootScope.$broadcast('updateOrdersAfterConfirm', '');
         }
 
         function continueOrder() {

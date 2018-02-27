@@ -11,10 +11,11 @@
         '$sessionStorage',
         '$log',
         'APP_CONSTANT',
-        'RestaurantService'
+        'RestaurantService',
+        'UserService'
     ];
 
-    function DashboardController($state, $uibModal, $sessionStorage, $log, APP_CONSTANT, RestaurantService) {
+    function DashboardController($state, $uibModal, $sessionStorage, $log, APP_CONSTANT, RestaurantService, UserService) {
 
         var vm = this;
 
@@ -31,23 +32,24 @@
         vm.editRestaurant = editRestaurant;
         vm.placeOrder = placeOrder;
         vm.selectPage = selectPage;
+        vm.getAllUsers = getAllUsers;
 
 
-        // init();
-
-        vm.$onInit = function() {
+        vm.$onInit = function () {
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
-            if($sessionStorage.currentPage){
+            if ($sessionStorage.currentPage) {
                 vm.currentPage = $sessionStorage.currentPage;
+                selectPage();
             }
-            else{
+            else {
 
                 vm.currentPage = 1;
+                selectPage();
             }
-            selectPage();
-        }
+        };
+
 
         function selectPage() {
 
@@ -56,6 +58,7 @@
             RestaurantService.getRestaurantList(vm.currentPage - 1).then(
                 function (answer) {
                     vm.currentPage = $sessionStorage.currentPage;
+                    // console.log(answer.data);
                     vm.restaurants = answer.data.responseData;
                     vm.totalRestaurants = answer.data.pageModel.count;
                 },
@@ -90,7 +93,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/restaurant/restaurant.html',
                 controller: 'RestaurantModalController',
                 controllerAs: 'restaurantModalCtrl',
@@ -109,7 +112,7 @@
         }
 
         function add(restaurant) {
-            if(vm.restaurants.length <6){
+            if (vm.restaurants.length < 6) {
                 vm.restaurants.push(restaurant);
             }
         }
@@ -121,7 +124,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/restaurant/restaurant-delete-confirm-modal.html',
                 controller: 'RestaurantModalController',
                 controllerAs: 'restaurantModalCtrl',
@@ -157,7 +160,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/restaurant/restaurant.html',
                 controller: 'RestaurantModalController',
                 controllerAs: 'restaurantModalCtrl',
@@ -184,6 +187,10 @@
                 }
             });
             vm.restaurants[pos] = restaurant;
+        }
+
+        function getAllUsers() {
+            $state.go('users');
         }
 
         function placeOrder() {

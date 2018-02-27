@@ -7,21 +7,27 @@
         '$stateParams',
         '$sessionStorage',
         '$rootScope',
+        '$state',
         'UserService',
         'OrderService'
     ];
 
-    function OrderController($stateParams, $sessionStorage, $rootScope, UserService, OrderService) {
+    function OrderController($stateParams, $sessionStorage, $rootScope, $state, UserService, OrderService) {
 
         var vm = this;
         vm.userId = $stateParams.id;
         vm.userOrder = $sessionStorage.individualOrder;
         vm.orderList = $sessionStorage.orders;
 
-
-        if ($sessionStorage.fullName) {
-            vm.fullName = $sessionStorage.fullName;
+        vm.$onInit = function () {
+            if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
+                $state.go('login');
+            }
+            if ($sessionStorage.fullName) {
+                vm.fullName = $sessionStorage.fullName;
+            }
         }
+
 
         UserService.getUsers().then(function (success) {
             angular.forEach(success.data, function (data) {

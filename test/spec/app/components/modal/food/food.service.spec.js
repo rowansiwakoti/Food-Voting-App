@@ -14,15 +14,5 @@ describe("service test", function () {
 
         }));
 
-        it("should define service methods", function () {
-
-            expect(FoodService.setFood).toBeDefined();
-            expect(FoodService.getFood).toBeDefined();
-            expect(FoodService.getFoodList).toBeDefined();
-            expect(FoodService.setAlertMessage).toBeDefined();
-            expect(FoodService.getAlertMessage).toBeDefined();
-
-        });
-
     });
 });

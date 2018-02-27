@@ -1,23 +1,39 @@
-"use strict";
-
-describe("component test", function () {
+(function () {
+    "use strict";
 
     beforeEach(module("FoodOrderingApp"));
 
-    describe("footer component", function () {
+    describe("component test", function () {
+        var _$scope, _$controller;
 
-        var $componentController;
+        describe("Test FooterController", function ($rootScope, $controller) {
 
-        beforeEach(inject(function (_$componentController_) {
-            $componentController = _$componentController_;
-        }));
+            var _$scope, _$controller, _APP_CONSTANT;
 
-        it("should test on footer component", function () {
+            beforeEach(inject(function (APP_CONSTANT, $rootScope, $controller) {
+                _$scope = $rootScope.$new();
+                _APP_CONSTANT = APP_CONSTANT;
 
-            expect($componentController).toBeDefined();
+                _$controller = function () {
+                    return $controller('FooterController',{
+                        _$scope: _$scope
+                    });
+                };
+
+            }));
+
+            describe('Test controller elements',function () {
+                //test appName function
+                it('appName function',function () {
+                    var vm = _$controller();
+                    var name = vm.appName();
+                    expect(name).toBe('Food Ordering App');
+                });
+            });
 
         });
 
     });
+})();
 
-});
+

@@ -8,18 +8,21 @@
 
     UserService.$inject = [
         '$http',
-        'APP_CONSTANT'
+        'APP_CONSTANT',
+        '$q'
     ];
 
-    function UserService($http, APP_CONSTANT) {
+    function UserService($http, APP_CONSTANT, $q) {
 
         var appUrl = APP_CONSTANT.FOA_APP;
 
         var userSvc = {
             setUser: setUser,
             validateUser: validateUser,
-            getUsers: getUsers
+            getUsers: getUsers,
+            num:8
         };
+
 
         function setUser(user) {
             user.balance = 1200;
@@ -48,6 +51,14 @@
 
         function getUsers() {
             return ($http.get(appUrl + '/user'));
+            // return $http.get().then(
+            //     function (response) {
+            //         return response.data;
+            //     }
+            // )
+            //     .catch(function (err) {
+            //         $q.reject(err);
+            //     });
         }
 
         return userSvc;

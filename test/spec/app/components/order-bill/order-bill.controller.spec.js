@@ -6,8 +6,7 @@
 
         beforeEach(module('FoodOrderingApp'));
 
-        beforeEach(inject(function ($rootScope, $sessionStorage, $state, $stateParams, $controller) {
-
+        beforeEach(inject(function ($sessionStorage, $state, $stateParams, $rootScope, $controller) {
             _$scope = $rootScope.$new();
             _$sessionStorage = $sessionStorage;
             _$state = $state;
@@ -21,7 +20,7 @@
 
         }));
 
-        it('should call $onInit method. when emailId is undefined', function () {
+        it('should call $onInit function. when emailId is undefined', function () {
             _$sessionStorage.emailId = '';
             spyOn(_$state, 'go');
             expect(_$state.go).not.toHaveBeenCalled();
@@ -29,7 +28,7 @@
             expect(_$state.go).toHaveBeenCalled();
         });
 
-        it('should call $onInit method. when a user\'s order is received by an admin', function () {
+        it('should call $onInit function. when a user\'s order is received by an admin', function () {
             _$sessionStorage.userOrders = [{}];
             spyOn(_$state, 'go');
             expect(_$state.go).not.toHaveBeenCalled();

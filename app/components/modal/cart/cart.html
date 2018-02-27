@@ -18,6 +18,6 @@
     </button>
     <button class="btn btn-primary add-cart-button" ng-disabled="cartCtrl.quantity===cartCtrl.eachOrderQuantity"
             ng-click="cartCtrl.addToCart()">
-        <span class="glyphicon glyphicon-shopping-cart"></span> {{cartCtrl.flag?'UPDATE':'ADD TO'}} CART <span>{{cartCtrl.amount | currency:"Rs. "}}</span>
+        <span class="glyphicon glyphicon-shopping-cart"></span> {{cartCtrl.flag?'UPDATE':'ADD TO'}} CART <span>Rs. {{cartCtrl.amount}}</span>
     </button>
 </div>

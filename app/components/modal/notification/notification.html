@@ -7,15 +7,16 @@
 <div class="modal-body order-modal-body">
     <h3 style="margin-top: 0px; text-align: center; color: red;" ng-hide="notificationCtrl.orderList.length>=1">No
         orders made yet</h3>
-    <ul class="list-group order-list center" ng-show="notificationCtrl.userRole==='admin'">
-        <li ng-click="notificationCtrl.individualOrder(order)" ui-sref='userOrder({id:order.orderId})' ng-repeat="order in notificationCtrl.orderList"
+    <ul class="list-group order-list page-center pointer-cursor" ng-show="notificationCtrl.userRole==='admin'">
+        <li ng-click="notificationCtrl.individualOrder(order)" ui-sref='userOrder({id:order.orderId})'
+            ng-repeat="order in notificationCtrl.orderList"
             class="list-group-item pointer-cursor">
             View Order of {{notificationCtrl.name[$index].firstName | uppercase}}
             {{notificationCtrl.name[$index].lastName |
             uppercase}}
         </li>
     </ul>
-    <ul class="list-group order-list center" ng-show="notificationCtrl.userRole==='user'">
+    <ul class="list-group order-list page-center pointer-cursor" ng-show="notificationCtrl.userRole==='user'">
         <li ng-repeat="order in notificationCtrl.orderList">
             <a ng-click="notificationCtrl.orderBill(order)">Your order no.{{order.orderId}} has been received.</a>
         </li>

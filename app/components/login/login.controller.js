@@ -22,28 +22,26 @@
         vm.dataLoading = false;
         vm.validateUser = validateUser;
 
-
         function validateUser(user) {
             vm.dataLoading = true;
-            $timeout(function () {
-                UserService.validateUser(user)
-                    .then(
-                        function (message) {
-                            if (message.data) {
-                                saveDataToSession(message.data);
-                                $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
-                                $rootScope.$broadcast('instantUpdateRole', $sessionStorage.role);
-                                vm.dataLoading = false;
-                                $state.go('dashboard');
-                            }
-                        },
-                        function (error) {
-                            vm.errorMsg = APP_CONSTANT.USERNAME_NOT_EXIST;
+            // $timeout(function () {
+            UserService.validateUser(user)
+                .then(
+                    function (answer) {
+                        if (answer.data) {
+                            saveDataToSession(answer.data);
+                            $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
+                            $rootScope.$broadcast('instantUpdateRole', $sessionStorage.role);
                             vm.dataLoading = false;
+                            $state.go('dashboard');
                         }
-                    );
-            }, 2000);
-
+                    },
+                    function (error) {
+                        vm.errorMsg = APP_CONSTANT.USERNAME_NOT_EXIST;
+                        vm.dataLoading = false;
+                    }
+                );
+            // }, 2000);
         }
 
         function saveDataToSession(data) {

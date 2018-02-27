@@ -22,9 +22,7 @@
             it("testing variable whether it is defined", function () {
                 expect(_$scope.footerCtrl.appName).toBeDefined();
             });
-
         });
-
     });
 
 })();

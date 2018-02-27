@@ -7,10 +7,11 @@
 
     config.$inject = [
         '$stateProvider',
-        '$urlRouterProvider'
+        '$urlRouterProvider',
+        '$locationProvider'
     ];
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $urlRouterProvider.otherwise('/login');
         $stateProvider
@@ -61,6 +62,12 @@
                 url: '/registrationSuccess',
                 templateUrl: 'components/registration-success/registration-success.html',
                 controller: 'RegistrationSuccessController as registrationSuccessCtrl'
+            })
+            .state('users', {
+                url: '/users',
+                templateUrl: 'components/users/user.html',
+                controller: 'UserController as userCtrl'
             });
+        // $locationProvider.html5Mode(true);
     }
 })();

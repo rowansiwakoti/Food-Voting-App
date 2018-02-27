@@ -22,12 +22,19 @@
             }
         }
 
+
         if ($sessionStorage.role === 'admin') {
             vm.orderList = $sessionStorage.orders;
             vm.index = -1;
             vm.orderFoods = [];
 
             var userFoods = [];
+
+            vm.$onInit =function(){
+                if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
+                    $state.go('login');
+                }
+            }
 
             if (vm.orderList) {
                 angular.forEach(vm.orderList, function (order) {

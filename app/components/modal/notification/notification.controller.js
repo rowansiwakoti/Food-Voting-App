@@ -21,24 +21,28 @@
 
         var users;
 
-        UserService.getUsers().then(function (response) {
-            users = response.data;
+        init();
+        function init(){
+            UserService.getUsers().then(function (response) {
 
-            angular.forEach(vm.orderList, function (order) {
+                users = response.data;
 
-                angular.forEach(users, function (user) {
+                angular.forEach(vm.orderList, function (order) {
 
-                    if (order.userId === user.userId) {
-                        vm.name.push({firstName: user.firstName, lastName: user.lastName});
-                    }
+                    angular.forEach(users, function (user) {
+
+                        if (order.userId === user.userId) {
+                            vm.name.push({firstName: user.firstName, lastName: user.lastName});
+                        }
+
+                    });
 
                 });
 
+            }, function (response) {
+
             });
-
-        }, function (response) {
-
-        });
+        }
 
         vm.closeModal = function () {
             $uibModalInstance.close();

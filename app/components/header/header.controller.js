@@ -3,16 +3,16 @@
     angular.module('FoodOrderingApp')
         .controller('HeaderController', HeaderController);
     HeaderController.$inject = [
-        '$scope',
         '$sessionStorage',
         '$uibModal',
         '$rootScope',
         '$interval',
         'APP_CONSTANT',
-        'OrderService'
+        'OrderService',
+        '$scope'
     ];
 
-    function HeaderController($scope, $sessionStorage, $uibModal, $rootScope, $interval, APP_CONSTANT, OrderService) {
+    function HeaderController($sessionStorage, $uibModal, $rootScope, $interval, APP_CONSTANT, OrderService, $scope) {
 
         var vm = this;
 
@@ -25,17 +25,12 @@
         vm.openWallet = openWallet;
         vm.openCart = openCart;
         vm.openNotification = openNotification;
+        vm.initOrderList = initOrderList;
 
-        init();
-
-        function init() {
-            if ($sessionStorage.balance) {
-                vm.balance = $sessionStorage.balance;
-            }
-            if ($sessionStorage.orderList) {
-                vm.orderList = $sessionStorage.orderList;
-            }
-        }
+        // init();
+        //
+        // function init() {
+        // }
 
         //update order list to receive
         $scope.$on('updateOrder', function (event, data) {
@@ -45,9 +40,16 @@
         vm.$onInit = function () {
             vm.order = $sessionStorage.orderList;
             vm.role = $sessionStorage.role;
+
+            if ($sessionStorage.balance) {
+                vm.balance = $sessionStorage.balance;
+            }
+            if ($sessionStorage.orderList) {
+                vm.orderList = $sessionStorage.orderList;
+            }
         }
 
-        $scope.$on('updateOrdersAfterConfirm', function (data) {
+        $scope.$on('updateOrdersAfterConfirm', function (event,data) {
             vm.order = data;
         });
 
@@ -156,7 +158,7 @@
             }
         }
 
-        initOrderList();
+        vm.initOrderList();
 
         $interval(function () {
             if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {

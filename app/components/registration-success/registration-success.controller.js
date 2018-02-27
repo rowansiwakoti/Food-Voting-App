@@ -1,23 +1,26 @@
-(
-    function () {
-        'use strict';
+(function () {
+    'use strict';
 
-        angular.module('FoodOrderingApp')
-            .controller('RegistrationSuccessController', RegistrationSuccessController);
+    angular.module('FoodOrderingApp')
+        .controller('RegistrationSuccessController', RegistrationSuccessController);
 
-        RegistrationSuccessController.$inject = [
-            '$state'
-        ];
+    RegistrationSuccessController.$inject = [
+        '$state',
+        '$sessionStorage'
+    ];
 
-        function RegistrationSuccessController($state) {
+    function RegistrationSuccessController($state, $sessionStorage) {
 
-            var vm = this;
+        var vm = this;
 
-            vm.gotoLogin = gotoLogin;
+        vm.gotoLogin = gotoLogin;
 
-            function gotoLogin() {
-                $state.go('login');
-            }
+        if (angular.isUndefined($sessionStorage.checkEmail) || $sessionStorage.checkEmail === '') {
+            $state.go('login');
+        }
+
+        function gotoLogin() {
+            $state.go('login');
         }
     }
-)();
+})();

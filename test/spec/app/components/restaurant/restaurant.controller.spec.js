@@ -25,11 +25,14 @@
             });
         }));
 
-
-        it('Should test the variables', function () {
-            expect(_$controller.foodItems).toBeDefined();
+        it('should test $on event', function () {
+            _$scope.$broadcast('infoMsg', {'message': 'Hello World'});
+            _$scope.$digest();
         });
 
+        it('should call $onInit function', function () {
+           
+        });
 
         it('should call getFoodList function', function () {
 
@@ -100,7 +103,7 @@
             expect(_$state.go).toHaveBeenCalled();
         });
 
-        it('should call restaurantStatus function and when the status is true', function(){
+        it('should call restaurantStatus function and when the status is true', function () {
             var mockId = 1;
             var mockStatus = true;
             spyOn(_mockRestaurantService, 'activateRestaurant').and.callThrough();
@@ -109,19 +112,13 @@
             expect(_mockRestaurantService.activateRestaurant).toHaveBeenCalled();
         });
 
-        it('should call restaurantStatus function and when the status is false', function(){
+        it('should call restaurantStatus function and when the status is false', function () {
             var mockId = 1;
             var mockStatus = false;
             spyOn(_mockRestaurantService, 'deactivateRestaurant').and.callThrough();
             _$controller.restaurantStatus(mockId, mockStatus);
             _$scope.$apply();
             expect(_mockRestaurantService.deactivateRestaurant).toHaveBeenCalled();
-        });
-
-        it('should call deleteFoodToAdd function', function(){
-            spyOn(_$controller, 'deleteFoodToAdd').and.callThrough();
-           _$controller.deleteFoodToAdd();
-           expect(_$controller.deleteFoodToAdd).toHaveBeenCalled();
         });
 
         it('should call confirmAdd function', function () {

@@ -7,12 +7,12 @@
     RegisterController.$inject = [
         '$state',
         '$log',
-        '$timeout',
+        '$sessionStorage',
         'UserService',
         'APP_CONSTANT'
     ];
 
-    function RegisterController($state, $log, $timeout, UserService, APP_CONSTANT) {
+    function RegisterController($state, $log, $sessionStorage, UserService, APP_CONSTANT) {
 
         var vm = this;
 
@@ -42,6 +42,7 @@
 
         vm.user = {};
         vm.dataLoading = false;
+        vm.registerError = '';
 
         vm.backToLogin = backToLogin;
         vm.registerUser = registerUser;
@@ -52,26 +53,23 @@
 
         function registerUser(user) {
             vm.dataLoading = true;
-            // $timeout(function () {
-                if (user.userPassword === user.confirmPassword) {
-                    UserService.setUser(user)
-                        .then(
-                            function (answer) {
-                                $state.go('registrationSuccess');
-                            },
-                            function (error) {
-                                vm.dataLoading = false;
-                                vm.registerError = APP_CONSTANT.USER_ALREADY_EXIST;
-                            }
-                        );
-                }
-                else {
-                    vm.dataLoading = false;
-                    vm.registerError = APP_CONSTANT.PASSWORD_NOT_MATCH;
-
-                }
-            // }, 1000);
-
+            if (user.userPassword === user.confirmPassword) {
+                UserService.setUser(user)
+                    .then(
+                        function (answer) {
+                            $state.go('registrationSuccess');
+                            $sessionStorage.checkEmail = answer.data.email;
+                        },
+                        function (error) {
+                            vm.dataLoading = false;
+                            vm.registerError = APP_CONSTANT.USER_ALREADY_EXIST;
+                        }
+                    );
+            }
+            else {
+                vm.dataLoading = false;
+                vm.registerError = APP_CONSTANT.PASSWORD_NOT_MATCH;
+            }
         }
     }
 })();

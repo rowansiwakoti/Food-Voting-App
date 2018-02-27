@@ -39,6 +39,8 @@
         vm.confirmAdd = confirmAdd;
         vm.getFoods = getFoods;
 
+
+        // vm.$onInit not working here
         init();
 
         function init() {
@@ -70,7 +72,7 @@
         vm.currentPage = 0;
         vm.totalFoods = 0;
 
-        getFoods();
+        vm.getFoods();
 
         function getFoods() {
             if (vm.restaurant) {
@@ -93,7 +95,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/food/food.html',
                 controller: 'FoodController',
                 controllerAs: 'foodCtrl',
@@ -127,7 +129,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/food/food.html',
                 controller: 'FoodController',
                 controllerAs: 'foodCtrl',
@@ -164,7 +166,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/food/food-delete-confirm-modal.html',
                 controller: 'FoodController',
                 controllerAs: 'foodCtrl',
@@ -179,14 +181,14 @@
                 }
             });
             modalInstance.result.then(function (food) {
-                deleteFoo(food);
+                deleteFood(food);
                 $log.info('Delete food modal closed on ' + new Date());
                 vm.message = FoodService.getAlertMessage();
             }, function () {
                 $log.info('Delete food modal dismissed on ' + new Date());
             });
 
-            function deleteFoo(food) {
+            function deleteFood(food) {
                 var pos;
                 angular.forEach(vm.foods, function (item, index) {
                     if (item.id === food.id) {
@@ -212,7 +214,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/cart/cart.html',
                 controller: 'CartController as cartCtrl',
                 size: 'md',
@@ -252,7 +254,7 @@
                     $log.info(error);
                 });
             }
-            if(angular.isDefined($sessionStorage.restaurant)) {
+            if (angular.isDefined($sessionStorage.restaurant)) {
                 $sessionStorage.restaurant.active = status;
             }
         }
@@ -273,7 +275,7 @@
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                backdrop: false,
+                // backdrop: false,
                 templateUrl: 'components/modal/food/food-add-confirm-modal.html',
                 controller: 'FoodController  as foodCtrl',
                 size: 'sm',
