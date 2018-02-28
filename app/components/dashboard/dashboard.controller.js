@@ -44,7 +44,6 @@
                 selectPage();
             }
             else {
-
                 vm.currentPage = 1;
                 selectPage();
             }
@@ -52,7 +51,6 @@
 
 
         function selectPage() {
-
             $sessionStorage.currentPage = vm.currentPage;
 
             RestaurantService.getRestaurantList(vm.currentPage - 1).then(
@@ -115,6 +113,9 @@
             if (vm.restaurants.length < 6) {
                 vm.restaurants.push(restaurant);
             }
+            else if(vm.restaurants.length >= 6){console.log(vm.restaurants.length);
+                vm.selectPage();
+            }
         }
 
         function deleteRestaurant(restaurant) {
@@ -145,13 +146,14 @@
         }
 
         function deleteRest(id) {
-            var pos;
+           /* var pos;
             vm.restaurants.forEach(function (restro, index) {
                 if (restro.id === id) {
                     pos = index;
                 }
             });
-            vm.restaurants.splice(pos, 1);
+            vm.restaurants.splice(pos, 1);*/
+           vm.selectPage();
         }
 
         function editRestaurant(restaurant) {

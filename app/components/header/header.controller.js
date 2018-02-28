@@ -47,6 +47,7 @@
             if ($sessionStorage.orderList) {
                 vm.orderList = $sessionStorage.orderList;
             }
+            vm.initOrderList();
         }
 
         $scope.$on('updateOrdersAfterConfirm', function (event,data) {
@@ -131,7 +132,7 @@
         var date = new Date();
         date = date.toISOString().slice(0, 10);
 
-        function initOrderList() {
+        function initOrderList() {console.log('m in init');
             if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
                 OrderService.getOrderList().then(
                     function (answer) {
@@ -158,7 +159,7 @@
             }
         }
 
-        vm.initOrderList();
+
 
         $interval(function () {
             if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
