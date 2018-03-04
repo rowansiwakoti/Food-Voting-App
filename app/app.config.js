@@ -67,6 +67,11 @@
                 url: '/users',
                 templateUrl: 'components/users/user.html',
                 controller: 'UserController as userCtrl'
+            })
+            .state('order-log', {
+                url: '/order-log',
+                templateUrl: 'components/order-log/order-log.html',
+                controller: 'OrderLogController as orderlogCtrl'
             });
         // $locationProvider.html5Mode(true);
     }
