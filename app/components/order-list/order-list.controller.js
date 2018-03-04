@@ -61,16 +61,19 @@
                 var users;
                 UserService.getUsers().then(function (response) {
                     users = response.data;
+
                     angular.forEach(vm.orderList, function (order) {
 
                         angular.forEach(users, function (user) {
                             if (order.userId === user.userId) {
                                 var middleName = user.middleName || '';
-                                vm.fullName = user.firstName + ' ' + middleName + ' ' + user.lastName;
+                                order.fullName = user.firstName + ' ' + middleName + ' ' + user.lastName;
+                                console.log(order);
                             }
                         });
 
                     });
+                    console.log(vm.orderList);
                 }, function (error) {
 
                 });
