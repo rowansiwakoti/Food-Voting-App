@@ -11,10 +11,11 @@
             '$uibModal',
             'RestaurantService',
             'OrderService',
-            '$log'
+            '$log',
+            '$state'
         ];
 
-        function UserProfileController($sessionStorage, balance, $uibModalInstance, $uibModal, RestaurantService, OrderService, $log) {
+        function UserProfileController($sessionStorage, balance, $uibModalInstance, $uibModal, RestaurantService, OrderService, $log, $state) {
             var vm = this;
             vm.name = $sessionStorage.firstName;
             vm.user = $sessionStorage.role;
@@ -22,6 +23,12 @@
 
             vm.closeModal = closeModal;
             vm.userLogout = userLogout;
+            vm.orderList = orderList;
+
+            function orderList() {
+                $uibModalInstance.close();
+                $state.go('orders.today');
+            }
 
             function closeModal() {
                 $uibModalInstance.close();

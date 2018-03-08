@@ -27,10 +27,6 @@
         vm.openNotification = openNotification;
         vm.initOrderList = initOrderList;
 
-        // init();
-        //
-        // function init() {
-        // }
 
         //update order list to receive
         $scope.$on('updateOrder', function (event, data) {
@@ -132,10 +128,10 @@
         var date = new Date();
         date = date.toISOString().slice(0, 10);
 
-        function initOrderList() {console.log('m in init');
-            if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+        function initOrderList() {
+            /*if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
                 OrderService.getOrderList().then(
-                    function (answer) {
+                    function (answer) {console.log(answer)
                         if ($sessionStorage.role === 'admin') {
                             vm.orders = answer.data;
                         }
@@ -156,13 +152,29 @@
                     function (error) {
                     }
                 );
+            }*/
+            if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+                OrderService.getOrderList().then(
+                    function (answer) {
+                        vm.orders = answer.data;
+
+                        vm.orders.forEach(function (order) {
+                            order.orderId = order.id;
+                        });
+
+                        $sessionStorage.orders = answer.data;
+                        $rootScope.$broadcast('getOrderList', answer.data);
+                    },
+                    function (error) {
+                    }
+                );
             }
         }
 
 
 
         $interval(function () {
-            if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+            /*if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
                 OrderService.getOrderList().then(
                     function (answer) {
                         if ($sessionStorage.role === 'admin') {
@@ -185,7 +197,8 @@
                         console.log(error);
                     }
                 );
-            }
+            }*/
+            vm.initOrderList();
         }, 30000);
     }
 })();

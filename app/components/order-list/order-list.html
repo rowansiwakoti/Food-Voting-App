@@ -12,13 +12,14 @@
             <th>S/N</th>
             <th>User</th>
             <th>Details</th>
-            <th>Action</th>
+            <th ng-show="orderListCtrl.role == 'admin'">Action</th>
+            <th ng-show="orderListCtrl.role == 'user'">Status</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="order in orderListCtrl.orderList">
             <td>{{$index+1}}</td>
-            <td>{{order.fullName}}</td>
+            <td>{{order.username}}</td>
             <td>
                 <span class="order-list center">
                     <table class="table table-condensed">
@@ -30,7 +31,7 @@
                             <th>Quantity</th>
                         </tr>
                     </thead>
-                    <tr ng-repeat="food in order.foodResList">
+                    <tr ng-repeat="food in order.foodList">
                      <td>{{food.foodName}}</td>
                      <td>{{food.restaurantName}}</td>
                      <td>{{food.foodPrice | currency:"Rs. "}}</td>
@@ -39,9 +40,12 @@
                 </table>
                 </span>
             </td>
-            <td>
+            <td ng-show="orderListCtrl.role == 'admin'">
                 <button class="btn btn-default btn-sm" ng-click="orderListCtrl.receiveOrder(order.orderId)">Receive
                 </button>
+            </td>
+            <td ng-show="orderListCtrl.role == 'user'">
+                Status
             </td>
         </tr>
         </tbody>

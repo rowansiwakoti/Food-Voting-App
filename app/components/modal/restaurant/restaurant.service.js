@@ -58,10 +58,10 @@
 
         function getRestaurantList(id) {
             if ($sessionStorage.role === 'user') {
-                return ($http.get(appUrl + '/restaurants/page/' + id + '/6'));
+                return ($http.get(appUrl + '/restaurants/user/paginate/' + id + '/6'));
             }
             else if ($sessionStorage.role === 'admin') {
-                return ($http.get(appUrl + '/restaurants/admin/page/' + id + '/6'));
+                return ($http.get(appUrl + '/restaurants/admin/paginate/' + id + '/6'));
             }
         }
 

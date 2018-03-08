@@ -7,6 +7,7 @@
         'ngSanitize',
         'ui.router',
         'ngStorage',
-        'ngMessages'
+        'ngMessages',
+        'FoodOrderingApp.Orders'
     ]);
 })();

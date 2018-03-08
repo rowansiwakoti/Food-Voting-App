@@ -45,7 +45,7 @@
         }
 
         function saveDataToSession(data) {
-            $sessionStorage.userId = data.id;
+            $sessionStorage.userId = data.userId;
             $sessionStorage.firstName = data.firstName;
             $sessionStorage.middleName = data.middleName;
             $sessionStorage.lastName = data.lastName;

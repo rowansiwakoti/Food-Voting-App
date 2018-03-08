@@ -72,7 +72,23 @@
                 url: '/order-log',
                 templateUrl: 'components/order-log/order-log.html',
                 controller: 'OrderLogController as orderlogCtrl'
-            });
+            })
+            .state('orders', {
+                url: '/orders',
+                templateUrl:'components/orders/orders.html',
+                controller:'OrdersController as ordersCtrl'
+            })
+            .state('orders.today', {
+                url: '/today',
+                templateUrl: 'components/orders/today/today.html',
+                controller: 'TodayController as todaysCtrl'
+            })
+            .state('orders.month', {
+                url: '/month',
+                templateUrl: 'components/orders/month/month.html',
+                controller: 'MonthController as monthCtrl'
+            })
+        ;
         // $locationProvider.html5Mode(true);
     }
 })();

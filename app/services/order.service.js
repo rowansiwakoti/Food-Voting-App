@@ -54,6 +54,27 @@
         }
 
         function confirmOrder(order) {
+
+            /*order.orderedDate = Math.round(new Date().getTime() / 1000);
+            order.userId = $sessionStorage.userId;
+            if($sessionStorage.middleName){
+                order.username = $sessionStorage.firstName+' '+$sessionStorage.middleName+' '+$sessionStorage.lastName;
+            }
+            else {
+                order.username = $sessionStorage.firstName+' '+$sessionStorage.lastName;
+            }
+            order.confirm = false;
+            console.log(order);
+            var req = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: order,
+                url: 'http://localhost:3004/orders'
+            };
+            return ($http(req));*/
+
             var req = {
                 method: 'POST',
                 headers: {
@@ -105,11 +126,17 @@
         }
 
         function getOrderList() {
-            if ($sessionStorage.role === 'admin') {
-                return ($http.get(appUrl + '/order'));
+            /*if ($sessionStorage.role === 'admin') {
+                return ($http.get('http://localhost:3004/orders'));
             }
             else if ($sessionStorage.role === 'user') {
-                return ($http.get(appUrl + '/order/orderList/' + $sessionStorage.userId));
+                return ($http.get('http://localhost:3004/orders?userId='+ $sessionStorage.userId+'&&confirm=true'));
+            }*/
+            if ($sessionStorage.role === 'admin') {
+                return ($http.get(appUrl + '/order/admin/today'));
+            }
+            else if ($sessionStorage.role === 'user') {
+                return ($http.get(appUrl + '/order/user/' + $sessionStorage.userId));
             }
         }
 

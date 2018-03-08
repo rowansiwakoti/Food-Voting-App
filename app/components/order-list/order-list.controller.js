@@ -20,12 +20,14 @@
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
+            vm.role = $sessionStorage.role;
         }
 
 
-        if ($sessionStorage.role === 'admin') {
-            vm.orderList = $sessionStorage.orders;
+        if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+            vm.orderList = $sessionStorage.orders;console.log(vm.orderList)
             vm.index = -1;
+
             vm.orderFoods = [];
 
             var userFoods = [];
@@ -65,10 +67,10 @@
                     angular.forEach(vm.orderList, function (order) {
 
                         angular.forEach(users, function (user) {
-                            if (order.userId === user.userId) {
+                            if (order.userId === user.userId) {/*console.log(order.userId, user.userId);*/
                                 var middleName = user.middleName || '';
                                 order.fullName = user.firstName + ' ' + middleName + ' ' + user.lastName;
-                                console.log(order);
+                                console.log(order.fullName);
                             }
                         });
 
