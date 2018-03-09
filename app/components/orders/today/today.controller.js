@@ -5,10 +5,13 @@
         angular.module('FoodOrderingApp.Orders')
             .controller('TodayController', TodayController);
 
-        TodayController.$inject = [];
+        TodayController.$inject = ['$sessionStorage'];
 
-        function TodayController() {
+        function TodayController($sessionStorage) {
+                var vm = this;
 
+                vm.orders= $sessionStorage.orders;
+                console.log(vm.orders);
         }
     }
 )();

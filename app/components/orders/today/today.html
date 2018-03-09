@@ -1,1 +1,41 @@
-This is today's order.
+<h3 ng-show="todaysCtrl.orders.length <= 0">No orders today.</h3>
+<table class="table table-condensed table-striped table-bordered " ng-hide="todaysCtrl.orders.length <= 0">
+    <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Order</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="order in todaysCtrl.orders">
+            <td>{{$index+1}}</td>
+            <td>
+                <table class="table table-condensed table-striped table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Food</th>
+                            <th>Restaurant</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="food in order.foodResList">
+                            <td>{{food.foodName}}</td>
+                            <td>{{food.restaurantName}}</td>
+                            <td>{{food.quantity}}</td>
+                            <td>{{food.foodPrice}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td ng-show="order.confirm">
+                Received
+            </td>
+            <td ng-hide="order.confirm">
+                Pending
+            </td>
+        </tr>
+    </tbody>
+</table>

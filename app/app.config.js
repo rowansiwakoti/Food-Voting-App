@@ -86,7 +86,7 @@
             .state('orders.month', {
                 url: '/month',
                 templateUrl: 'components/orders/month/month.html',
-                controller: 'MonthController as monthCtrl'
+                controller: 'MonthController as monthsCtrl'
             })
         ;
         // $locationProvider.html5Mode(true);

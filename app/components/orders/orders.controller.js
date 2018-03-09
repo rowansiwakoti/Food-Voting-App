@@ -1,25 +1,33 @@
-(
-    function () {
+(function () {
         'use strict';
 
         angular.module('FoodOrderingApp.Orders')
             .controller('OrdersController', TodaysOrdersController);
 
-        TodaysOrdersController.$inject = ['$state'];
+        TodaysOrdersController.$inject = ['$state', '$location'];
 
-        function TodaysOrdersController($state) {
-                var vm = this;
-                
-                vm.monthsOrder = monthsOrder;
-                vm.todaysOrder = todaysOrder;
-                
-                function monthsOrder() {console.log('goto months order');
-                    $state.go('orders.month');
+        function TodaysOrdersController($state, $location) {
+            var vm = this;
+
+            vm.monthsOrder = monthsOrder;
+            vm.todaysOrder = todaysOrder;
+
+            vm.$onInit = function () {
+                if ($location.path() === '/orders/month') {
+                    vm.month = true;
                 }
-                
-                function todaysOrder() { console.log('goto months order');
-                    $state.go('orders.today');
+                else {
+                    vm.today = true;
                 }
+            }
+
+            function monthsOrder() {
+                $state.go('orders.month');
+            }
+
+            function todaysOrder() {
+                $state.go('orders.today');
+
+            }
         }
-    }
-)();
+    })();
