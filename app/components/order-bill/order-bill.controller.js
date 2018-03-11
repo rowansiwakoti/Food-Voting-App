@@ -9,7 +9,7 @@
         '$stateParams'
     ];
 
-    function OrderBillController($sessionStorage, $state, $stateParams) {
+    function OrderBillController($sessionStorage, $state, $stateParams) {console.log($stateParams.order);
 
         var vm = this;
 
@@ -27,9 +27,9 @@
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
-            if (angular.isDefined($sessionStorage.userOrders)) {
+            /*if (angular.isDefined($sessionStorage.userOrders)) {
                 vm.items = $sessionStorage.userOrders;
-            }
+            }*/
             if (vm.items) {
                 angular.forEach(vm.items, function (item) {
                     vm.total += item.foodPrice * item.quantity;
@@ -37,6 +37,10 @@
             }
             if ($stateParams.order) {
                 $sessionStorage.userOrders = $stateParams.order.foodResList;
+                vm.items = $sessionStorage.userOrders;
+            }
+            else {
+                vm.items = $sessionStorage.userOrders;
             }
 
         }();
