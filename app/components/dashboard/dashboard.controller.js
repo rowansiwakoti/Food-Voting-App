@@ -35,11 +35,12 @@
         vm.selectPage = selectPage;
         vm.getAllUsers = getAllUsers;
 
-
+        // alert('init function');
         vm.$onInit = function () {
-            if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
+            /*if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
-            }
+            }*/
+
             if ($sessionStorage.currentPage) {
                 vm.currentPage = $sessionStorage.currentPage;
                 selectPage();

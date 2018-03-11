@@ -10,10 +10,11 @@
         '$sessionStorage',
         '$timeout',
         'APP_CONSTANT',
-        'UserService'
+        'UserService',
+        'LoggedInService'
     ];
 
-    function LoginController($rootScope, $state, $sessionStorage, $timeout, APP_CONSTANT, UserService) {
+    function LoginController($rootScope, $state, $sessionStorage, $timeout, APP_CONSTANT, UserService, LoggedInService) {
 
         var vm = this;
 
@@ -45,6 +46,8 @@
         }
 
         function saveDataToSession(data) {
+            LoggedInService.setLoggedIn();
+
             $sessionStorage.userId = data.userId;
             $sessionStorage.firstName = data.firstName;
             $sessionStorage.middleName = data.middleName;

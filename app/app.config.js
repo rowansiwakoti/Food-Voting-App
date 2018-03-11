@@ -3,7 +3,10 @@
     'use strict';
 
     angular.module('FoodOrderingApp')
-        .config(config);
+        .config(config)
+        // .run(appRun);
+
+    /*appRun.$inject = ['$state', '$rootScope'];*/
 
     config.$inject = [
         '$stateProvider',
@@ -91,4 +94,11 @@
         ;
         // $locationProvider.html5Mode(true);
     }
+
+
+    /*function appRun($state, $rootScope) {
+        $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams){
+            console.log('state changed');
+        });
+    }*/
 })();

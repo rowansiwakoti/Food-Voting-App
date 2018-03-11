@@ -13,13 +13,13 @@
 
 <div class="modal-body user-modal-body">
 
-    <ul class="list-group" ng-click="userProfileCtrl.orderList()">
-        <li class="list-group-item">
+    <ul class="list-group" >
+        <li class="list-group-item" ng-click="userProfileCtrl.orderList()">
             <img src="assets/img/order.png" alt="Order List">
             <label>&nbsp; Orders</label>
         </li>
 
-        <li ng-hide="userProfileCtrl.user === 'admin'" class="list-group-item" ng-click="userProfileCtrl.orderList()">
+        <li ng-hide="userProfileCtrl.user === 'admin'" class="list-group-item" >
             <img ng-src="assets/img/wallet.png" alt="User Balance">
             <label>&nbsp; Balance: Rs. {{userProfileCtrl.balance}}</label>
         </li>
