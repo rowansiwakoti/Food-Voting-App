@@ -46,6 +46,12 @@
             vm.initOrderList();
         }
 
+        $scope.$on('loggedIn', function (event) {
+            if(vm.orders.length <= 0){
+                vm.initOrderList();
+            }
+        });
+
         $scope.$on('updateOrdersAfterConfirm', function (event,data) {
             vm.order = data;
         });
@@ -128,38 +134,27 @@
         var date = new Date();
         date = date.toISOString().slice(0, 10);
 
-        function initOrderList() {
-            /*if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+        function initOrderList() {console.log('m in init list');
+            if ($sessionStorage.role === 'admin') {
+                vm.orders = [];
                 OrderService.getOrderList().then(
-                    function (answer) {console.log(answer)
-                        if ($sessionStorage.role === 'admin') {
-                            vm.orders = answer.data;
-                        }
-                        else if ($sessionStorage.role === 'user') {
-                            var orders = answer.data;
-                            vm.orders = [];
-                            angular.forEach(orders, function (order) {
-
-                                var orderDate = new Date(order.orderedDate);
-                                if (orderDate.toISOString().slice(0, 10) === date) {
-                                    vm.orders.push(order);
-                                }
-                            });
-                        }
+                    function (answer) {
+                        vm.orders = answer.data;
                         $sessionStorage.orders = answer.data;
                         $rootScope.$broadcast('getOrderList', answer.data);
                     },
                     function (error) {
                     }
                 );
-            }*/
-            if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
+            }
+            else if($sessionStorage.role === 'user'){
+                vm.orders = [];
                 OrderService.getOrderList().then(
                     function (answer) {
-                        vm.orders = answer.data;
-
-                        vm.orders.forEach(function (order) {
-                            order.orderId = order.id;
+                        answer.data.forEach(function (order) {console.log(order.confirm,order)
+                            if(order.confirm === true){
+                                vm.orders.push(order);
+                            }
                         });
 
                         $sessionStorage.orders = answer.data;
@@ -174,30 +169,6 @@
 
 
         $interval(function () {
-            /*if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
-                OrderService.getOrderList().then(
-                    function (answer) {
-                        if ($sessionStorage.role === 'admin') {
-                            vm.orders = answer.data;
-                        }
-                        else if ($sessionStorage.role === 'user') {
-                            var orders = answer.data;
-                            vm.orders = [];
-                            angular.forEach(orders, function (order) {
-                                var orderDate = new Date(order.orderedDate);
-                                if (orderDate.toISOString().slice(0, 10) === date) {
-                                    vm.orders.push(order);
-                                }
-                            });
-                        }
-                        $sessionStorage.orders = answer.data;
-                        $rootScope.$broadcast('getOrderList', answer.data);
-                    },
-                    function (error) {
-                        console.log(error);
-                    }
-                );
-            }*/
             vm.initOrderList();
         }, 30000);
     }

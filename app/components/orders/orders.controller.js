@@ -4,9 +4,9 @@
         angular.module('FoodOrderingApp.Orders')
             .controller('OrdersController', TodaysOrdersController);
 
-        TodaysOrdersController.$inject = ['$state', '$location'];
+        TodaysOrdersController.$inject = ['$state', '$location', '$sessionStorage'];
 
-        function TodaysOrdersController($state, $location) {
+        function TodaysOrdersController($state, $location, $sessionStorage) {
             var vm = this;
 
             vm.monthsOrder = monthsOrder;
@@ -18,6 +18,9 @@
                 }
                 else {
                     vm.today = true;
+                }
+                if(!$sessionStorage.role){
+                    $state.go('login');
                 }
             }
 

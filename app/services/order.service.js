@@ -23,8 +23,13 @@
             increaseQuantity: increaseQuantity,
             decreaseQuantity: decreaseQuantity,
             getOrderList: getOrderList,
-            receiveOrder: receiveOrder
+            receiveOrder: receiveOrder,
+            getmonthsOrderList: getmonthsOrderList
         };
+
+        function getmonthsOrderList() {
+            return($http.get(appUrl+'/order/userList/'+$sessionStorage.userId));
+        }
 
         function addOrder(order) {
             var flag = 1;
@@ -54,27 +59,6 @@
         }
 
         function confirmOrder(order) {
-
-            /*order.orderedDate = Math.round(new Date().getTime() / 1000);
-            order.userId = $sessionStorage.userId;
-            if($sessionStorage.middleName){
-                order.username = $sessionStorage.firstName+' '+$sessionStorage.middleName+' '+$sessionStorage.lastName;
-            }
-            else {
-                order.username = $sessionStorage.firstName+' '+$sessionStorage.lastName;
-            }
-            order.confirm = false;
-            console.log(order);
-            var req = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: order,
-                url: 'http://localhost:3004/orders'
-            };
-            return ($http(req));*/
-
             var req = {
                 method: 'POST',
                 headers: {

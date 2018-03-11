@@ -1,1 +1,41 @@
-This is month's order.
+<h3 ng-show="monthsCtrl.orders.length <= 0">No orders today.</h3>
+<table class="table table-condensed table-striped table-bordered " ng-hide="monthsCtrl.orders.length <= 0">
+    <thead>
+    <tr>
+        <th>Order Date</th>
+        <th>Order</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="order in monthsCtrl.orders">
+        <td>{{order.orderedDate}}</td>
+        <td>
+            <table class="table table-condensed table-striped table-bordered ">
+                <thead>
+                <tr>
+                    <th>Food</th>
+                    <th>Restaurant</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="food in order.foodResList">
+                    <td>{{food.foodName}}</td>
+                    <td>{{food.restaurantName}}</td>
+                    <td>{{food.quantity}}</td>
+                    <td>{{food.foodPrice}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td ng-show="order.confirm" style="background: lightblue">
+            Received
+        </td>
+        <td ng-hide="order.confirm" style="background: coral">
+            Pending
+        </td>
+    </tr>
+    </tbody>
+</table>

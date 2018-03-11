@@ -12,10 +12,11 @@
         '$log',
         'APP_CONSTANT',
         'RestaurantService',
-        'UserService'
+        'UserService',
+        '$rootScope'
     ];
 
-    function DashboardController($state, $uibModal, $sessionStorage, $log, APP_CONSTANT, RestaurantService, UserService) {
+    function DashboardController($state, $uibModal, $sessionStorage, $log, APP_CONSTANT, RestaurantService, UserService, $rootScope) {
 
         var vm = this;
 
@@ -46,6 +47,10 @@
             else {
                 vm.currentPage = 1;
                 selectPage();
+            }
+            if($sessionStorage.loggedIn !== 1){
+                $sessionStorage.loggedIn = 1;
+                $rootScope.$broadcast('loggedIn',{});
             }
         };
 
