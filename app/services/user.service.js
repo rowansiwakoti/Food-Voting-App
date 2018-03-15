@@ -51,14 +51,6 @@
 
         function getUsers() {
             return ($http.get(appUrl + '/user'));
-            // return $http.get().then(
-            //     function (response) {
-            //         return response.data;
-            //     }
-            // )
-            //     .catch(function (err) {
-            //         $q.reject(err);
-            //     });
         }
 
         return userSvc;

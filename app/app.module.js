@@ -8,6 +8,7 @@
         'ui.router',
         'ngStorage',
         'ngMessages',
-        'FoodOrderingApp.Orders'
+        'FoodOrderingApp.Orders',
+        'ui.router.state.events'
     ]);
 })();

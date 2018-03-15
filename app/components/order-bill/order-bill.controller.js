@@ -27,16 +27,18 @@
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
-            if (angular.isDefined($sessionStorage.userOrders)) {
+            if ($stateParams.order) {
+                $sessionStorage.userOrders = $stateParams.order.foodResList;
                 vm.items = $sessionStorage.userOrders;
+            }
+            else {
+                vm.items = $sessionStorage.userOrders;
+                console.log('else part', vm.items);
             }
             if (vm.items) {
                 angular.forEach(vm.items, function (item) {
                     vm.total += item.foodPrice * item.quantity;
                 });
-            }
-            if ($stateParams.order) {
-                $sessionStorage.userOrders = $stateParams.order.foodResList;
             }
 
         }();

@@ -16,7 +16,7 @@
 
         var vm = this;
 
-        vm.$onInit = function() {
+        vm.$onInit = function () {
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
             }
@@ -25,14 +25,15 @@
 
 
         if ($sessionStorage.role === 'admin' || $sessionStorage.role === 'user') {
-            vm.orderList = $sessionStorage.orders;console.log(vm.orderList)
+            vm.orderList = $sessionStorage.orders;
+            console.log(vm.orderList)
             vm.index = -1;
 
             vm.orderFoods = [];
 
             var userFoods = [];
 
-            vm.$onInit =function(){
+            vm.$onInit = function () {
                 if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                     $state.go('login');
                 }
@@ -106,10 +107,9 @@
                     vm.orderList.splice(pos, 1);
                     $sessionStorage.orders = vm.orders;
                     $rootScope.$broadcast('updateOrder', vm.orderList);
-                };                $sessionStorage.orders = vm.orderList;
+                };
+                $sessionStorage.orders = vm.orderList;
             });
-
-
 
         }
     }

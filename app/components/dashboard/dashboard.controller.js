@@ -56,12 +56,12 @@
 
 
         function selectPage() {
+
             $sessionStorage.currentPage = vm.currentPage;
 
             RestaurantService.getRestaurantList(vm.currentPage - 1).then(
                 function (answer) {
                     vm.currentPage = $sessionStorage.currentPage;
-                    // console.log(answer.data);
                     vm.restaurants = answer.data.responseData;
                     vm.totalRestaurants = answer.data.pageModel.count;
                 },

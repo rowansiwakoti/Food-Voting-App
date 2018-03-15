@@ -2,15 +2,6 @@
     <li class="{{ordersCtrl.today?'active':'inactive'}}" data-toggle="tab"  ng-click="ordersCtrl.todaysOrder()"><a>Today's Order</a></li>
     <li class="{{ordersCtrl.month?'active':'inactive'}}" data-toggle="tab" ng-click="ordersCtrl.monthsOrder()"><a>This Month's Order</a></li>
 </ul>
-<!--<uib-tabset active="active">
-    <uib-tab heading="Todays Order" ng-click="ordersCtrl.todaysOrder()"></uib-tab>
-    <uib-tab heading="Months Order" ng-click="ordersCtrl.monthsOrder()"></uib-tab>
-</uib-tabset>-->
 
 <ui-view></ui-view>
 
-<!--
-<a ui-sref="orders.today">Today's Order</a>
-&nbsp;&nbsp;&nbsp;
-<a ui-sref="orders.month">This Month's Order</a>
--->

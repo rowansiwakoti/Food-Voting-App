@@ -18,8 +18,8 @@
         vm.userId = $stateParams.id;
         vm.userOrder = $sessionStorage.individualOrder;
         vm.orderList = $sessionStorage.orders;
-console.log(vm.userOrder);
-vm.foodList = vm.userOrder.foodList;
+        vm.foodList = vm.userOrder.foodList;
+
         vm.$onInit = function () {
             if (angular.isUndefined($sessionStorage.emailId) || $sessionStorage.emailId === '') {
                 $state.go('login');
@@ -27,24 +27,7 @@ vm.foodList = vm.userOrder.foodList;
             if ($sessionStorage.fullName) {
                 vm.fullName = $sessionStorage.fullName;
             }
-        }
-
-
-        /*UserService.getUsers().then(function (success) {
-            angular.forEach(success.data, function (data) {
-                if (vm.userOrder) {
-                    if (data.userId === vm.userOrder.userId) {
-                        {
-                            vm.fullName = data.firstName + ' ' + data.lastName;
-                            $sessionStorage.fullName = vm.fullName;
-                        }
-                        vm.foodList = vm.userOrder.foodResList;
-                    }
-                }
-            });
-        }, function (error) {
-
-        });*/
+        };
 
         vm.receiveOrder = function (id) {
             var test = OrderService.receiveOrder(id);

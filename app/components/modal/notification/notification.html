@@ -8,17 +8,20 @@
     <h3 style="margin-top: 0px; text-align: center; color: red;" ng-hide="notificationCtrl.orderList.length>=1">No
         orders made yet</h3>
     <ul class="list-group order-list page-center pointer-cursor" ng-show="notificationCtrl.userRole==='admin'">
-        <li ng-click="notificationCtrl.individualOrder(order)" ui-sref='userOrder({id:order.orderId})'
-            ng-repeat="order in notificationCtrl.orderList"
-            class="list-group-item pointer-cursor">
+        <li ng-repeat="order in notificationCtrl.orderList" class="list-group-item">
             View Order of {{notificationCtrl.name[$index].firstName | uppercase}}
             {{notificationCtrl.name[$index].lastName |
             uppercase}}
         </li>
     </ul>
-    <ul class="list-group order-list page-center pointer-cursor" ng-show="notificationCtrl.userRole==='user'">
+    <!--<pre>-->
+
+        <!--{{notificationCtrl.orderList | json}}-->
+
+    <!--</pre>-->
+    <ul class="list-group order-list page-center" ng-show="notificationCtrl.userRole==='user'">
         <li ng-repeat="order in notificationCtrl.orderList">
-            <a ng-click="notificationCtrl.orderBill(order)">Your order no.{{order.orderId}} has been received.</a>
+            Your order on {{order.orderedDate | date:'yyyy-MM-dd HH:mm:ss'}} has been received.
         </li>
     </ul>
 </div>
@@ -28,10 +31,3 @@
         View all orders
     </a>
 </div>
-<!--
-<div class="modal-footer order-modal-footer center">
-    <a class="pointer-cursor" ng-show="notificationCtrl.orderList.length >= 1 && notificationCtrl.userRole==='user'"
-       ng-click="notificationCtrl.gotoOrder()">
-        View today's orders
-    </a>
-</div>-->

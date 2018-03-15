@@ -2,14 +2,21 @@
 <table class="table table-condensed table-striped table-bordered " ng-hide="monthsCtrl.orders.length <= 0">
     <thead>
     <tr>
+        <th ng-show="monthsCtrl.role==='admin'">User</th>
         <th>Order Date</th>
         <th>Order</th>
         <th>Status</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="order in monthsCtrl.orders">
-        <td>{{order.orderedDate}}</td>
+
+    <!--uib-tooltip="{{order.confirm==true?'Click here to view the bill of this order':''}}"-->
+    <tr ng-repeat="order in monthsCtrl.orders | orderBy:'-orderedDate'" ng-click="monthsCtrl.generateBill(order)"
+        style="cursor: {{order.confirm==true?'pointer':''}}">
+        <td ng-show="monthsCtrl.role==='admin'" style="vertical-align: middle">{{order.firstName}} {{order.middleName}}
+            {{order.lastName}}
+        </td>
+        <td style="vertical-align: middle">{{order.orderedDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
         <td>
             <table class="table table-condensed table-striped table-bordered ">
                 <thead>
@@ -30,11 +37,9 @@
                 </tbody>
             </table>
         </td>
-        <td ng-show="order.confirm" style="background: lightblue">
-            Received
-        </td>
-        <td ng-hide="order.confirm" style="background: coral">
-            Pending
+        <td style="vertical-align: middle;">
+            <p ng-show="order.confirm !== true" style="background: red; color: white;">Pending</p>
+            <p ng-show="order.confirm !== false" style="background: blue; color: white;">Received</p>
         </td>
     </tr>
     </tbody>

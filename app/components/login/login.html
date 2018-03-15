@@ -22,16 +22,15 @@
 
                         <!--Login Form-->
                         <form id="login-form" name="loginForm" role="form"
-                              ng-submit="loginCtrl.validateUser(loginCtrl.user)">
+                              ng-submit="loginCtrl.validateUser(loginCtrl.user)" warn-on-leave>
                             <div class="col-sm-6 col-sm-offset-3">
                                 <div class="form-group">
-                                    <!--<input type="text" name="username" tabindex="1" class="form-control"-->
-                                    <!--placeholder="User Email" ng-model="loginCtrl.user.email">-->
 
                                     <input name="emailId" type="email" tabindex="1" class="form-control"
                                            placeholder="Email Address" ng-model="loginCtrl.user.email"
                                            ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
                                            ng-minlength="5" ng-maxlength="40" required>
+
                                     <div ng-messages="loginForm.emailId.$error"
                                          ng-if="loginForm.emailId.$touched">
                                         <p class="help-block" ng-message="pattern">Invalid email address.</p>

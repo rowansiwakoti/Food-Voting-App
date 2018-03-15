@@ -23,13 +23,13 @@
             <a>
                 <img ng-src="assets/img/bell.png" alt="Order Notification">
             </a>
-            <span class="badge badge-notify">{{headerCtrl.orders.length || 0}}</span>
+            <span class="badge badge-notify" ng-show="headerCtrl.orders.length > 0">{{headerCtrl.orders.length || 0}}</span>
         </div>
         <div class="header-right-r"
              uib-tooltip="{{headerCtrl.order.length?(headerCtrl.order.length>1?'View Orders':'View Order'):'You have no order'}}"
              ng-click="headerCtrl.order.length?headerCtrl.openCart():''" ng-show="headerCtrl.role === 'user'">
             <span class="glyphicon glyphicon-shopping-cart"></span>
-            <span class="badge badge-notify">{{headerCtrl.order.length || 0}}</span>
+            <span class="badge badge-notify" ng-show="headerCtrl.order.length > 0">{{headerCtrl.order.length || 0}}</span>
         </div>
     </div>
 </div>

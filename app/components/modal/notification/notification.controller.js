@@ -49,7 +49,7 @@
         };
 
         vm.gotoOrder = function () {
-            $state.go('order');
+            $state.go('orders.today');
             $uibModalInstance.close();
         };
 

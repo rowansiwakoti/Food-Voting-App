@@ -24,11 +24,17 @@
             decreaseQuantity: decreaseQuantity,
             getOrderList: getOrderList,
             receiveOrder: receiveOrder,
-            getmonthsOrderList: getmonthsOrderList
+            getMonthsOrderList: getMonthsOrderList
         };
 
-        function getmonthsOrderList() {
-            return($http.get(appUrl+'/order/userList/'+$sessionStorage.userId));
+        function getMonthsOrderList() {
+            var role = $sessionStorage.role;
+            if (role === 'user') {
+                return ($http.get(appUrl + '/order/userList/' + $sessionStorage.userId));
+            }
+            else {
+                return ($http.get(appUrl + '/order/admin/month'));
+            }
         }
 
         function addOrder(order) {
@@ -110,12 +116,6 @@
         }
 
         function getOrderList() {
-            /*if ($sessionStorage.role === 'admin') {
-                return ($http.get('http://localhost:3004/orders'));
-            }
-            else if ($sessionStorage.role === 'user') {
-                return ($http.get('http://localhost:3004/orders?userId='+ $sessionStorage.userId+'&&confirm=true'));
-            }*/
             if ($sessionStorage.role === 'admin') {
                 return ($http.get(appUrl + '/order/admin/today'));
             }
@@ -125,7 +125,7 @@
         }
 
         function receiveOrder(id) {
-            return ($http.put(appUrl + '/order/' + id));
+            return ($http.put(appUrl + '/order/confirm/' + id));
         }
 
         return orderSvc;

@@ -4,7 +4,7 @@
     <h3>Click <a ui-sref="dashboard">here</a> to go back to the dashboard page</h3>
     </div>
     <table ng-show="orderListCtrl.orderList.length>=1" class="table table-condensed table-striped table-bordered ">
-        <caption ng-hide="restaurantCtrl.role == 'admin'">
+        <caption ng-hide="restaurantCtrl.role === 'admin'">
             <h3 class="center">All Order</h3>
         </caption>
         <thead>
@@ -12,8 +12,8 @@
             <th>S/N</th>
             <th>User</th>
             <th>Details</th>
-            <th ng-show="orderListCtrl.role == 'admin'">Action</th>
-            <th ng-show="orderListCtrl.role == 'user'">Status</th>
+            <th ng-show="orderListCtrl.role === 'admin'">Action</th>
+            <th ng-show="orderListCtrl.role === 'user'">Status</th>
         </tr>
         </thead>
         <tbody>
@@ -40,11 +40,11 @@
                 </table>
                 </span>
             </td>
-            <td ng-show="orderListCtrl.role == 'admin'">
+            <td ng-show="orderListCtrl.role === 'admin'">
                 <button class="btn btn-default btn-sm" ng-click="orderListCtrl.receiveOrder(order.orderId)">Receive
                 </button>
             </td>
-            <td ng-show="orderListCtrl.role == 'user'">
+            <td ng-show="orderListCtrl.role === 'user'">
                 Status
             </td>
         </tr>

@@ -134,7 +134,7 @@
         var date = new Date();
         date = date.toISOString().slice(0, 10);
 
-        function initOrderList() {console.log('m in init list');
+        function initOrderList() {
             if ($sessionStorage.role === 'admin') {
                 vm.orders = [];
                 OrderService.getOrderList().then(
@@ -151,7 +151,7 @@
                 vm.orders = [];
                 OrderService.getOrderList().then(
                     function (answer) {
-                        answer.data.forEach(function (order) {console.log(order.confirm,order)
+                        answer.data.forEach(function (order) {
                             if(order.confirm === true){
                                 vm.orders.push(order);
                             }
@@ -165,8 +165,6 @@
                 );
             }
         }
-
-
 
         $interval(function () {
             vm.initOrderList();

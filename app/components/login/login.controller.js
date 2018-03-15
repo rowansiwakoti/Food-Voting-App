@@ -5,15 +5,15 @@
         .controller('LoginController', LoginController);
 
     LoginController.$inject = [
+        '$scope',
         '$rootScope',
         '$state',
         '$sessionStorage',
-        '$timeout',
         'APP_CONSTANT',
         'UserService'
     ];
 
-    function LoginController($rootScope, $state, $sessionStorage, $timeout, APP_CONSTANT, UserService) {
+    function LoginController($scope, $rootScope, $state, $sessionStorage, APP_CONSTANT, UserService) {
 
         var vm = this;
 
@@ -24,7 +24,6 @@
 
         function validateUser(user) {
             vm.dataLoading = true;
-            // $timeout(function () {
             UserService.validateUser(user)
                 .then(
                     function (answer) {
@@ -41,7 +40,6 @@
                         vm.dataLoading = false;
                     }
                 );
-            // }, 2000);
         }
 
         function saveDataToSession(data) {

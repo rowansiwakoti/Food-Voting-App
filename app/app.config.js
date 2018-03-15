@@ -5,13 +5,14 @@
     angular.module('FoodOrderingApp')
         .config(config);
 
+
     config.$inject = [
         '$stateProvider',
-        '$urlRouterProvider',
-        '$locationProvider'
+        '$urlRouterProvider'
     ];
 
-    function config($stateProvider, $urlRouterProvider, $locationProvider) {
+
+    function config($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/login');
         $stateProvider
@@ -75,8 +76,8 @@
             })
             .state('orders', {
                 url: '/orders',
-                templateUrl:'components/orders/orders.html',
-                controller:'OrdersController as ordersCtrl'
+                templateUrl: 'components/orders/orders.html',
+                controller: 'OrdersController as ordersCtrl'
             })
             .state('orders.today', {
                 url: '/today',
@@ -91,4 +92,5 @@
         ;
         // $locationProvider.html5Mode(true);
     }
+
 })();

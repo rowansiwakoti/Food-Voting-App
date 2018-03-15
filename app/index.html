@@ -6,16 +6,17 @@
     <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!--<base href="/FoodOrderingAppUI/app/">-->
 </head>
 
 <body>
 <div class="container">
     <fv-header></fv-header>
     <div ui-view>
+
     </div>
     <!--<fv-footer></fv-footer>-->
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="assets/libs/angular/angular.min.js"></script>
 <script src="assets/libs/angular/angular-messages.min.js"></script>
 <script src="assets/libs/angular/angular-ui-router.min.js"></script>
@@ -26,10 +27,13 @@
 <script src="assets/libs/angular/angular-mocks.js"></script>
 <script src="assets/libs/jquery/jquery.min.js"></script>
 <script src="assets/libs/jquery/popper.min.js"></script>
+<script src="assets/libs/angular/stateEvents.min.js"></script>
 <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
 
 <script src="app.module.js"></script>
 <script src="app.config.js"></script>
+<!--<script src="app.run.js"></script>-->
+
 <script src="components/header/header.controller.js"></script>
 <script src="components/header/header.component.js"></script>
 <script src="components/footer/footer.controller.js"></script>
@@ -56,10 +60,15 @@
 <script src="components/restaurant/restaurant.controller.js"></script>
 <script src="components/register/register.controller.js"></script>
 <script src="components/order/order.controller.js"></script>
+
 <script src="services/order.service.js"></script>
-    <script src="components/orders/orders.module.js"></script>
-    <script src="components/orders/orders.controller.js"></script>
-    <script src="components/orders/today/today.controller.js"></script>
-    <script src="components/orders/month/month.controller.js"></script>
+<script src="components/orders/orders.module.js"></script>
+<script src="components/orders/orders.controller.js"></script>
+<script src="components/orders/today/today.controller.js"></script>
+<script src="components/orders/month/month.controller.js"></script>
+
+<script src="directives/warn-on-leave/warn-on-leave.controller.js"></script>
+<script src="directives/warn-on-leave/warn-on-leave.directive.js"></script>
+
 </body>
 </html>

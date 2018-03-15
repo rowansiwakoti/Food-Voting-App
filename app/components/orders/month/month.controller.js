@@ -1,35 +1,42 @@
-(
-    function () {
-        'use strict';
+(function () {
+    'use strict';
 
-        angular.module('FoodOrderingApp.Orders')
-            .controller('MonthController', MonthController);
+    angular.module('FoodOrderingApp.Orders')
+        .controller('MonthController', MonthController);
 
-        MonthController.$inject = ['OrderService'];
+    MonthController.$inject = ['$sessionStorage', '$state', 'OrderService', 'UserService'];
 
-        function MonthController(OrderService) {
-                var vm = this;
+    function MonthController($sessionStorage, $state, OrderService, UserService) {
+        var vm = this;
 
-                vm.orders = [];
+        vm.orders = [];
 
-                vm.$onInit = function(){
-                    var orders = OrderService.getmonthsOrderList();
+        vm.role = $sessionStorage.role;
 
-                    orders.then(
-                        function (response) {
-                            response.data.forEach(function (order) {
-                                var date = new Date(order.orderedDate).toDateString().slice(4,10);
-                                order.orderedDate = date;
-                                if(order.confirm === true){
-                                    vm.orders.push(order);
-                                }
-                            });
-                        },
-                        function (error) {
-                            console.log(error);
+        vm.generateBill = generateBill;
+
+        vm.$onInit = function () {
+            var orders = OrderService.getMonthsOrderList();
+
+            orders.then(
+                function (response) {
+                    response.data.forEach(function (order) {
+                        if (order.confirm === true) {
+                            vm.orders.push(order);
                         }
-                    );
-                };
+                    });
+                },
+                function (error) {
+                }
+            );
+
+        };
+
+        function generateBill(order){
+            if(vm.role === 'user'){
+                $sessionStorage.orderBill = order;
+                $state.go('orderBill', {order: order});
+            }
         }
     }
-)();
+})();
