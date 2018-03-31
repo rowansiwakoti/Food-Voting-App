@@ -76,7 +76,8 @@
                         $uibModalInstance.close(answer.data);
                     },
                     function (error) {
-                        $log.info(error);
+                        $log.info(error, 'm here');
+                        // $log.info(error);
                     }
                 );
         }

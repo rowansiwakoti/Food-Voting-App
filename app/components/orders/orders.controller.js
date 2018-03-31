@@ -12,6 +12,7 @@
             vm.monthsOrder = monthsOrder;
             vm.todaysOrder = todaysOrder;
 
+
             vm.$onInit = function () {
                 if ($location.path() === '/orders/month') {
                     vm.month = true;

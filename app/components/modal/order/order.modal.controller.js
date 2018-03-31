@@ -99,16 +99,15 @@
                 });
             });
             OrderService.confirmOrder({userId: $sessionStorage.userId, foodList: orderedItems});
-            var balance = $sessionStorage.balance;
+            /*var balance = $sessionStorage.balance;
             balance -= totalAmount;
-            $sessionStorage.balance = balance;
-            $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
+            $sessionStorage.balance = balance;*/
+            // $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
             $rootScope.$broadcast('updateOrdersAfterConfirm', '');
         }
 
         function continueOrder() {
-            var url = $location.path();
-            $state.go(url);
+            $state.go('dashboard');
             $uibModalInstance.dismiss();
         }
     }

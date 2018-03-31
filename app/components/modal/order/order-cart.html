@@ -22,7 +22,7 @@
         <tbody>
         <h2 ng-hide="orderModalCtrl.order.length" colspan="7" class="info-message center">You have no orders.
         </h2>
-        <tr ng-repeat="food in orderModalCtrl.order" class="center">
+        <tr ng-repeat="food in orderModalCtrl.order | orderBy: '-restaurantName'" class="center">
             <td>{{$index + 1}}</td>
             <td>{{food.restaurantName}}</td>
             <td>{{food.name}}</td>

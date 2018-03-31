@@ -11,9 +11,8 @@
     </thead>
     <tbody>
 
-    <!--uib-tooltip="{{order.confirm==true?'Click here to view the bill of this order!':''}}"-->
-    <tr ng-repeat="order in todaysCtrl.orders | orderBy:'-orderedDate'"
-        ng-click="todaysCtrl.generateBill(order)" style="cursor: {{order.confirm==true?'pointer':''}}">
+
+    <tr ng-repeat="order in todaysCtrl.orders | orderBy:'-orderedDate'">
         <td style="vertical-align: middle;">{{$index+1}}</td>
         <td ng-show="todaysCtrl.role==='admin'" style="vertical-align: middle">{{order.firstName}} {{order.middleName}}
             {{order.lastName}}
@@ -25,7 +24,7 @@
                     <th>Food</th>
                     <th>Restaurant</th>
                     <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Unit Price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,7 +35,7 @@
                     <td>{{food.foodPrice}}</td>
                 </tr>
                 <tr>
-                    <td colspan="3">Total</td>
+                    <td colspan="3" style="font-weight: bold">Total Amount</td>
                     <td>{{order.total}}</td>
                 </tr>
                 </tbody>
@@ -45,7 +44,10 @@
         <td ng-show="todaysCtrl.role==='user'"
             style="vertical-align: middle;">
             <p ng-show="order.confirm !== true" style="background: red; color: white;">Pending</p>
-            <p ng-show="order.confirm !== false" style="background: blue; color: white;">Received</p>
+            <p ng-show="order.confirm !== false" style="background: blue; color: white;">Received </p>
+            <button ng-show="order.confirm !== false" class="btn btn-sm" ng-click="todaysCtrl.generateBill(order)">Print
+                Bill
+            </button>
         </td>
         <td ng-show="todaysCtrl.role==='admin'" style="vertical-align: middle; width: 15%;">
             <button ng-show="order.confirm !== true" class="btn btn-sm btn-default"

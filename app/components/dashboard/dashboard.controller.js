@@ -118,7 +118,7 @@
             if (vm.restaurants.length < 6) {
                 vm.restaurants.push(restaurant);
             }
-            else if(vm.restaurants.length >= 6){console.log(vm.restaurants.length);
+            else if(vm.restaurants.length >= 6){
                 vm.selectPage();
             }
         }
@@ -144,21 +144,26 @@
 
             modalInstance.result.then(function (id) {
                 vm.message = RestaurantService.getAlertMessage();
-                deleteRest(id);
+                deleteRest(restaurant);
             }, function () {
                 $log.info('Delete restaurant modal dismissed on ' + new Date());
             });
         }
 
-        function deleteRest(id) {
-           /* var pos;
+        function deleteRest(restaurant) {
+            var pos;
             vm.restaurants.forEach(function (restro, index) {
-                if (restro.id === id) {
+                if (restro.id === restaurant.id) {
                     pos = index;
                 }
             });
-            vm.restaurants.splice(pos, 1);*/
-           vm.selectPage();
+            vm.restaurants.splice(pos, 1);
+
+          if(vm.restaurants.length <= 0){
+            vm.currentPage -= 1;
+            console.log(vm.restaurants);
+            vm.selectPage();
+          }
         }
 
         function editRestaurant(restaurant) {

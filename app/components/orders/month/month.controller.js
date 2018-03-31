@@ -1,42 +1,55 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular.module('FoodOrderingApp.Orders')
-        .controller('MonthController', MonthController);
+  angular.module('FoodOrderingApp.Orders')
+    .controller('MonthController', MonthController);
 
-    MonthController.$inject = ['$sessionStorage', '$state', 'OrderService', 'UserService'];
+  MonthController.$inject = ['$sessionStorage', '$state', '$rootScope', 'OrderService', 'UserService', '$scope'];
 
-    function MonthController($sessionStorage, $state, OrderService, UserService) {
-        var vm = this;
+  function MonthController($sessionStorage, $state, $rootScope, OrderService, UserService, $scope) {
+    var vm = this;
 
-        vm.orders = [];
+    vm.orders = [];
 
-        vm.role = $sessionStorage.role;
+    vm.role = $sessionStorage.role;
 
-        vm.generateBill = generateBill;
+    vm.generateBill = generateBill;
+    vm.balance = $sessionStorage.balance;
 
-        vm.$onInit = function () {
-            var orders = OrderService.getMonthsOrderList();
+    $rootScope.$on('newTodayOrders', function (event) {
+      console.log('lets get started');
+    });
 
-            orders.then(
-                function (response) {
-                    response.data.forEach(function (order) {
-                        if (order.confirm === true) {
-                            vm.orders.push(order);
-                        }
-                    });
-                },
-                function (error) {
-                }
-            );
+    vm.$onInit = function () {
+      vm.totalAmount = 0;
 
-        };
+      var orders = OrderService.getMonthsOrderList();
 
-        function generateBill(order){
-            if(vm.role === 'user'){
-                $sessionStorage.orderBill = order;
-                $state.go('orderBill', {order: order});
+      orders.then(
+        function (response) {
+          response.data.forEach(function (order) {
+            if (order.confirm === true) {
+              vm.orders.push(order);
+              order.foodResList.forEach(function (food) {
+                vm.totalAmount += (food.quantity * food.foodPrice);
+              });
+              var balance = 1200;
+              balance -= vm.totalAmount;
+              $sessionStorage.balance = balance;
+              $rootScope.$broadcast('instantUpdateBalance', $sessionStorage.balance);
             }
+          });
+        },
+        function (error) {
         }
+      );
+    };
+
+    function generateBill(order) {
+      if (vm.role === 'user') {
+        $sessionStorage.orderBill = order;
+        $state.go('orderBill', {order: order});
+      }
     }
+  }
 })();

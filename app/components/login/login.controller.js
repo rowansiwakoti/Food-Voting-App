@@ -42,7 +42,7 @@
                 );
         }
 
-        function saveDataToSession(data) {
+        function saveDataToSession(data) {console.log(data);
             $sessionStorage.userId = data.userId;
             $sessionStorage.firstName = data.firstName;
             $sessionStorage.middleName = data.middleName;

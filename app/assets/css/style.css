@@ -59,7 +59,7 @@ body {
 .glyphicon-eye-open {
     position: absolute;
     right: 30px;
-    top: 75px;
+    top: 15px;
 }
 
 .spinner {
@@ -238,6 +238,7 @@ body > div > div > table > tbody > tr {
 }
 
 .restaurant-dashboard {
+    min-height:33.75em;
     /*margin-bottom: 50px;*/
 }
 
